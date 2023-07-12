@@ -7,13 +7,7 @@ let Game = require('../models/game');
 
 module.exports.displayGameList = async (req, res, next)=>{
     try {
-        let gameList = await Game.find();
-        //console.log(gameList);
-
-        res.render('game/list', 
-            {title: 'Games', 
-            GameList: gameList,
-            displayName: req.user ? req.user.displayName : ''})
+        res.render('game/list', { title: 'Game List' })
     } catch (err){
         console.log(err);
     }
