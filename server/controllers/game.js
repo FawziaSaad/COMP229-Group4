@@ -15,9 +15,8 @@ module.exports.displayGameList = async (req, res, next)=>{
 
 module.exports.displayAddPage = async (req, res, next)=>{
     try {
-        res.render('game/add', 
-        {title: 'Add Game',
-        displayName: req.user ? req.user.displayName : ''})
+        res.render('surveys/create', 
+        {title: 'Create survey',})
     } catch (err){
         console.log(err);
     }

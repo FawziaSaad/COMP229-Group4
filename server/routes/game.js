@@ -21,7 +21,7 @@ function requireAuth(req, res, next)
 router.get('/', gameController.displayGameList);
 
 // Get Route for the Add page - CREATE Operation
-router.get('/add', requireAuth, gameController.displayAddPage);
+router.get('/add', gameController.displayAddPage);
 
 // Post Route for processing the Add page - CREATE Operation
 router.post('/add', requireAuth, gameController.processAddPage);
