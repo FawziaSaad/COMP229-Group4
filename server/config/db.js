@@ -1,4 +1,4 @@
 module.exports =
 {
-    "URI": "mongodb://localhost/game_store"
+    "URI": process.env.DB_URI
 }
