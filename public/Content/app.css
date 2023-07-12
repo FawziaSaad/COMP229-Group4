@@ -15,3 +15,8 @@ body{
     margin: 0 auto;
     display: block;
 }
+
+footer > nav{
+    font-size: smaller;
+    text-align: center;
+}
