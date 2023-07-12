@@ -5,6 +5,11 @@ let mongoose = require('mongoose');
 // connect to our Game Model
 let Game = require('../models/game');
 
+// TODO: Move survey list into the main page with full CRUD
+// TODO: User can create and delete page (maybe not update for consistency?)
+    // -> get id, datetime, creater, questions and answers, count for users taking survey that will increment
+
+
 module.exports.displayGameList = async (req, res, next)=>{
     try {
         let gameList = await Game.find();
