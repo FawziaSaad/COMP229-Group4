@@ -7,7 +7,7 @@ let Game = require('../models/game');
 
 module.exports.displayGameList = async (req, res, next)=>{
     try {
-        res.render('game/list', { title: 'Game List' })
+        res.render('surveys/landing', { title: 'Game List' })
     } catch (err){
         console.log(err);
     }
