@@ -1,4 +1,4 @@
 module.exports =
 {
-    "URI": "mongodb://localhost/game_store"
+    "URI": "mongodb://localhost:27017/game_store"
 }
