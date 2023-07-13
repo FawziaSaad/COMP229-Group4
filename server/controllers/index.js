@@ -33,10 +33,64 @@ module.exports.displayHomePage = async (req, res, next) => {
 
 module.exports.displayCreateSurvey = async (req, res, next)=>{
     try {
-        res.render('surveys/create', 
+        res.render('surveys/createTEST', 
         {title: 'Create survey',})
     } catch (err){
         console.log(err);
+    }
+};
+
+module.exports.processCreateSurvey = async (req, res, next) => {
+    const surveyData = req.body;
+    
+    // Extract survey name
+    const surveyName = surveyData.surveyName;
+    
+    // Extract questions and responses
+    const questions = [];
+    for (let count = 0; count < 2; count++) {
+        const questionKey = `Question${count + 1}`;
+        const responseKey = `response${count + 1}`;
+        const question = surveyData[questionKey];
+        const responses = surveyData[responseKey];
+
+        questions.push({
+        Question: question,
+        OptionOne: responses[0] || "",
+        OptionTwo: responses[1] || "",
+        OptionThree: responses[2] || "",
+        OptionFour: responses[3] || "",
+        });
+    }
+    
+    try {
+        // Create a new SurveyModel object
+        const newSurvey = new Surveys({
+        name: surveyName,
+        creator: req.user.displayName,
+        questions: questions,
+        });
+    
+        // Save the new survey to the database
+        await newSurvey.save();
+    
+        res.redirect('/');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+// DELETE a survey
+module.exports.performDelete = async (req, res, next) => {
+    let id = req.params.id;
+
+    try {
+        await Surveys.findByIdAndRemove(id);
+        res.redirect('/');
+    }catch (err){
+        console.log(err);
+        res.status(500).send(err);
     }
 };
 
