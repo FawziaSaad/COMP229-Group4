@@ -12,13 +12,7 @@ let Game = require('../models/game');
 // Turn this into the response report -> generate table from the responses list
 module.exports.displayGameList = async (req, res, next)=>{
     try {
-        let gameList = await Game.find();
-        //console.log(gameList);
-
-        res.render('game/list', 
-            {title: 'Games', 
-            GameList: gameList,
-            displayName: req.user ? req.user.displayName : ''})
+        res.render('surveys/landing', { title: 'Game List' })
     } catch (err){
         console.log(err);
     }
@@ -26,9 +20,8 @@ module.exports.displayGameList = async (req, res, next)=>{
 
 module.exports.displayAddPage = async (req, res, next)=>{
     try {
-        res.render('game/add', 
-        {title: 'Add Game',
-        displayName: req.user ? req.user.displayName : ''})
+        res.render('surveys/create', 
+        {title: 'Create survey',})
     } catch (err){
         console.log(err);
     }
