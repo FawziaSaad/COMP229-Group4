@@ -14,10 +14,12 @@ function requireAuth(req, res, next)
     next();
 }
 
-// TODO: Move survey list into the landing page
-// TODO: Finish Survey model/schema
-// TODO: Populate dummy data on Atlas   
-// TODO: - READ functionality
+// 12.07.2023
+// TODO: Move survey list into the landing page -- I thought we were moving it to the main page? Or are we moving them all to the Survey Route?
+// TODO: Finish Survey model/schema  -- OK
+// TODO: Populate dummy data on Atlas -- OK  
+// TODO: - READ functionality         -- Create Survey and Delete Survey Okay
+// How do we want to deal with the Update?
 
 
 /* GET home page. */
@@ -34,6 +36,12 @@ router.post('/create-survey', indexController.processCreateSurvey); // remember 
 
 // Get to perform Deletion - Delete Operation
 router.get('/delete/:id', indexController.performDelete); // remember to add in requireAuth -> removed for debugging
+
+// 13.07.2023
+// TODO: Confirm that the data is getting into the DB okay
+// TODO: Implement a take survey option -> remember to create a response object for each survey and user where the responses are held
+//       ... we can then just take the response entry and map the questions and answers to fill out the table int the reports section.
+
 
 // Leave the login / logout
 /* Get Route for displaying the Login Page */
