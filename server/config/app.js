@@ -70,7 +70,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/game-list', gamesRouter);
+app.use('/surveys', gamesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
