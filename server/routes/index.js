@@ -3,12 +3,16 @@ var router = express.Router();
 
 let indexController = require('../controllers/index');
 
+// TODO: Move survey list into the landing page
+
 /* GET home page. */
 router.get('/', indexController.displayHomePage);
 
 /* GET home page. */
 router.get('/home', indexController.displayHomePage);
 
+
+// Leave the login / logout
 /* Get Route for displaying the Login Page */
 router.get('/login', indexController.displayLoginPage);
 

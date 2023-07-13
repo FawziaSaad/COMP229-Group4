@@ -10,30 +10,9 @@ let surveyModel = mongoose.Schema({
         default: Date.now
     },
     endDate: Date, 
-    questionOne: {
-        Question: String,
-        OptionOne: String,
-        OptionTwo: String,
-        OptionThree: String,
-        OptionFour: String,
-        answerMark: int,
-    },
-    questionTwo: {
-        Question: String,
-        OptionOne: String,
-        OptionTwo: String,
-        OptionThree: String,
-        OptionFour: String,
-        answerMark: int,
-    },
-    questionThree: {
-        Question: String,
-        OptionOne: String,
-        OptionTwo: String,
-        OptionThree: String,
-        OptionFour: String,
-        answerMark: int,
-    }
+    questions: String
+        
+
 },
 {
     collection: 'surveys'
