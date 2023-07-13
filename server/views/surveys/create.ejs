@@ -5,10 +5,10 @@
 <!-- Main Content -->
 <h2>Create Survey</h2>
 <!-- should this also not be in the form? -->
-<input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input">
- 
-  <main class="container" id="questionContainer"></main>
-  <form id="questionForm" method="POST">
+
+<main class="container" id="questionContainer"></main>
+<form id="questionForm" method="POST">
+    <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input" required>
 
     <button id="addBtn" class="add-question-btn">Add Question</button>
     <button id="submitBtn" class="submit-btn" type="submit">Submit</button>
