@@ -11,9 +11,9 @@ let ResponseModel = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId
     },
     // Moh, Should we update also the question here? So for the reporting, it's all in this Schema?
-    // questions: [{
-    //     type: String
-    // }],
+    questions: [{
+        type: String
+    }],
     responses: [{   // Also, changed the name from 'response' to 'responses'
         type: String
     }]
