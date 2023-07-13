@@ -10,6 +10,9 @@ let User = userModel.User; //alias
 // import the Survey Model instance
 let Surveys = require('../models/survey');
 
+// import the Response Model instance
+let Response = require('../models/response');
+
 
 
 module.exports.displayHomePage = async (req, res, next) => {
