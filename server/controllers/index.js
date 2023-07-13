@@ -14,7 +14,6 @@ let Surveys = require('../models/survey');
 let Response = require('../models/response');
 
 
-
 module.exports.displayHomePage = async (req, res, next) => {
     try {
         let SurveyList = await Surveys.find();
@@ -31,6 +30,15 @@ module.exports.displayHomePage = async (req, res, next) => {
 // module.exports.displayHomePage = (req, res, next) => {
 //     res.render('index', { title: 'Home', displayName: req.user ? req.user.displayName : '' });
 // }
+
+module.exports.displayCreateSurvey = async (req, res, next)=>{
+    try {
+        res.render('surveys/create', 
+        {title: 'Create survey',})
+    } catch (err){
+        console.log(err);
+    }
+};
 
 
 module.exports.displayLoginPage = (req, res, next) => {
