@@ -1,4 +1,5 @@
 <%- include ../partials/header.ejs %>
+<script src="/Scripts/surveys/createSurvey.js"></script>
 
 <%- include ../partials/main_nav.ejs %>
 
@@ -6,19 +7,40 @@
 <h2>Create Survey</h2>
 <!-- should this also not be in the form? -->
 
-<main class="container" id="questionContainer"></main>
-<form id="questionForm" method="POST">
+<main class="container" id="questionContainer">
+  <form id="questionForm" method="POST">
     <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input" required>
-
+    <% for(let count = 0; count < 2; count++) { %>
+      <div class="container" style="margin:2rem 0;">
+        <div class="container">
+          <div class="row">
+              <div class="offset-md-3 col-md-6">
+                  <form class="form" method="POST">
+  
+                      <div class="form-group">
+                        <input type="text" class="form-control"
+                        id="nameTextField"
+                        placeholder="Question <%= count+1 %>"
+                        name="Question<%= count+1 %>">
+                      </div>
+                      <% for(let i = 0; i < 4; i++) { %>
+                        <div class="form-group">
+                          <input type="text" class="form-control"
+                          id="nameTextField"
+                          placeholder="Response <%= i+1 %>"
+                          name="response<%= count+1 %>">
+                      </div>
+  
+                      <% } %>
+              </div>
+          </div>
+      </div>
+      </div>
+    <% } %>
     <button id="addBtn" class="add-question-btn">Add Question</button>
     <button id="submitBtn" class="submit-btn" type="submit">Submit</button>
   </form>
-
 </main>
 
 <%- include ../partials/bottom_nav.ejs %>
-<script src="/Scripts/surveys/createSurvey.js"></script>
 <%- include ../partials/footer.ejs %>
-
-
-

@@ -1,6 +1,5 @@
 let addButton = document.getElementById("addBtn");
 let questionForm = document.getElementById("questionForm");
-let container = document.getElementById("createSurveyContainter");
 
 addButton.addEventListener("click", function () {
   let newQuestionContainer = document.createElement("div");
@@ -31,7 +30,7 @@ addButton.addEventListener("click", function () {
     questionForm.removeChild(newQuestionContainer);
     if (questionForm.childElementCount == 0) {
       submitBtn = document.getElementById("submitBtn");
-      container.removeChild(submitBtn);
+      questionForm.removeChild(submitBtn);
     }
   });
   removeBtn.className = "remove-question-btn";
@@ -43,10 +42,9 @@ addButton.addEventListener("click", function () {
     let submitBtn = document.createElement("button");
     submitBtn.id = "submitBtn";
     submitBtn.innerHTML = "Submit";
-    container.appendChild(submitBtn);
+    questionForm.appendChild(submitBtn);
   }
 });
-
 
 // Please add some kind of form limit, the model will only take a max of 4.
 // These prevent the form from submitting
