@@ -20,13 +20,13 @@ let usersRouter = require('../routes/users');
 let gamesRouter = require('../routes/game');
 
 // point mongoose to the DB URI
-// mongoose.connect(DB.URI);
+mongoose.connect(DB.URI);
 
-// let mongoDB = mongoose.connection;
-// mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
-// mongoDB.once('open', ()=>{
-//   console.log('Connected to MongoDB...');
-// })
+let mongoDB = mongoose.connection;
+mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
+mongoDB.once('open', ()=>{
+  console.log('Connected to MongoDB...');
+})
 
 let app = express();
 
