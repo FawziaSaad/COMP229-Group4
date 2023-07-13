@@ -34,6 +34,9 @@ router.get('/create-survey',  indexController.displayCreateSurvey);  // remember
 // POST Route for processing the Create Survey Page - CREATE Operation
 router.post('/create-survey', indexController.processCreateSurvey); // remember to add in requireAuth -> removed for debugging
 
+// POST Route for processing the Create Survey Page - CREATE Operation
+router.get('/survey/report/:id', indexController.reportSurvey); // remember to add in requireAuth -> removed for debugging
+
 // Get to perform Deletion - Delete Operation
 router.get('/delete/:id', indexController.performDelete); // remember to add in requireAuth -> removed for debugging
 
