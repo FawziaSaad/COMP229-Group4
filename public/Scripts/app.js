@@ -13,7 +13,7 @@
                 if (!confirm("Are your sure?"))
                 {
                     event.preventDefault();
-                    window.location.assign('/game-list');
+                    window.location.assign('/');
                 }
             });
         }
