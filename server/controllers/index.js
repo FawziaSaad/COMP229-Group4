@@ -27,6 +27,18 @@ module.exports.displayHomePage = async (req, res, next) => {
     }
 }
 
+module.exports.reportSurvey = async (req, res, next)=> {
+    let id = req.params.id;
+
+    try {
+        var survey = await Surveys.findById(id);
+        console.log(survey);
+        res.render('surveys/report', {title: 'Survey Report', survey: survey, displayName: req.user ? req.user.displayName : ''});
+    }catch (err){
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
 // module.exports.displayHomePage = (req, res, next) => {
 //     res.render('index', { title: 'Home', displayName: req.user ? req.user.displayName : '' });
 // }

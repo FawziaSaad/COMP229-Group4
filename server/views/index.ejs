@@ -3,7 +3,6 @@
 <%- include partials/main_nav.ejs %>
   
 
-  <!-- Main Content -->
   <main class="container">
     <div class="jumbotron">
       <h1 class="display-4">Welcome to the <%= title %> page</h1>
@@ -16,37 +15,25 @@
         <% } %>
         <br>
         <table class="table table-bordered table-striped table-hover">
-            <!-- Header Row -->
             <tr class="d-flex">
-                <% if (typeof displayName == 'string' && displayName) { %>
                     <th class="text-center col-5">Survey</th>
                     <th class="text-center col-5">Created By</th>
                     <th class="text-center col-1"></th>
                     <th class="text-center col-1"></th>
-                <% } else { %>
-                    <th class="text-center col-2">Survey</th>
-                    <th class="text-center col-2">Created By</th>
-                <% } %>
             </tr>
-            <!-- Repeatable Template Row -->
             <% for(let count = 0; count < SurveyList.length; count++) { %>
                 <tr class="d-flex">
-                    <% if (typeof displayName == 'string' && displayName) { %>
+                    
                         <td class="text-center col-5"><%= SurveyList[count].name %></td>
                         <td class="text-center col-5"><%= SurveyList[count].creator %></td>
-
                         <td class="text-center col-1">
                             <a href="/survey/report/<%= SurveyList[count]._id %>" class="btn btn-primary btn-sm">
                             <i class="fas fa-pencil-alt"></i> Report</a>
                         </td>
                         <td class="text-center col-1">
-                            <a href="//delete/<%= SurveyList[count]._id %>" class="btn btn-danger btn-sm">
+                            <a href="/delete/<%= SurveyList[count]._id %>" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i> Delete</a>
                         </td>
-                    <% } else { %>
-                        <td class="text-center col-2"><%= SurveyList[count].name %></td>
-                        <td class="text-center col-2"><%= SurveyList[count].creator %></td>
-                    <% } %>
                 </tr>
             <% } %>
         </table>
