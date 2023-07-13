@@ -34,12 +34,13 @@
                     <% if (typeof displayName == 'string' && displayName) { %>
                         <td class="text-center col-5"><%= SurveyList[count].name %></td>
                         <td class="text-center col-5"><%= SurveyList[count].creator %></td>
+
                         <td class="text-center col-1">
-                            <a href="/game-list/edit/<%= SurveyList[count]._id %>" class="btn btn-primary btn-sm">
-                            <i class="fas fa-pencil-alt"></i> Edit</a>
+                            <a href="/survey/report/<%= SurveyList[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> Report</a>
                         </td>
                         <td class="text-center col-1">
-                            <a href="/game-list/delete/<%= SurveyList[count]._id %>" class="btn btn-danger btn-sm">
+                            <a href="//delete/<%= SurveyList[count]._id %>" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i> Delete</a>
                         </td>
                     <% } else { %>
