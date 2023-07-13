@@ -45,7 +45,7 @@ module.exports.reportSurvey = async (req, res, next)=> {
 
 module.exports.displayCreateSurvey = async (req, res, next)=>{
     try {
-        res.render('surveys/createTEST', 
+        res.render('surveys/create', 
         {title: 'Create survey',})
     } catch (err){
         console.log(err);
@@ -79,8 +79,10 @@ module.exports.processCreateSurvey = async (req, res, next) => {
         // Create a new SurveyModel object
         const newSurvey = new Surveys({
         name: surveyName,
-        creator: req.user.displayName,
+        creator: "am,r", //req.user.displayName,
         questions: questions,
+        startDate: new Date(),
+        endDate: new Date(),
         });
     
         // Save the new survey to the database
