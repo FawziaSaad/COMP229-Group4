@@ -14,10 +14,11 @@ let Surveys = require('../models/survey');
 
 module.exports.displayHomePage = async (req, res, next) => {
     try {
-        let surveyList = await Surveys.find();
+        let SurveyList = await Surveys.find();
+        // res.json(surveyList);
         res.render('index', { 
             title: 'Home', 
-            surveyList: surveyList,
+            SurveyList: SurveyList,
             displayName: req.user ? req.user.displayName : '' })
     } catch (err){
         console.log(err);
