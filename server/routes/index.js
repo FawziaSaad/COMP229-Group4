@@ -20,8 +20,6 @@ function requireAuth(req, res, next)
 // TODO: - READ functionality
 
 
-
-
 /* GET home page. */
 router.get('/', indexController.displayHomePage);
 
@@ -29,11 +27,10 @@ router.get('/', indexController.displayHomePage);
 router.get('/home', indexController.displayHomePage);
 
 /* GET create survey page. */
-router.get('/create-survey', requireAuth, indexController.displayCreateSurvey);
+router.get('/create-survey',  indexController.displayCreateSurvey);  // remember to add in requireAuth -> removed for debugging
 
 // POST Route for processing the Create Survey Page - CREATE Operation
-router.post('/create-survey', requireAuth, indexController.displayCreateSurvey);
-
+router.post('/create-survey', indexController.processCreateSurvey); // remember to add in requireAuth -> removed for debugging
 
 // Leave the login / logout
 /* Get Route for displaying the Login Page */
