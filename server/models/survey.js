@@ -17,7 +17,6 @@ let SurveyModel = mongoose.Schema({
         OptionTwo: String,
         OptionThree: String,
         OptionFour: String,
-        Response: String
     }]
 },
 {
