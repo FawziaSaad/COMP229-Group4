@@ -7,9 +7,9 @@ let Game = require('../models/game');
 
 // TODO: Move survey list into the main page with full CRUD
 // TODO: User can create and delete page (maybe not update for consistency?)
-    // -> get id, datetime, creater, questions and answers, count for users taking survey that will increment
+// -> get id, datetime, creater, questions and answers, count for users taking survey that will increment
 
-
+// Turn this into the response report -> generate table from the responses list
 module.exports.displayGameList = async (req, res, next)=>{
     try {
         let gameList = await Game.find();
