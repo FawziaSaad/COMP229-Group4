@@ -19,13 +19,13 @@
             <!-- Header Row -->
             <tr class="d-flex">
                 <% if (typeof displayName == 'string' && displayName) { %>
-                    <th class="text-center col-5">Name</th>
-                    <th class="text-center col-5">Creator</th>
+                    <th class="text-center col-5">Survey</th>
+                    <th class="text-center col-5">Created By</th>
                     <th class="text-center col-1"></th>
                     <th class="text-center col-1"></th>
                 <% } else { %>
-                    <th class="text-center col-2">Name</th>
-                    <th class="text-center col-2">Creator</th>
+                    <th class="text-center col-2">Survey</th>
+                    <th class="text-center col-2">Created By</th>
                 <% } %>
             </tr>
             <!-- Repeatable Template Row -->
@@ -45,7 +45,6 @@
                     <% } else { %>
                         <td class="text-center col-2"><%= SurveyList[count].name %></td>
                         <td class="text-center col-2"><%= SurveyList[count].creator %></td>
-
                     <% } %>
                 </tr>
             <% } %>
