@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 // let Question = require('./question');
 
 // create model class
-let surveyModel = mongoose.Schema({
+let SurveyModel = mongoose.Schema({
     name: String, 
     creator: String,
 
@@ -24,4 +24,4 @@ let surveyModel = mongoose.Schema({
     collection: 'surveys'
 });
 
-module.exports = mongoose.model('Surveys', surveyModel);
+module.exports = mongoose.model('Surveys', SurveyModel);
