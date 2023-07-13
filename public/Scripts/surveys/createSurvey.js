@@ -9,7 +9,7 @@ addButton.addEventListener("click", function () {
 
   let newQuestion = document.createElement("div");
   newQuestion.className = "form-group";
-  newQuestion.innerHTML = `<label for="question">Question ${Array.from(questionForm.children).indexOf(newQuestionContainer) + 1}</label><input type="text" class="form-control" name=${"q" + (Array.from(questionForm.children).indexOf(newQuestionContainer) + 1)} placeholder="Enter question">`;
+  newQuestion.innerHTML = `<label for="question">Question ${Array.from(questionForm.children).indexOf(newQuestionContainer) - 2}</label><input type="text" class="form-control" name=${"q" + (Array.from(questionForm.children).indexOf(newQuestionContainer) + 1)} placeholder="Enter question">`;
 
   let createAnswerBtn = document.createElement("button");
   createAnswerBtn.innerHTML = "Add Answer";
@@ -29,17 +29,26 @@ addButton.addEventListener("click", function () {
   removeBtn.addEventListener("click", function (e) {
     e.preventDefault();
     questionForm.removeChild(newQuestionContainer);
+    if (questionForm.childElementCount == 0) {
+      submitBtn = document.getElementById("submitBtn");
+      container.removeChild(submitBtn);
+    }
   });
   removeBtn.className = "remove-question-btn";
   newQuestion.appendChild(removeBtn);
 
   newQuestionContainer.appendChild(newQuestion);
 
+  if (questionForm.childElementCount == 1) {
+    let submitBtn = document.createElement("button");
+    submitBtn.id = "submitBtn";
+    submitBtn.innerHTML = "Submit";
+    container.appendChild(submitBtn);
+  }
 });
 
 
 // Please add some kind of form limit, the model will only take a max of 4.
-
 // These prevent the form from submitting
 addButton.addEventListener("click", function (e) {
   e.preventDefault();
