@@ -38,3 +38,5 @@ let surveyModel = mongoose.Schema({
 {
     collection: 'surveys'
 });
+
+module.exports = mongoose.model('Surveys', surveyModel);
