@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+// let Question = require('./question');
 
 // create model class
 let surveyModel = mongoose.Schema({
@@ -10,9 +11,14 @@ let surveyModel = mongoose.Schema({
         default: Date.now
     },
     endDate: Date, 
-    questions: String
-        
-
+    questions: [{
+        Question: String,
+        OptionOne: String,
+        OptionTwo: String,
+        OptionThree: String,
+        OptionFour: String,
+        Response: String
+    }]
 },
 {
     collection: 'surveys'

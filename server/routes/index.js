@@ -4,6 +4,10 @@ var router = express.Router();
 let indexController = require('../controllers/index');
 
 // TODO: Move survey list into the landing page
+// TODO: Finish Survey model/schema
+// TODO: Populate dummy data on Atlas   
+// TODO: - READ functionality
+
 
 /* GET home page. */
 router.get('/', indexController.displayHomePage);
