@@ -7,9 +7,27 @@ let passport = require('passport');
 let userModel = require('../models/user');
 let User = userModel.User; //alias
 
-module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', { title: 'Home', displayName: req.user ? req.user.displayName : '' });
+// import the Survey Model instance
+let Surveys = require('../models/survey');
+
+
+
+module.exports.displayHomePage = async (req, res, next) => {
+    try {
+        let surveyList = await Surveys.find();
+        res.render('index', { 
+            title: 'Home', 
+            surveyList: surveyList,
+            displayName: req.user ? req.user.displayName : '' })
+    } catch (err){
+        console.log(err);
+    }
 }
+
+// module.exports.displayHomePage = (req, res, next) => {
+//     res.render('index', { title: 'Home', displayName: req.user ? req.user.displayName : '' });
+// }
+
 
 module.exports.displayLoginPage = (req, res, next) => {
     // check if the user is already logged in
