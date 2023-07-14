@@ -11,7 +11,7 @@ let User = userModel.User; //alias
 let Surveys = require('../models/survey');
 
 // import the Response Model instance
-let Response = require('../models/response');
+let Response = require('../models/responses');
 
 
 module.exports.displayHomePage = async (req, res, next) => {

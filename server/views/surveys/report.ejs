@@ -13,11 +13,17 @@
     <h2>Questions and Answers</h2>
     <% for (let i = 0; i < survey.questions.length; i++) { %>
         <h4>Question <%= i + 1 %></h4>
-        <p><strong>Question:</strong> <%= survey.questions[i].Question %></p>
-        <p><strong>Option One:</strong> <%= survey.questions[i].OptionOne %></p>
-        <p><strong>Option Two:</strong> <%= survey.questions[i].OptionTwo %></p>
-        <p><strong>Option Three:</strong> <%= survey.questions[i].OptionThree %></p>
-        <p><strong>Option Four:</strong> <%= survey.questions[i].OptionFour %></p>
+        <p><strong>Question:</strong> <%= survey.questions[i].questionMessage %></p>
+
+        <% if (survey.questions[i].questionType === "MCQ") { %>
+            <% for (let j = 0; j < survey.questions[i].options.length; j++) { %>
+                <p><strong>Option <%= j + 1 %> :</strong> <%= survey.questions[i].options[j] %></p>
+            <% } %>
+        <% } else { %>
+            <p><strong>Answer:</strong> <%= survey.questions[i].answer %></p>
+        <% } %>
+
+        <p><strong>Question Type:</strong> <%= survey.questions[i].questionType %></p>
     <% } %>
 </div>
 
