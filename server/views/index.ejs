@@ -19,8 +19,9 @@
             <!-- Header Row -->
             <tr class="d-flex">
                 <% if (typeof displayName == 'string' && displayName) { %>
-                    <th class="text-center col-5">Survey</th>
+                    <th class="text-center col-4">Survey</th>
                     <th class="text-center col-3">Created By</th>
+                    <th class="text-center col-2"></th>
                     <th class="text-center col-2"></th>
                     <th class="text-center col-2"></th>
                 <% } else { %>
@@ -33,14 +34,17 @@
                 <tr class="d-flex">
                     <% if (typeof displayName == 'string' && displayName) { %>
                         <!-- <td class="text-center col-5"><%= SurveyList[count].name %></td> -->
-                        <td class="text-center col-5">
+                        <td class="text-center col-4">
                             <a href="/survey/<%= SurveyList[count]._id %>"> <%= SurveyList[count].name %></a>
                         </td>
                         <td class="text-center col-3"><%= SurveyList[count].creator %></td>
-
                         <td class="text-center col-2">
                             <a href="/survey/report/<%= SurveyList[count]._id %>" class="btn btn-primary btn-sm">
-                            <i class="fas fa-pencil-alt"></i> Report/Edit?</a>
+                            <i class="fas fa-pencil-alt"></i> Edit?</a>
+                        </td>
+                        <td class="text-center col-2">
+                            <a href="/survey/report/<%= SurveyList[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> Report</a>
                         </td>
                         <td class="text-center col-2">
                             <a href="/delete/<%= SurveyList[count]._id %>" class="btn btn-danger btn-sm">
