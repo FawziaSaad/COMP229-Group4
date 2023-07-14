@@ -43,8 +43,10 @@ router.get('/delete/:id', indexController.performDelete); // remember to add in 
 //       ... we can then just take the response entry and map the questions and answers to fill out the table int the reports section.
 
 //GET ROUTE FOR BRINGING UP THE SURVEY
+router.get('/survey/:id', indexController.respondtoSurvey); 
 
 //POST ROUTE FOR POSTING THE RESPONSES
+router.post('/survey/:id', indexController.submitSurveyResponses);
 
 
 // Leave the login / logout
