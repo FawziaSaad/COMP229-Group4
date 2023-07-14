@@ -10,6 +10,11 @@ let SurveyModel = mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    surveyType: {
+        type: String,
+        enum: ['SA', 'MCQ'],
+        required: true
+    },
     endDate: Date, 
     questions: [{
         Question: String,
