@@ -98,10 +98,6 @@ nav.navbar ul.navbar-nav li.nav-item a:hover {
   }
 }
 
-main {
-  padding-top: 6.5rem; 
-}
-
 
 footer {
   background-color: #f8f9fa;
@@ -197,7 +193,8 @@ h2 {
 }
 
 .question-container {
-  margin-left: 10%;
+  margin:0 auto 20px;
+  padding-top: 20px;
   width: 80%;
   margin-bottom: 20px;
   padding: 20px;
