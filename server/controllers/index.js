@@ -70,6 +70,7 @@ module.exports.processCreateSurvey = async (req, res, next) => {
         const newSurvey = new Surveys({
         name: surveyName,
         creator: req.user.displayName,
+        surveyType: 'MCQ',                      // remember to dynamically specify, NOT HARD CODE
         questions: questions,
         });
     
