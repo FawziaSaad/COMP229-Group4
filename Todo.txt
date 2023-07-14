@@ -1,0 +1,4 @@
+1-survey model user choces only one type of Q in survey. so if they use MCQ only then the whole survey would be MCQ. 
+2-clean up the report page -- pulling from response instead of survey
+3-add button to front if the user is the owner of a survey they can edit it.
+4-
