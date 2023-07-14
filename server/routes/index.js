@@ -26,7 +26,7 @@ function requireAuth(req, res, next)
 router.get('/', indexController.displayHomePage);
 
 /* GET home page. */
-router.get('/home', indexController.displayHomePage);
+router.get('/surveys', indexController.displayHomePage);
 
 /* GET create survey page. */
 router.get('/create-survey',  indexController.displayCreateSurvey);  // remember to add in requireAuth -> removed for debugging

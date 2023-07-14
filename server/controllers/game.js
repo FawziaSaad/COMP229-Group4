@@ -38,7 +38,7 @@ module.exports.processAddPage = async (req, res, next) => {
 
     try {
         await newGame.save();
-        res.redirect('/game-list')
+        res.redirect('/surveys')
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -73,7 +73,7 @@ module.exports.processEditPage = async (req, res, next) => {
 
     try {
         await Game.updateOne({_id: id}, updatedGame);
-        res.redirect('/game-list');
+        res.redirect('/surveys');
     } catch (err){
         console.log(err);
         res.status(500).send(err);

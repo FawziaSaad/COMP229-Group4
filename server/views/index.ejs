@@ -11,8 +11,8 @@
       <div class="offset-md-1 col-md-11">
         <h1><%= title %></h1>
         <% if (typeof displayName == 'string' && displayName) { %>
-        <a href="/game-list/add" class="btn btn-primary" role="button">
-            <i class="fas fa-plus-circle"></i> Add a Game</a>
+        <a href="/create-survey" class="btn btn-primary" role="button">
+            <i class="fas fa-plus-circle"></i> Add a Survey</a>
         <% } %>
         <br>
         <table class="table table-bordered table-striped table-hover">
@@ -39,6 +39,7 @@
                             <a href="/survey/report/<%= SurveyList[count]._id %>" class="btn btn-primary btn-sm">
                             <i class="fas fa-pencil-alt"></i> Report</a>
                         </td>
+
                         <td class="text-center col-1">
                             <a href="/delete/<%= SurveyList[count]._id %>" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i> Delete</a>
