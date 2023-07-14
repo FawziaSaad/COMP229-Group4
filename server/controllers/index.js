@@ -141,7 +141,7 @@ module.exports.processLoginPage = (req, res, next) => {
             {
                 return next(err);
             }
-            return res.redirect('/game-list');
+            return res.redirect('/');
         });
     })(req, res, next);
 }
@@ -195,7 +195,7 @@ module.exports.processRegisterPage = (req, res, next) => {
         {
             //if registration is success
             return passport.authenticate('local')(req, res, () => {
-                res.redirect('/game-list')
+                res.redirect('/')
             });
         }
     });
