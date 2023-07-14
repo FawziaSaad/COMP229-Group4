@@ -98,11 +98,68 @@ module.exports.performDelete = async (req, res, next) => {
 
 //TODO:
 // GET ROUTE FOR TAKING THE SURVEY
+module.exports.respondtoSurvey = async (req, res, next) => {
+    let id = req.params.id;
+    let surveyToTake = await Surveys.findById(id);
+    res.render('survey',{
+        title: "Taking a Survey",
+        surveyToTake: surveyToTake
+    })
+
+}
 
 //TODO:
 // POST THE RESPONSES FOR THE SURVEY
 // -- CREATING A RESPONSE OBJECT WITH REF TO USER, SURVEY AND RESPONSES
 // THIS RESPONSE OBJECT WILL BE WHAT IS REFERENCED IN THE GENERATE REPORT SECTION
+module.exports.submitSurveyResponses = async (req, res, next) => {
+    
+    let id = req.params.id; // get the survey to be referrenced
+    try {
+
+        let { responsesBody } = req.body;
+        // get questions
+        let questions = [];
+        let responses = [];
+
+        // Get the answers
+        for (const answerKey in responsesBody) {
+            responses.push(responsesBody[answerKey]);
+          }
+
+
+        // Get the questions
+        let survey = await Surveys.findById(id);
+        for (let i = 0; i < survey.questions.length; i++) {
+            questions.push(survey.questions[i].Question);
+            responses.push(req.body[`answers[${i}]`]);
+        }
+
+        // Debugging
+        // res.json({
+        //     questions: questions,
+        //     responses: responses
+        // });
+
+        // Create a new SurveyModel object
+        const newResponse = new Response({
+        surveyId: id,
+        respondentId: req.user.id,
+        questions: questions,
+        responses: responses
+        });
+    
+        // Save the new survey to the database
+        await newResponse.save();
+    
+        res.redirect('/');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+}
+
+
 
 
 module.exports.displayLoginPage = (req, res, next) => {
