@@ -160,6 +160,19 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
 }
 
 
+module.exports.reportSurvey = async (req, res, next)=> {
+    let id = req.params.id;
+
+    try {
+        let survey = await Surveys.findById(id);
+        console.log(survey);
+        res.render('surveys/report', {title: 'Survey Report', survey: survey, displayName: req.user ? req.user.displayName : ''});
+
+    }catch (err){
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
 
 
 module.exports.displayLoginPage = (req, res, next) => {
