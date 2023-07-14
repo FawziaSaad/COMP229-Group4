@@ -313,6 +313,7 @@ h2 {
 
   .add-question-btn,
   #cancelBtn,
+  .cancelBtn,
   #submitBtn,
   .remove-question-btn,
   .add-answer-btn {
@@ -402,6 +403,20 @@ h2 {
   margin-right: 0;
   transition: background-color 0.3s ease;
 }
+
+#cancelBtnTakeSurvey{
+  padding: 10px 20px;
+  background-color: #b3b3b3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  display: inline-block;
+}
+
 
 .survey-form .submit-btn:hover {
   background-color: #0056b3;
