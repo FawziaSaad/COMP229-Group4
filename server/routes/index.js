@@ -49,7 +49,6 @@ router.get('/survey/:id', indexController.respondtoSurvey);
 //POST ROUTE FOR POSTING THE RESPONSES
 router.post('/survey/:id', indexController.submitSurveyResponses);
 
-
 // Leave the login / logout
 /* Get Route for displaying the Login Page */
 router.get('/login', indexController.displayLoginPage);
