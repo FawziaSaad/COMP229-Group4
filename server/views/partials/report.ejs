@@ -1,0 +1,32 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<div>
+    <h2>Survey Details</h2>
+    <p><strong>Name:</strong> <%= survey.name %></p>
+    <p><strong>Created By:</strong> <%= survey.creator %></p>
+    <p><strong>End Date:</strong> <%= survey.endDate.toLocaleString() %></p>
+</div>
+
+<div>
+    <h2>Questions and Answers</h2>
+    <% for (let i = 0; i < survey.questions.length; i++) { %>
+        <h4>Question <%= i + 1 %></h4>
+        <p><strong>Question:</strong> <%= survey.questions[i].questionMessage %></p>
+
+        <% if (survey.questions[i].questionType === "MCQ") { %>
+            <% for (let j = 0; j < survey.questions[i].options.length; j++) { %>
+                <p><strong>Option <%= j + 1 %> :</strong> <%= survey.questions[i].options[j] %></p>
+            <% } %>
+        <% } else { %>
+            <p><strong>Answer:</strong> <%= survey.questions[i].answer %></p>
+        <% } %>
+
+        <p><strong>Question Type:</strong> <%= survey.questions[i].questionType %></p>
+    <% } %>
+</div>
+
+<%- include ../partials/bottom_nav.ejs %>
+<script src="/Scripts/surveys/createSurvey.js"></script>
+<%- include ../partials/footer.ejs %>
