@@ -10,6 +10,10 @@ let ResponseModel = mongoose.Schema({
     respondentId: {
         type: mongoose.Schema.Types.ObjectId
     },
+    dateTaken: {
+        type: Date,
+        default: Date.now
+    },
     // Moh, Should we update also the question here? So for the reporting, it's all in this Schema?
     questions: [{
         type: String
