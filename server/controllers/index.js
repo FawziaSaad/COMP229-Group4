@@ -46,6 +46,8 @@ module.exports.processCreateSurvey = async (req, res, next) => {
     // Extract survey name
     const surveyName = surveyData.surveyName;
     
+    // TODO: get the amount of questions from the backend
+
     // Extract questions and responses
     const questions = [];
     for (let count = 0; count < 2; count++) {
@@ -101,7 +103,6 @@ module.exports.performDelete = async (req, res, next) => {
 // POST THE RESPONSES FOR THE SURVEY
 // -- CREATING A RESPONSE OBJECT WITH REF TO USER, SURVEY AND RESPONSES
 // THIS RESPONSE OBJECT WILL BE WHAT IS REFERENCED IN THE GENERATE REPORT SECTION
-
 
 
 module.exports.displayLoginPage = (req, res, next) => {
