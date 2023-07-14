@@ -22,6 +22,15 @@ module.exports.displayAddPage = async (req, res, next)=>{
     }
 };
 
+module.exports.displayTakeSurveyPage = async (req, res, next) => {
+    try {
+        res.render('surveys/takesurvey',
+            { title: 'Take Survey' })
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 module.exports.processAddPage = async (req, res, next) => {
     let newGame = new Game({
         "name": req.body.name,

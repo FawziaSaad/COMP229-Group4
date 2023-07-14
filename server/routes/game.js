@@ -23,6 +23,8 @@ router.get('/', gameController.displayGameList);
 // Get Route for the Add page - CREATE Operation
 router.get('/add', gameController.displayAddPage);
 
+router.get('/takesurvey', gameController.displayTakeSurveyPage);
+
 // Post Route for processing the Add page - CREATE Operation
 router.post('/add', requireAuth, gameController.processAddPage);
 
