@@ -2,31 +2,35 @@
 <%- include ../partials/main_nav.ejs %>
 
 <main>
-    <% let survey = {  title: "Survey Title",
-       questions : ["Question 1", "Question 2", "Question 3"],
-       answers: [["Option1", "Option2", "Option3", "Option4"], ["Option1", "Option2", "Option3", "Option4"], ["Option1", "Option2", "Option3", "Option4"]],
-          answersType: ["radio", "checkbox", "radio"], 
-         endDateTime: "2023-12-31 at 23:59" 
-     } %>
-    <h2><%= survey.title%></h2>
-    <form action="" id="surveyForm">
-        <% for (let i = 0; i < survey.questions.length; i++) { %>
-            <div class="question-container">
-                <h3><%= survey.questions[i] %></h3>
-                <% for (let j = 0; j < survey.answers[i].length; j++) { %>
-                    <br>
-                    <% if (survey.answersType[i] === "radio") { %>
-                        <input type="radio" name="question<%= i %>" value="<%= survey.answers[i][j] %>">
-                    <% } else { %>
-                        <input type="checkbox" name="question<%= i %>" value="<%= survey.answers[i][j] %>">
-                    <% } %>
-                    <label for="question<%= i %>"><%= survey.answers[i][j] %></label>
-                <% } %>
-            </div>
-        <% } %>
-        <label for="endDateTime">Expire Date: <%=survey.endDateTime%></label><br>
-        <button type="submit">Submit</button>
-    </form>
+  <% let survey = {
+    title: "Survey Title",
+    questions: ["Question 1", "Question 2", "Question 3"],
+    answers: [
+      ["Option1", "Option2", "Option3", "Option4"],
+      ["Option1", "Option2", "Option3", "Option4"],
+      ["Option1", "Option2", "Option3", "Option4"]
+    ],
+    answersType: ["radio", "radio", "radio"],
+    endDateTime: "2023-12-31 at 23:59"
+  } %>
+  <h2><%= survey.title %></h2>
+  <form action="" id="surveyForm" class="survey-form">
+    <% for (let i = 0; i < survey.questions.length; i++) { %>
+    <div class="question-container">
+      <h3><%= survey.questions[i] %></h3>
+      <% for (let j = 0; j < survey.answers[i].length; j++) { %>
+      <br>
+      <% if (survey.answersType[i] === "radio") { %>
+      <input type="radio" name="question<%= i %>" value="<%= survey.answers[i][j] %>">
+      
+      <% } %>
+      <label for="question<%= i %>"><%= survey.answers[i][j] %></label>
+      <% } %>
+    </div>
+    <% } %>
+    <label for="endDateTime">Expire Date: <%=survey.endDateTime%></label><br>
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
 </main>
 
 <%- include ../partials/bottom_nav.ejs %>
