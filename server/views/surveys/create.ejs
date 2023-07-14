@@ -1,26 +1,23 @@
 <%- include ../partials/header.ejs %>
-
 <%- include ../partials/main_nav.ejs %>
 
 <!-- Main Content -->
 <h2>Create Survey</h2>
 <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input">
 
- 
-  <main class="container" id="questionContainer">
-  <form action="" id="questionForm">
+<main class="container" id="questionContainer">
+  <form action="" id="questionForm"></form>
 
-  </form>
-  <button id="addBtn" class="add-question-btn">Add Question</button>
-  <button id="submitBtn" class="submit-btn">Submit</button>
-  <br>
-  <a href="/" id="cancelBtn" class="cancelBtn">Cancel</a>
+  <div class="add-question-container">
+    <button id="addBtn" class="add-question-btn">Add Question</button>
+  </div>
 
+  <div class="button-container">
+    <button id="submitBtn" class="submit-btn">Submit</button>
+    <a href="/" id="cancelBtn" class="cancelBtn">Cancel</a>
+  </div>
 </main>
 
 <%- include ../partials/bottom_nav.ejs %>
 <script src="/Scripts/surveys/createSurvey.js"></script>
 <%- include ../partials/footer.ejs %>
-
-
-
