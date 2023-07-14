@@ -94,6 +94,15 @@ module.exports.performDelete = async (req, res, next) => {
     }
 };
 
+//TODO:
+// GET ROUTE FOR TAKING THE SURVEY
+
+//TODO:
+// POST THE RESPONSES FOR THE SURVEY
+// -- CREATING A RESPONSE OBJECT WITH REF TO USER, SURVEY AND RESPONSES
+// THIS RESPONSE OBJECT WILL BE WHAT IS REFERENCED IN THE GENERATE REPORT SECTION
+
+
 
 module.exports.displayLoginPage = (req, res, next) => {
     // check if the user is already logged in

@@ -42,6 +42,10 @@ router.get('/delete/:id', indexController.performDelete); // remember to add in 
 // TODO: Implement a take survey option -> remember to create a response object for each survey and user where the responses are held
 //       ... we can then just take the response entry and map the questions and answers to fill out the table int the reports section.
 
+//GET ROUTE FOR BRINGING UP THE SURVEY
+
+//POST ROUTE FOR POSTING THE RESPONSES
+
 
 // Leave the login / logout
 /* Get Route for displaying the Login Page */
