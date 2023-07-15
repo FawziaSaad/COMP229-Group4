@@ -49,7 +49,7 @@ module.exports.displayMySurvey = async (req, res, next) => {
 
 module.exports.displayCreateSurvey = async (req, res, next)=>{
     try {
-        res.render('surveys/createTEST', 
+        res.render('surveys/create', 
         {title: 'Create survey',})
     } catch (err){
         console.log(err);
