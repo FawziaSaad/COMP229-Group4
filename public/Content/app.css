@@ -222,4 +222,25 @@ h2 {
   background-color: #218838;
 }
 
+/* Mohammad's grabage css */
+.table {
+  
+  width: 90%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #bd914f;
+  color: white;
+}
 /* create.ejs css ends */

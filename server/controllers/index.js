@@ -149,7 +149,15 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         questions: questions,
         responses: responses
         });
-    
+        User.findById(req.user.id, (err, user) => {
+            if (err) {
+              console.log(err);
+            } else {
+              // Access the displayName field of the user
+              const displayName = user.displayName;
+              console.log(displayName);
+            }
+          });
         // Save the new survey to the database
         await newResponse.save();
     
@@ -161,20 +169,35 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
 }
 
 
+// module.exports.reportSurvey = async (req, res, next)=> {
+//     let id = req.params.id;
+
+//     try {
+//         let survey = await Surveys.findById(id);
+//         console.log(survey);
+//         res.render('surveys/report', {title: 'Survey Report', survey: survey, displayName: req.user ? req.user.displayName : ''});
+
+//     }catch (err){
+//         console.log(err);
+//         res.status(500).send(err);
+//     }
+// };
+
+
 module.exports.reportSurvey = async (req, res, next)=> {
     let id = req.params.id;
 
     try {
         let survey = await Surveys.findById(id);
-        console.log(survey);
-        res.render('surveys/report', {title: 'Survey Report', survey: survey, displayName: req.user ? req.user.displayName : ''});
+        let responses = await Response.find({surveyId: id});
+        console.log(responses);
+        res.render('surveys/report', {title: 'Survey Report', survey: survey, responses: responses, displayName: req.user ? req.user.displayName : ''});
 
     }catch (err){
         console.log(err);
         res.status(500).send(err);
     }
 };
-
 
 module.exports.displayLoginPage = (req, res, next) => {
     // check if the user is already logged in
