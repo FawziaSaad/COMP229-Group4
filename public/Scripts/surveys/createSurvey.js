@@ -42,7 +42,7 @@ addButton.addEventListener("click", function () {
   
 });
 
-document.getElementById("submitBtn").addEventListener("click", function (e) {
+document.getElementById("submitBtn").addEventListener("click", async function (e) {
   e.preventDefault();
   let surveyName = document.getElementById("surveyName").value;
   let questions = [];
@@ -63,7 +63,7 @@ document.getElementById("submitBtn").addEventListener("click", function (e) {
     "questions": questions
   };
   console.log(survey);
-  fetch("/game-list/add", {
+  await fetch("/game-list/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
