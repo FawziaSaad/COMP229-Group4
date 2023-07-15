@@ -5,7 +5,7 @@ let passport = require('passport');
 
 // create the User Model instance
 let userModel = require('../models/user');
-let User = userModel.User; //alias
+let User = userModel.User; //aliasƒ
 
 // import the Survey Model instance
 let Surveys = require('../models/survey');
@@ -127,8 +127,9 @@ module.exports.displayEditSurvey = async (req, res, next)=>{
 
 module.exports.processEditSurvey = async (req, res, next) => {
     let id = req.params.id;
-    let survey = await Surveys.findById(id);
+    // let survey = await Surveys.findById(id);
     const surveyData = req.body;
+    console.log(surveyData);
     
     // Extract survey name
     const surveyName = surveyData.surveyName;
@@ -159,7 +160,7 @@ module.exports.processEditSurvey = async (req, res, next) => {
         questions: questions,
         };
 
-        await Survey.updateOne({_id: id}, updatedSurvey);
+        await Surveys.updateOne({_id: id}, updatedSurvey);
 
         res.redirect('/');
     } catch (err) {

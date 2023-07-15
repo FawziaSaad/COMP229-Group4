@@ -41,7 +41,7 @@ router.get('/survey/report/:id', indexController.reportSurvey); // remember to a
 
 router.get('/survey/edit/:id', indexController.displayEditSurvey); // remember to add in requireAuth -> removed for debugging
 
-// router.post('/survey/edit/:id', indexController.processEditSurvey); // remember to add in requireAuth -> removed for debugging
+router.post('/survey/edit/:id', indexController.processEditSurvey); // remember to add in requireAuth -> removed for debugging
 
 // 13.07.2023
 // TODO: Confirm that the data is getting into the DB okay
