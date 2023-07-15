@@ -2,31 +2,31 @@
 
 <%- include ../partials/main_nav.ejs %>
 
-<div>
-    <h2>Survey Details</h2>
-    <p><strong>Name:</strong> <%= survey.name %></p>
+<div class="container">
+    <h2>Survey Report</h2>
+    <p><strong>Survey Name:</strong> <%= survey.name %></p>
     <p><strong>Created By:</strong> <%= survey.creator %></p>
     <p><strong>End Date:</strong> <%= new Date(survey.endDate).toLocaleString() %></p>
+    <br>
 </div>
 
 <div>
-    <h2>Responses</h2>
-
     <% for (let i = 0; i < responses.length; i++) { %>
-        <caption>Taken By: <%= responses.takenBy %></caption>
+        <caption>Taken By: <%= responses[i].takenBy %></caption>
         <table class="table">
             <thead>
                 <th>Question</th>
                 <th>Answer</th>
             </thead>
+            <% for (let j = 0; j < responses[i].questions.length; j++) { %>
             <tr>
-                <td>Questions go here</td>
-                <td>Answer go here</td>
+                <td><%= responses[i].questions[j]%></td>
+                <td><%= responses[i].responses[j]%></td>
             </tr>
+            <% } %>
         </table>
         <br>
     <% } %>
-    
 </div>
 
 <%- include ../partials/bottom_nav.ejs %>
