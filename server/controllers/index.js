@@ -172,7 +172,7 @@ module.exports.performDelete = async (req, res, next) => {
 
     try {
         await Surveys.findByIdAndRemove(id);
-        res.redirect('/');
+        res.redirect('/survey/mysurveys');
     }catch (err){
         console.log(err);
         res.status(500).send(err);
