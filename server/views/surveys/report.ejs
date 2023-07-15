@@ -11,26 +11,22 @@
 
 <div>
     <h2>Responses</h2>
-    <table class="table">
-        <thead>
+
+    <% for (let i = 0; i < responses.length; i++) { %>
+        <caption>Taken By: <%= responses.takenBy %></caption>
+        <table class="table">
+            <thead>
+                <th>Question</th>
+                <th>Answer</th>
+            </thead>
             <tr>
-                <th>Respondent ID</th>
-                <% survey.questions.forEach(function(question, i) { %>
-                    <th>Question <%= i + 1 %></th>
-                <% }) %>
+                <td>Questions go here</td>
+                <td>Answer go here</td>
             </tr>
-        </thead>
-        <tbody>
-            <% responses.forEach(function(response) { %>
-                <tr>
-                    <td><%= response.respondentId %></td>
-                    <% response.responses.forEach(function(answer) { %>
-                        <td><%= answer %></td>
-                    <% }) %>
-                </tr>
-            <% }) %>
-        </tbody>
-    </table>
+        </table>
+        <br>
+    <% } %>
+    
 </div>
 
 <%- include ../partials/bottom_nav.ejs %>
