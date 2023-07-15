@@ -29,15 +29,15 @@ router.get('/', indexController.displayHomePage);
 router.get('/home', indexController.displayHomePage);
 
 /* GET create survey page. */
-router.get('/create-survey',  indexController.displayCreateSurvey);  // remember to add in requireAuth -> removed for debugging
+router.get('/create-survey',  requireAuth, indexController.displayCreateSurvey);  
 
 // POST Route for processing the Create Survey Page - CREATE Operation
-router.post('/create-survey', indexController.processCreateSurvey); // remember to add in requireAuth -> removed for debugging
+router.post('/create-survey', requireAuth, indexController.processCreateSurvey); 
 
 // Get to perform Deletion - Delete Operation
-router.get('/delete/:id', indexController.performDelete); // remember to add in requireAuth -> removed for debugging
+router.get('/delete/:id', requireAuth, indexController.performDelete); 
 
-router.get('/survey/report/:id', indexController.reportSurvey); // remember to add in requireAuth -> removed for debugging
+router.get('/survey/report/:id', requireAuth, indexController.reportSurvey); 
 
 /* GET my survey page. */
 router.get('/survey/mysurveys', requireAuth, indexController.displayMySurvey);
