@@ -6,3 +6,5 @@
 
 4-survey model user choces only one type of Q in survey. 
 so if they use MCQ only then the whole survey would be MCQ. 
+
+5-Hung merges controller branch

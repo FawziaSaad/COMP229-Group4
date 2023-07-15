@@ -38,6 +38,17 @@ router.post('/create-survey', indexController.processCreateSurvey); // remember 
 router.get('/delete/:id', indexController.performDelete); // remember to add in requireAuth -> removed for debugging
 
 router.get('/survey/report/:id', indexController.reportSurvey); // remember to add in requireAuth -> removed for debugging
+
+// 14.07.2023
+// 2-add button to front if the user is the owner of a survey they can edit it. <<<
+// 3-implement the edit controller / route / view
+
+// Get to edit survey
+router.get('/survey/edit/:id', indexController.displayEditSurvey);
+
+// Get to edit survey
+// router.post('/survey/edit/:id', indexController.processEditSurvey);
+
 // 13.07.2023
 // TODO: Confirm that the data is getting into the DB okay
 // TODO: Implement a take survey option -> remember to create a response object for each survey and user where the responses are held
