@@ -45,6 +45,9 @@ module.exports.processCreateSurvey = async (req, res, next) => {
     
     // Extract survey name
     const surveyName = surveyData.surveyName;
+    //extract survey type
+    const surveyType = surveyData.surveyType;
+
     
     // TODO: get the amount of questions from the backend
 
@@ -70,7 +73,7 @@ module.exports.processCreateSurvey = async (req, res, next) => {
         const newSurvey = new Surveys({
         name: surveyName,
         creator: req.user.displayName,
-        surveyType: 'MCQ',                      // remember to dynamically specify, NOT HARD CODE
+        surveyType: surveyType,                      // remember to dynamically specify, NOT HARD CODE
         questions: questions,
         });
     
@@ -130,7 +133,10 @@ module.exports.processEditSurvey = async (req, res, next) => {
     
     // Extract survey name
     const surveyName = surveyData.surveyName;
-    
+    //extract survey type
+
+    const surveyType = surveyData.surveyType;
+
     // Extract questions and responses
     const questions = [];
     for (let count = 0; count < 2; count++) { // number of questions should be dynamic
@@ -151,7 +157,7 @@ module.exports.processEditSurvey = async (req, res, next) => {
     let updatedSurvey = {
         "name": surveyName,
         "creator": req.user.displayName,   // assuming the creator does not change
-        "surveyType": 'MCQ',               // assuming the surveyType does not change
+        "surveyType": surveyType,               // assuming the surveyType does not change
         "questions": questions,
     };
 
@@ -230,6 +236,16 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         questions: questions,
         responses: responses
         });
+
+        // User.findById(req.user.id, (err, user) => {
+        //     if (err) {
+        //       console.log(err);
+        //     } else {
+        //       // Access the displayName field of the user
+        //       const displayName = user.displayName;
+        //       console.log(displayName);
+        //     }
+        //   });
 
         // Save the new survey to the database
         await newResponse.save();
