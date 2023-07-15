@@ -64,47 +64,54 @@ module.exports.processCreateSurvey = async (req, res, next) => {
     //extract survey type
     const surveyType = surveyData.surveyType;
 
-    if (surveyType === "MCQ"){
-        // TODO: get the amount of questions from the backend
 
-        // Extract questions and responses
-        const questions = [];
-        for (let count = 0; count < 2; count++) {           // get the data from the backend and make dynamic
-            const questionKey = `Question${count + 1}`;
-            const responseKey = `response${count + 1}`;
-            const question = surveyData[questionKey];
-            const responses = surveyData[responseKey];
-    
+    // TODO: get the amount of questions from the backend
+
+    // Extract questions and responses
+    const questions = [];
+    for (let count = 0; count < 2; count++) {           // get the data from the backend and make dynamic
+        const questionKey = `Question${count + 1}`;
+        const responseKey = `response${count + 1}`;
+        const question = surveyData[questionKey];
+        const responses = surveyData[responseKey];
+
+        if (surveyType === "MCQ") {
             questions.push({
-            Question: question,
-            OptionOne: responses[0] || "",
-            OptionTwo: responses[1] || "",
-            OptionThree: responses[2] || "",
-            OptionFour: responses[3] || "",
+                Question: question,
+                OptionOne: responses[0] || "",
+                OptionTwo: responses[1] || "",
+                OptionThree: responses[2] || "",
+                OptionFour: responses[3] || "",
             });
-        }
-        
-        try {
-            // Create a new SurveyModel object
-            const newSurvey = new Surveys({
-            name: surveyName,
-            creator: req.user.displayName,
-            userid: req.user._id,
-            surveyType: surveyType,                      // remember to dynamically specify, NOT HARD CODE
-            questions: questions,
+        } else if (surveyType === "SA") {
+            questions.push({
+                Question: question
             });
-        
-            // Save the new survey to the database
-            await newSurvey.save();
-        
-            res.redirect('/survey/mysurveys');
-        } catch (err) {
-            console.log(err);
-            res.status(500).send(err);
+
         }
-    } else {
-        res.json({type:"not mcq"})
+
+
     }
+    
+    try {
+        // Create a new SurveyModel object
+        const newSurvey = new Surveys({
+        name: surveyName,
+        creator: req.user.displayName,
+        userid: req.user._id,
+        surveyType: surveyType,                      // remember to dynamically specify, NOT HARD CODE
+        questions: questions,
+        });
+    
+        // Save the new survey to the database
+        await newSurvey.save();
+    
+        res.redirect('/survey/mysurveys');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+
     
     
 };
@@ -115,7 +122,7 @@ module.exports.displayEditSurvey = async (req, res, next) => {
 
     try {
         let surveyToEdit = await Surveys.findById(id);
-        res.render('surveys/editTEST', 
+        res.render('surveys/edit', 
         {title: 'Edit', 
         survey: surveyToEdit,
         displayName: req.user ? req.user.displayName : ''});
@@ -130,7 +137,7 @@ module.exports.processEditSurvey = async (req, res, next) => {
     let id = req.params.id;
     
     const surveyData = req.body;
-    
+    // res.json({data:surveyData});
     // Extract survey name
     const surveyName = surveyData.surveyName;
     //extract survey type
@@ -140,24 +147,34 @@ module.exports.processEditSurvey = async (req, res, next) => {
     // Extract questions and responses
     const questions = [];
     for (let count = 0; count < 2; count++) { // number of questions should be dynamic
-        const questionKey = `Question${count + 1}`;
-        const responseKey = `response${count + 1}`;
-        const question = surveyData[questionKey];
-        const responses = surveyData[responseKey].map((response) => response || "");
+        if (surveyType === "MCQ") {
+            const questionKey = `Question${count + 1}`;
+            const responseKey = `response${count + 1}`;
+            const question = surveyData[questionKey];
+            const responses = surveyData[responseKey].map((response) => response || "");
+    
+            questions.push({
+                Question: question,
+                OptionOne: responses[0] || "",
+                OptionTwo: responses[1] || "",
+                OptionThree: responses[2] || "",
+                OptionFour: responses[3] || "",
+            });
+        } else {
+            const questionKey = `Question${count + 1}`;
+            const question = surveyData[questionKey];
+            questions.push({
+                Question: question,
+            });
+        }
 
-        questions.push({
-            Question: question,
-            OptionOne: responses[0] || "",
-            OptionTwo: responses[1] || "",
-            OptionThree: responses[2] || "",
-            OptionFour: responses[3] || "",
-        });
+
     }
 
     let updatedSurvey = {
         "name": surveyName,
-        "creator": req.user.displayName,   // assuming the creator does not change
-        "surveyType": surveyType,               // assuming the surveyType does not change
+        // "creator": req.user.displayName,   // assuming the creator does not change
+        // "surveyType": surveyType,               // assuming the surveyType does not change
         "questions": questions,
     };
 
@@ -215,7 +232,6 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
             responses.push(responsesBody[answerKey]);
           }
 
-
         // Get the questions
         let survey = await Surveys.findById(id);
         for (let i = 0; i < survey.questions.length; i++) {
@@ -238,17 +254,6 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         responses: responses
         });
 
-        // User.findById(req.user.id, (err, user) => {
-        //     if (err) {
-        //       console.log(err);
-        //     } else {
-        //       // Access the displayName field of the user
-        //       const displayName = user.displayName;
-        //       console.log(displayName);
-        //     }
-        //   });
-
-        // Save the new survey to the database
         await newResponse.save();
     
         res.redirect('/');
@@ -257,21 +262,6 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         res.status(500).send(err);
     }
 }
-
-
-// module.exports.reportSurvey = async (req, res, next)=> {
-//     let id = req.params.id;
-
-//     try {
-//         let survey = await Surveys.findById(id);
-//         console.log(survey);
-//         res.render('surveys/report', {title: 'Survey Report', survey: survey, displayName: req.user ? req.user.displayName : ''});
-
-//     }catch (err){
-//         console.log(err);
-//         res.status(500).send(err);
-//     }
-// };
 
 
 module.exports.reportSurvey = async (req, res, next)=> {
