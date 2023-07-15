@@ -27,9 +27,20 @@ module.exports.displayHomePage = async (req, res, next) => {
     }
 }
 
-// module.exports.displayHomePage = (req, res, next) => {
-//     res.render('index', { title: 'Home', displayName: req.user ? req.user.displayName : '' });
-// }
+
+module.exports.displayMySurvey = async (req, res, next) => {
+    let id = req.user._id
+    try {
+        let SurveyList = await Surveys.find({ userid: id });
+        // res.json(surveyList);
+        res.render('surveys/mysurveys', { 
+            title: 'My Surveys', 
+            SurveyList: SurveyList,
+            displayName: req.user ? req.user.displayName : '' })
+    } catch (err){
+        console.log(err);
+    }
+}
 
 module.exports.displayCreateSurvey = async (req, res, next)=>{
     try {
@@ -73,6 +84,7 @@ module.exports.processCreateSurvey = async (req, res, next) => {
         const newSurvey = new Surveys({
         name: surveyName,
         creator: req.user.displayName,
+        userid: req.user._id,
         surveyType: surveyType,                      // remember to dynamically specify, NOT HARD CODE
         questions: questions,
         });
