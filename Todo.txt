@@ -17,7 +17,6 @@ V2
 4-Landing page route to survey routes-semi fixed!
 5-responding to survey in /survey route the navbar is not shwoing the login status 
 6-    /create-survey has the same issue as above in navbar login status
-
 --
 v3 Doctor who version
 1-in report page add a column for the date surveyor took the survey
@@ -25,3 +24,7 @@ v3 Doctor who version
 3-
 
 
+---
+front end to do by request of Fawzia the maginificent!
+1-footer must be smaller
+2-

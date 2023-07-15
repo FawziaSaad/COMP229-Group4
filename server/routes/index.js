@@ -47,7 +47,7 @@ router.get('/survey/report/:id', indexController.reportSurvey); // remember to a
 router.get('/survey/edit/:id', indexController.displayEditSurvey);
 
 // Get to edit survey
-// router.post('/survey/edit/:id', indexController.processEditSurvey);
+router.post('/survey/edit/:id', indexController.processEditSurvey);
 
 // 13.07.2023
 // TODO: Confirm that the data is getting into the DB okay
