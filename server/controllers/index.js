@@ -104,28 +104,6 @@ module.exports.displayEditSurvey = async (req, res, next) => {
 };
 
 
-// POST THE EDITED SURVEY
-// module.exports.processEditSurvey = async (req, res, next) => {
-//     let id = req.params.id;
-
-//     let updatedGame = {
-//         "name": req.body.name,
-//         "developer": req.body.developer,
-//         "released": req.body.released,
-//         "description": req.body.description,
-//         "price": req.body.price
-//     };
-
-//     try {
-//         await Game.updateOne({_id: id}, updatedGame);
-//         res.redirect('/game-list');
-//     } catch (err){
-//         console.log(err);
-//         res.status(500).send(err);
-//     }
-// };
-
-
 module.exports.processEditSurvey = async (req, res, next) => {
     let id = req.params.id;
     
