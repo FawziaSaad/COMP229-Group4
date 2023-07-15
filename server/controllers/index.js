@@ -228,6 +228,7 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         const newResponse = new Response({
         surveyId: id,
         respondentId: req.user.id,
+        takenBy: req.user.displayName,
         questions: questions,
         responses: responses
         });
@@ -270,12 +271,17 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
 
 module.exports.reportSurvey = async (req, res, next)=> {
     let id = req.params.id;
-
+    
     try {
         let survey = await Surveys.findById(id);
         let responses = await Response.find({surveyId: id});
+
         console.log(responses);
-        res.render('surveys/report', {title: 'Survey Report', survey: survey, responses: responses, displayName: req.user ? req.user.displayName : ''});
+        res.render('surveys/report', {
+            title: 'Survey Report', 
+            survey: survey, 
+            responses: responses, 
+            displayName: req.user ? req.user.displayName : ''});
 
     }catch (err){
         console.log(err);
