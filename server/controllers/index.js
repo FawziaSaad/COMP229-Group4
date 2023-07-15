@@ -236,6 +236,7 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         questions: questions,
         responses: responses
         });
+
         // User.findById(req.user.id, (err, user) => {
         //     if (err) {
         //       console.log(err);
@@ -245,6 +246,7 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         //       console.log(displayName);
         //     }
         //   });
+
         // Save the new survey to the database
         await newResponse.save();
     
