@@ -16,8 +16,13 @@ let Response = require('../models/response');
 
 module.exports.displayHomePage = async (req, res, next) => {
     try {
-        let SurveyList = await Surveys.find();
-        // res.json(surveyList);
+        // If we do not want a user to be able to take their own survey
+        //==============================================================
+        let id = req.user;
+        let SurveyList = await Surveys.find({ userid: { $ne: id } });
+        //==============================================================
+        // let SurveyList = await Surveys.find();   // Or change it back
+
         res.render('index', { 
             title: 'Home', 
             SurveyList: SurveyList,
