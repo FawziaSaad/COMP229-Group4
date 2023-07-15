@@ -3,39 +3,50 @@
 <%- include ../partials/main_nav.ejs %>
 
 <!-- Main Content -->
+
 <h2>Create Survey</h2>
 <!-- should this also not be in the form? -->
+
+
 <form class="form" method="POST">
   <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input" required>
+
+  <select name="surveyType" required>
+    <option value="">Select survey type</option>
+    <option value="SA">Single Answer</option>
+    <option value="MCQ">Multiple Choice</option>
+  </select>
+  <!-- <input type="hidden" name="surveyType" value="MCQ"> -->
   <% for(let count = 0; count < 2; count++) { %>
     <div class="container" style="margin:2rem 0;">
       <div class="container">
         <div class="row">
-            <div class="offset-md-3 col-md-6">
-                <form class="form" method="POST">
-
-                    <div class="form-group">
-                      <input type="text" class="form-control"
-                      id="nameTextField"
-                      placeholder="Question <%= count+1 %>"
-                      name="Question<%= count+1 %>">
-                    </div>
-                    <% for(let i = 0; i < 4; i++) { %>
-                      <div class="form-group">
-                        <input type="text" class="form-control"
-                        id="nameTextField"
-                        placeholder="Response <%= i+1 %>"
-                        name="response<%= count+1 %>">
-                    </div>
-
-                    <% } %>
+          <div class="offset-md-3 col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control"
+                id="nameTextField"
+                placeholder="Question <%= count+1 %>"
+                name="Question<%= count+1 %>"
+                required>
             </div>
+            
+            <% for(let i = 0; i < 4; i++) { %>
+              <div class="form-group">
+                <input type="text" class="form-control"
+                  id="nameTextField"
+                  placeholder="Response <%= i+1 %>"
+                  name="response<%= count+1 %>"
+                  required>
+              </div>
+            <% } %>
+
+          </div>
         </div>
-    </div>
+      </div>
     </div>
   <% } %>
+  
   <button id="submitBtn" class="submit-btn" type="submit">Submit</button>
-
 </form>
 
 

@@ -9,13 +9,20 @@ let SurveyModel = mongoose.Schema({
     startDate: {
         type: Date,
         default: Date.now
-    },
+            },
     surveyType: {
         type: String,
         enum: ['SA', 'MCQ'],
         required: true
     },
-    endDate: Date, 
+    endDate: {
+        type: Date,
+        default: () => {
+          const now = new Date();
+          const fiveDaysFromNow = new Date(now.getTime() + (5 * 24 * 60 * 60 * 1000));
+          return fiveDaysFromNow;
+        },
+    },
     questions: [{
         Question: String,
         OptionOne: String,
