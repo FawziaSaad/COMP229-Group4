@@ -92,7 +92,7 @@ module.exports.processCreateSurvey = async (req, res, next) => {
         // Save the new survey to the database
         await newSurvey.save();
     
-        res.redirect('/');
+        res.redirect('/survey/mysurveys');
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -153,7 +153,7 @@ module.exports.processEditSurvey = async (req, res, next) => {
 
     try {
         await Surveys.updateOne({_id: id}, updatedSurvey);
-        res.redirect('/'); // redirect to a page of your choice
+        res.redirect('/survey/mysurveys'); // redirect to a page of your choice
     } catch (err){
         console.log(err);
         res.status(500).send(err);
