@@ -4,6 +4,11 @@ let mongoose = require('mongoose');
 // create model class
 let SurveyModel = mongoose.Schema({
     name: String, 
+    userid: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      },
     creator: String,
 
     startDate: {
