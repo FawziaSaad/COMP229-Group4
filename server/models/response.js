@@ -10,6 +10,10 @@ let ResponseModel = mongoose.Schema({
     respondentId: {
         type: mongoose.Schema.Types.ObjectId
     },
+    takenBy:{
+        type: String, 
+        require: "a response must belong to a user"
+    },
     dateTaken: {
         type: Date,
         default: Date.now
