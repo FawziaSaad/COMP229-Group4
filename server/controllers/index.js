@@ -59,44 +59,49 @@ module.exports.processCreateSurvey = async (req, res, next) => {
     //extract survey type
     const surveyType = surveyData.surveyType;
 
+    if (surveyType === "MCQ"){
+        // TODO: get the amount of questions from the backend
+
+        // Extract questions and responses
+        const questions = [];
+        for (let count = 0; count < 2; count++) {           // get the data from the backend and make dynamic
+            const questionKey = `Question${count + 1}`;
+            const responseKey = `response${count + 1}`;
+            const question = surveyData[questionKey];
+            const responses = surveyData[responseKey];
     
-    // TODO: get the amount of questions from the backend
-
-    // Extract questions and responses
-    const questions = [];
-    for (let count = 0; count < 2; count++) {
-        const questionKey = `Question${count + 1}`;
-        const responseKey = `response${count + 1}`;
-        const question = surveyData[questionKey];
-        const responses = surveyData[responseKey];
-
-        questions.push({
-        Question: question,
-        OptionOne: responses[0] || "",
-        OptionTwo: responses[1] || "",
-        OptionThree: responses[2] || "",
-        OptionFour: responses[3] || "",
-        });
+            questions.push({
+            Question: question,
+            OptionOne: responses[0] || "",
+            OptionTwo: responses[1] || "",
+            OptionThree: responses[2] || "",
+            OptionFour: responses[3] || "",
+            });
+        }
+        
+        try {
+            // Create a new SurveyModel object
+            const newSurvey = new Surveys({
+            name: surveyName,
+            creator: req.user.displayName,
+            userid: req.user._id,
+            surveyType: surveyType,                      // remember to dynamically specify, NOT HARD CODE
+            questions: questions,
+            });
+        
+            // Save the new survey to the database
+            await newSurvey.save();
+        
+            res.redirect('/survey/mysurveys');
+        } catch (err) {
+            console.log(err);
+            res.status(500).send(err);
+        }
+    } else {
+        res.json({type:"not mcq"})
     }
     
-    try {
-        // Create a new SurveyModel object
-        const newSurvey = new Surveys({
-        name: surveyName,
-        creator: req.user.displayName,
-        userid: req.user._id,
-        surveyType: surveyType,                      // remember to dynamically specify, NOT HARD CODE
-        questions: questions,
-        });
     
-        // Save the new survey to the database
-        await newSurvey.save();
-    
-        res.redirect('/survey/mysurveys');
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
 };
 
 // GET ROUTE FOR EDITING A SURVEY
