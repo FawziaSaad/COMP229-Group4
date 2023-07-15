@@ -39,6 +39,9 @@ router.get('/delete/:id', indexController.performDelete); // remember to add in 
 
 router.get('/survey/report/:id', indexController.reportSurvey); // remember to add in requireAuth -> removed for debugging
 
+/* GET my survey page. */
+router.get('/survey/mysurveys', requireAuth, indexController.displayMySurvey);
+
 // 14.07.2023
 // 2-add button to front if the user is the owner of a survey they can edit it. <<<
 // 3-implement the edit controller / route / view
