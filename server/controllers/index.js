@@ -125,6 +125,50 @@ module.exports.displayEditSurvey = async (req, res, next)=>{
     }
 };
 
+module.exports.processEditSurvey = async (req, res, next) => {
+    let id = req.params.id;
+    let survey = await Surveys.findById(id);
+    const surveyData = req.body;
+    
+    // Extract survey name
+    const surveyName = surveyData.surveyName;
+    
+    // Extract questions and responses
+    const questions = [];
+    for (let count = 0; count < 2; count++) {
+        const questionKey = `Question${count + 1}`;
+        const responseKey = `response${count + 1}`;
+        const question = surveyData[questionKey];
+        const responses = surveyData[responseKey];
+
+        questions.push({
+        Question: question,
+        OptionOne: responses[0] || "",
+        OptionTwo: responses[1] || "",
+        OptionThree: responses[2] || "",
+        OptionFour: responses[3] || "",
+        });
+    }
+    
+    try {
+        // Create a new SurveyModel object
+        const updatedSurvey = {
+        name: surveyName,
+        creator: req.user.displayName,
+        surveyType: 'MCQ',                      // remember to dynamically specify, NOT HARD CODE
+        questions: questions,
+        };
+
+        await Survey.updateOne({_id: id}, updatedSurvey);
+
+        res.redirect('/');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+
+};
+
 //TODO:
 // POST THE RESPONSES FOR THE SURVEY
 // -- CREATING A RESPONSE OBJECT WITH REF TO USER, SURVEY AND RESPONSES
