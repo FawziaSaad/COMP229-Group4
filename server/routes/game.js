@@ -26,7 +26,7 @@ router.get('/add', gameController.displayAddPage);
 router.get('/takesurvey', gameController.displayTakeSurveyPage);
 
 // Post Route for processing the Add page - CREATE Operation
-router.post('/add', requireAuth, gameController.processAddPage);
+router.post('/add', gameController.processAddPage);
 
 // Get Route for displaying the Edit page - UPDATE Operation
 router.get('/edit/:id', requireAuth, gameController.displayEditPage);

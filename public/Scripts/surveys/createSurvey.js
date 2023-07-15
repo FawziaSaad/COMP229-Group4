@@ -39,10 +39,40 @@ addButton.addEventListener("click", function () {
 
   newQuestionContainer.appendChild(newQuestion);
 
-  if (questionForm.childElementCount == 1) {
-    let submitBtn = document.createElement("button");
-    submitBtn.id = "submitBtn";
-    submitBtn.innerHTML = "Submit";
-    container.appendChild(submitBtn);
+  
+});
+
+document.getElementById("submitBtn").addEventListener("click", function (e) {
+  e.preventDefault();
+  let surveyName = document.getElementById("surveyName").value;
+  let questions = [];
+  let questionContainers = document.getElementsByClassName("question-container");
+  for (let i = 0; i < questionContainers.length; i++) {
+    let question = {};
+    let questionInputs = questionContainers[i].getElementsByTagName("input");
+    question["question"] = questionInputs[0].value;
+    let answers = [];
+    for (let j = 1; j < questionInputs.length; j++) {
+      answers.push(questionInputs[j].value);
+    }
+    question["answers"] = answers;
+    questions.push(question);
   }
+  let survey = {
+    "name": surveyName,
+    "questions": questions
+  };
+  console.log(survey);
+  fetch("/game-list/add", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(survey)
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    // console.log(data);
+    window.location.href = "/surveys";
+  });
 });

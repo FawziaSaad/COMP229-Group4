@@ -32,16 +32,11 @@ module.exports.displayTakeSurveyPage = async (req, res, next) => {
 };
 
 module.exports.processAddPage = async (req, res, next) => {
-    let newGame = new Game({
-        "name": req.body.name,
-        "developer": req.body.developer,
-        "released": req.body.released,
-        "description": req.body.description,
-        "price": req.body.price
-    });
+    
 
     try {
-        await newGame.save();
+        console.log(req.body.questions[0])
+        // await newGame.save();
         res.redirect('/game-list')
     } catch (err) {
         console.log(err);
