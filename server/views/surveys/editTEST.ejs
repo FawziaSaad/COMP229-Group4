@@ -3,7 +3,7 @@
 <%- include ../partials/main_nav.ejs %>
 
 <!-- Main Content -->
-<h2>Create Survey</h2>
+<h2>Edit Survey</h2>
 <!-- should this also not be in the form? -->
 <form class="form" method="POST">
   <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input" required>
@@ -18,7 +18,8 @@
                       <input type="text" class="form-control"
                       id="nameTextField"
                       placeholder="Question <%= count+1 %>"
-                      name="Question<%= count+1 %>">
+                      name="Question<%= count+1 %>"
+                      value="<%= survey.questions[count].Question %>">
                     </div>
                     <% for(let i = 0; i < 4; i++) { %>
                       <div class="form-group">
@@ -31,7 +32,6 @@
                     <% } %>
             </div>
         </div>
-    </div>
     </div>
   <% } %>
   <button id="submitBtn" class="submit-btn" type="submit">Submit</button>
