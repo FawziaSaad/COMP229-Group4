@@ -84,6 +84,45 @@ module.exports.processCreateSurvey = async (req, res, next) => {
     }
 };
 
+// GET ROUTE FOR EDITING A SURVEY
+module.exports.displayEditSurvey = async (req, res, next) => {
+    let id = req.params.id;
+
+    try {
+        let surveyToEdit = await Surveys.findById(id);
+        res.render('surveys/editTEST', 
+        {title: 'Edit', 
+        survey: surveyToEdit,
+        displayName: req.user ? req.user.displayName : ''});
+    } catch (err){
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+
+// POST THE EDITED SURVEY
+// module.exports.processEditSurvey = async (req, res, next) => {
+//     let id = req.params.id;
+
+//     let updatedGame = {
+//         "name": req.body.name,
+//         "developer": req.body.developer,
+//         "released": req.body.released,
+//         "description": req.body.description,
+//         "price": req.body.price
+//     };
+
+//     try {
+//         await Game.updateOne({_id: id}, updatedGame);
+//         res.redirect('/game-list');
+//     } catch (err){
+//         console.log(err);
+//         res.status(500).send(err);
+//     }
+// };
+
+
 // DELETE a survey
 module.exports.performDelete = async (req, res, next) => {
     let id = req.params.id;
