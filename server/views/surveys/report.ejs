@@ -23,7 +23,7 @@
         <tbody>
             <% responses.forEach(function(response) { %>
                 <tr>
-                    <td><%= response.respondentId.displayName %></td>
+                    <td><%= response.respondentId %></td>
                     <% response.responses.forEach(function(answer) { %>
                         <td><%= answer %></td>
                     <% }) %>

@@ -123,6 +123,48 @@ module.exports.displayEditSurvey = async (req, res, next) => {
 // };
 
 
+module.exports.processEditSurvey = async (req, res, next) => {
+    let id = req.params.id;
+    
+    const surveyData = req.body;
+    
+    // Extract survey name
+    const surveyName = surveyData.surveyName;
+    
+    // Extract questions and responses
+    const questions = [];
+    for (let count = 0; count < 2; count++) { // number of questions should be dynamic
+        const questionKey = `Question${count + 1}`;
+        const responseKey = `response${count + 1}`;
+        const question = surveyData[questionKey];
+        const responses = surveyData[responseKey].map((response) => response || "");
+
+        questions.push({
+            Question: question,
+            OptionOne: responses[0] || "",
+            OptionTwo: responses[1] || "",
+            OptionThree: responses[2] || "",
+            OptionFour: responses[3] || "",
+        });
+    }
+
+    let updatedSurvey = {
+        "name": surveyName,
+        "creator": req.user.displayName,   // assuming the creator does not change
+        "surveyType": 'MCQ',               // assuming the surveyType does not change
+        "questions": questions,
+    };
+
+    try {
+        await Surveys.updateOne({_id: id}, updatedSurvey);
+        res.redirect('/'); // redirect to a page of your choice
+    } catch (err){
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+
 // DELETE a survey
 module.exports.performDelete = async (req, res, next) => {
     let id = req.params.id;
