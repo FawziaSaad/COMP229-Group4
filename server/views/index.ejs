@@ -19,11 +19,11 @@
             <!-- Header Row -->
             <tr class="d-flex">
                 <% if (typeof displayName == 'string' && displayName) { %>
-                    <th class="text-center col-4">Survey</th>
-                    <th class="text-center col-3">Created By</th>
+                    <th class="text-center col-6">Survey</th>
+                    <th class="text-center col-6">Created By</th>
                 <% } else { %>
-                    <th class="text-center col-2">Survey</th>
-                    <th class="text-center col-2">Created By</th>
+                    <th class="text-center col-6">Survey</th>
+                    <th class="text-center col-6">Created By</th>
                 <% } %>
             </tr>
             <!-- Repeatable Template Row -->
@@ -31,14 +31,14 @@
                 <tr class="d-flex">
                     <% if (typeof displayName == 'string' && displayName) { %>
                         <!-- <td class="text-center col-5"><%= SurveyList[count].name %></td> -->
-                        <td class="text-center col-4">
+                        <td class="text-center col-6">
                             <a href="/survey/<%= SurveyList[count]._id %>"> <%= SurveyList[count].name %></a>
                         </td>
-                        <td class="text-center col-3"><%= SurveyList[count].creator %></td>
+                        <td class="text-center col-6"><%= SurveyList[count].creator %></td>
 
                     <% } else { %>
-                        <td class="text-center col-2"><%= SurveyList[count].name %></td>
-                        <td class="text-center col-2"><%= SurveyList[count].creator %></td>
+                        <td class="text-center col-6"><%= SurveyList[count].name %></td>
+                        <td class="text-center col-6"><%= SurveyList[count].creator %></td>
                     <% } %>
                 </tr>
             <% } %>
