@@ -109,6 +109,22 @@ module.exports.respondtoSurvey = async (req, res, next) => {
 
 }
 
+module.exports.displayEditSurvey = async (req, res, next)=>{
+    try {
+        let id = req.params.id;
+        let survey = await Surveys.findById(id);
+        console.log("editing");
+        console.log(survey);
+        res.render('surveys/edit',{
+            title: "Edit Survey",
+            survey: survey
+        })
+
+    } catch (err){
+        console.log(err);
+    }
+};
+
 //TODO:
 // POST THE RESPONSES FOR THE SURVEY
 // -- CREATING A RESPONSE OBJECT WITH REF TO USER, SURVEY AND RESPONSES
