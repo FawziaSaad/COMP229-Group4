@@ -15,7 +15,7 @@
         <div class="card-body">
           <h5 class="card-title"><%=survey.name%></h5>
           <p class="card-text"><%=survey.creator%></p>
-          <p class="card-time">Expired at: <%=String(survey.endDate).substring(0,25)%></p> <!-- new class for "Time left" text -->
+          <p class="card-time">Expires on: <%=String(survey.endDate).substring(0,25)%></p> <!-- new class for "Time left" text -->
           <a href="survey/<%=survey._id%>" class="btn btn-primary">Take Survey</a>
         </div>
       </div>
