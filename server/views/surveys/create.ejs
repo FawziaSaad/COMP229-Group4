@@ -20,12 +20,14 @@
 
 <h2>Create Survey</h2>
 <!-- should this also not be in the form? -->
+<div class="container">
+  <select id="surveyType" required>
+    <option value="">Select survey type</option>
+    <option value="SA">Single Answer</option>
+    <option value="MCQ">Multiple Choice</option>
+  </select>
 
-<select id="surveyType" required>
-  <option value="">Select survey type</option>
-  <option value="SA">Single Answer</option>
-  <option value="MCQ">Multiple Choice</option>
-</select>
+</div>
 
 <form class="form mcq-container" method="POST">
   <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input" required>
@@ -35,7 +37,7 @@
     <% for(let count = 0; count < 2; count++) { %>
       <div class="container" style="margin:2rem 0;">
         <div class="row">
-          <div class="offset-md-3 col-md-6">
+          <div class="offset-md-3 col-md-6" style="margin: 0 auto;">
             <div class="form-group">
               <input type="text" class="form-control"
                 id="nameTextField"
@@ -69,7 +71,7 @@
       <% for(let count = 0; count < 2; count++) { %>
         <div class="container" style="margin:2rem 0;">
           <div class="row">
-            <div class="offset-md-3 col-md-6">
+            <div class="offset-md-3 col-md-6" style="margin: 0 auto;">
               <div class="form-group">
                 <input type="text" class="form-control"
                   id="nameTextField"
