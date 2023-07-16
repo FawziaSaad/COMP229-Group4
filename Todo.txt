@@ -15,7 +15,7 @@ V2
 2-End Date: Invalid Date - should be fixed pass one the survey end date to report
 3-edit page. submit error 404 -- Done
 4-Landing page route to survey routes-semi fixed!
-5-responding to survey in /survey route the navbar is not shwoing the login status 
+5-responding to survey in /survey route the navbar is not shwoing the login status      --- Still open
 6-    /create-survey has the same issue as above in navbar login status
 
 --
@@ -27,5 +27,8 @@ v3 Doctor who version
 
 ---
 front end to do by request of Fawzia the maginificent!
-1-footer must be smaller
+1-footer must be smaller <<< Done
 2-
+
+
+
