@@ -53,6 +53,11 @@ footer > nav {
   text-align: center;
 }
 
+footer > nav.navbar{
+  height:3rem;
+  padding: 0.5rem;
+}
+
 .survey-heading {
   margin-left: 120px;
   margin-top: 20px;
