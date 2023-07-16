@@ -146,7 +146,7 @@ module.exports.processEditSurvey = async (req, res, next) => {
 
     // Extract questions and responses
     const questions = [];
-    for (let count = 0; count < 2; count++) { // number of questions should be dynamic
+    for (let count = 0; count < 2; count++) { // number of questions should be dynamic -> HUNG
         if (surveyType === "MCQ") {
             const questionKey = `Question${count + 1}`;
             const responseKey = `response${count + 1}`;
