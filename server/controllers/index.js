@@ -23,7 +23,7 @@ module.exports.displayHomePage = async (req, res, next) => {
         //==============================================================
         // let SurveyList = await Surveys.find();   // Or change it back
 
-        res.render('index', { 
+        res.render('surveys/landing', { 
             title: 'Home', 
             SurveyList: SurveyList,
             displayName: req.user ? req.user.displayName : '' })

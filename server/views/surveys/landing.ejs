@@ -8,16 +8,15 @@
   <h2 class="survey-heading">Recent Surveys</h2>
   <!-- Survey List -->
   <!-- Need add variable later! -->
-  <% surveyList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] %>
   <div class="row">
-    <% surveyList.forEach(function(survey) { %>
+    <% SurveyList.forEach(function(survey) { %>
     <div class="col-lg-4 col-md-4 mb-3">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Survey Title</h5>
-          <p class="card-text">Creator</p>
-          <p class="card-time">Time left</p> <!-- new class for "Time left" text -->
-          <a href="#" class="btn btn-primary">Take Survey</a>
+          <h5 class="card-title"><%=survey.name%></h5>
+          <p class="card-text"><%=survey.creator%></p>
+          <p class="card-time">Expired at: <%=String(survey.endDate).substring(0,25)%></p> <!-- new class for "Time left" text -->
+          <a href="survey/<%=survey._id%>" class="btn btn-primary">Take Survey</a>
         </div>
       </div>
     </div>
