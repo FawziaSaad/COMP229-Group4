@@ -1,0 +1,31 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+
+<main class="container">
+  <!-- Header -  Later will be changed accordingly to filter -->
+  <h2 class="survey-heading">Recent Surveys</h2>
+  <!-- Survey List -->
+  <!-- Need add variable later! -->
+  <div class="row">
+    <% SurveyList.forEach(function(survey) { %>
+    <div class="col-lg-4 col-md-4 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%=survey.name%></h5>
+          <p class="card-text"><%=survey.creator%></p>
+          <p class="card-time">Expires on: <%=String(survey.endDate).substring(0,25)%></p> <!-- new class for "Time left" text -->
+          <a href="survey/<%=survey._id%>" class="btn btn-primary">Take Survey</a>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</main>
+
+
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>
+
