@@ -7,25 +7,282 @@ let passport = require('passport');
 let userModel = require('../models/user');
 let User = userModel.User; //alias
 
-module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', { title: 'Home', displayName: req.user ? req.user.displayName : '' });
+// import the Survey Model instance
+let Surveys = require('../models/survey');
+
+// import the Response Model instance
+let Response = require('../models/response');
+
+
+module.exports.displayHomePage = async (req, res, next) => {
+    try {
+        // If we do not want a user to be able to take their own survey
+        //==============================================================
+        let id = req.user;
+        let SurveyList = await Surveys.find({ userid: { $ne: id } });
+        //==============================================================
+        // let SurveyList = await Surveys.find();   // Or change it back
+
+        res.render('surveys/landing', { 
+            title: 'Home', 
+            SurveyList: SurveyList,
+            displayName: req.user ? req.user.displayName : '' })
+    } catch (err){
+        console.log(err);
+    }
 }
 
-module.exports.displayAboutPage = (req, res, next) => {
-    res.render('index', { title: 'About', displayName: req.user ? req.user.displayName : '' });
+
+module.exports.displayMySurvey = async (req, res, next) => {
+    let id = req.user._id
+    try {
+        let SurveyList = await Surveys.find({ userid: id });
+        // res.json(surveyList);
+        res.render('surveys/mysurveys', { 
+            title: 'My Surveys', 
+            SurveyList: SurveyList,
+            displayName: req.user ? req.user.displayName : '' })
+    } catch (err){
+        console.log(err);
+    }
 }
 
-module.exports.displayProductsPage = (req, res, next) => {
-    res.render('index', { title: 'Products', displayName: req.user ? req.user.displayName : '' });
+module.exports.displayCreateSurvey = async (req, res, next)=>{
+    try {
+        res.render('surveys/create', 
+        {title: 'Create survey',})
+    } catch (err){
+        console.log(err);
+    }
+};
+
+module.exports.processCreateSurvey = async (req, res, next) => {
+    const surveyData = req.body;
+    
+    // Extract survey name
+    const surveyName = surveyData.surveyName;
+    //extract survey type
+    const surveyType = surveyData.surveyType;
+
+
+    // TODO: get the amount of questions from the backend
+
+    // Extract questions and responses
+    const questions = [];
+    for (let count = 0; count < 2; count++) {           // get the data from the backend and make dynamic
+        const questionKey = `Question${count + 1}`;
+        const responseKey = `response${count + 1}`;
+        const question = surveyData[questionKey];
+        const responses = surveyData[responseKey];
+
+        if (surveyType === "MCQ") {
+            questions.push({
+                Question: question,
+                OptionOne: responses[0] || "",
+                OptionTwo: responses[1] || "",
+                OptionThree: responses[2] || "",
+                OptionFour: responses[3] || "",
+            });
+        } else if (surveyType === "SA") {
+            questions.push({
+                Question: question
+            });
+
+        }
+
+
+    }
+    
+    try {
+        // Create a new SurveyModel object
+        const newSurvey = new Surveys({
+        name: surveyName,
+        creator: req.user.displayName,
+        userid: req.user._id,
+        surveyType: surveyType,                      // remember to dynamically specify, NOT HARD CODE
+        questions: questions,
+        });
+    
+        // Save the new survey to the database
+        await newSurvey.save();
+    
+        res.redirect('/survey/mysurveys');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+
+    
+    
+};
+
+// GET ROUTE FOR EDITING A SURVEY
+module.exports.displayEditSurvey = async (req, res, next) => {
+    let id = req.params.id;
+
+    try {
+        let surveyToEdit = await Surveys.findById(id);
+        res.render('surveys/edit', 
+        {title: 'Edit', 
+        survey: surveyToEdit,
+        displayName: req.user ? req.user.displayName : ''});
+    } catch (err){
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+
+module.exports.processEditSurvey = async (req, res, next) => {
+    let id = req.params.id;
+    
+    const surveyData = req.body;
+    // res.json({data:surveyData});
+    // Extract survey name
+    const surveyName = surveyData.surveyName;
+    //extract survey type
+
+    const surveyType = surveyData.surveyType;
+
+    // Extract questions and responses
+    const questions = [];
+    for (let count = 0; count < 2; count++) { // number of questions should be dynamic -> HUNG
+        if (surveyType === "MCQ") {
+            const questionKey = `Question${count + 1}`;
+            const responseKey = `response${count + 1}`;
+            const question = surveyData[questionKey];
+            const responses = surveyData[responseKey].map((response) => response || "");
+    
+            questions.push({
+                Question: question,
+                OptionOne: responses[0] || "",
+                OptionTwo: responses[1] || "",
+                OptionThree: responses[2] || "",
+                OptionFour: responses[3] || "",
+            });
+        } else {
+            const questionKey = `Question${count + 1}`;
+            const question = surveyData[questionKey];
+            questions.push({
+                Question: question,
+            });
+        }
+
+
+    }
+
+    let updatedSurvey = {
+        "name": surveyName,
+        // "creator": req.user.displayName,   // assuming the creator does not change
+        // "surveyType": surveyType,               // assuming the surveyType does not change
+        "questions": questions,
+    };
+
+    try {
+        await Surveys.updateOne({_id: id}, updatedSurvey);
+        res.redirect('/survey/mysurveys'); // redirect to a page of your choice
+    } catch (err){
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+
+// DELETE a survey
+module.exports.performDelete = async (req, res, next) => {
+    let id = req.params.id;
+
+    try {
+        await Surveys.findByIdAndRemove(id);
+        res.redirect('/survey/mysurveys');
+    }catch (err){
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+//TODO:
+// GET ROUTE FOR TAKING THE SURVEY
+module.exports.respondtoSurvey = async (req, res, next) => {
+    let id = req.params.id;
+    let surveyToTake = await Surveys.findById(id);
+    res.render('survey',{
+        title: "Taking a Survey",
+        surveyToTake: surveyToTake
+    })
+
 }
 
-module.exports.displayServicesPage = (req, res, next) => {
-    res.render('index', { title: 'Services', displayName: req.user ? req.user.displayName : '' });
+//TODO:
+// POST THE RESPONSES FOR THE SURVEY
+// -- CREATING A RESPONSE OBJECT WITH REF TO USER, SURVEY AND RESPONSES
+// THIS RESPONSE OBJECT WILL BE WHAT IS REFERENCED IN THE GENERATE REPORT SECTION
+module.exports.submitSurveyResponses = async (req, res, next) => {
+    
+    let id = req.params.id; // get the survey to be referrenced
+    try {
+
+        let { responsesBody } = req.body;
+        // get questions
+        let questions = [];
+        let responses = [];
+
+        // Get the answers
+        for (const answerKey in responsesBody) {
+            responses.push(responsesBody[answerKey]);
+          }
+
+        // Get the questions
+        let survey = await Surveys.findById(id);
+        for (let i = 0; i < survey.questions.length; i++) {
+            questions.push(survey.questions[i].Question);
+            responses.push(req.body[`answers[${i}]`]);
+        }
+
+        // Debugging
+        // res.json({
+        //     questions: questions,
+        //     responses: responses
+        // });
+
+        // Create a new SurveyModel object
+        const newResponse = new Response({
+        surveyId: id,
+        respondentId: req.user.id,
+        takenBy: req.user.displayName,
+        questions: questions,
+        responses: responses
+        });
+
+        await newResponse.save();
+    
+        res.redirect('/');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
 }
 
-module.exports.displayContactPage = (req, res, next) => {
-    res.render('index', { title: 'Contact Us', displayName: req.user ? req.user.displayName : '' });
-}
+
+module.exports.reportSurvey = async (req, res, next)=> {
+    let id = req.params.id;
+    
+    try {
+        let survey = await Surveys.findById(id);
+        let responses = await Response.find({surveyId: id});
+
+        console.log(responses);
+        res.render('surveys/report', {
+            title: 'Survey Report', 
+            survey: survey, 
+            responses: responses, 
+            displayName: req.user ? req.user.displayName : ''});
+
+    }catch (err){
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
 
 module.exports.displayLoginPage = (req, res, next) => {
     // check if the user is already logged in
@@ -63,7 +320,7 @@ module.exports.processLoginPage = (req, res, next) => {
             {
                 return next(err);
             }
-            return res.redirect('/game-list');
+            return res.redirect('/');
         });
     })(req, res, next);
 }
@@ -117,7 +374,7 @@ module.exports.processRegisterPage = (req, res, next) => {
         {
             //if registration is success
             return passport.authenticate('local')(req, res, () => {
-                res.redirect('/game-list')
+                res.redirect('/')
             });
         }
     });

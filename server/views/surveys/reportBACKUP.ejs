@@ -1,0 +1,38 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<div>
+    <h2>Survey Details</h2>
+    <p><strong>Name:</strong> <%= survey.name %></p>
+    <p><strong>Created By:</strong> <%= survey.creator %></p>
+    <p><strong>End Date:</strong> <%= new Date(survey.endDate).toLocaleString() %></p>
+</div>
+
+<div>
+    <h2>Responses</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Taken By</th>
+                <% survey.questions.forEach(function(question, i) { %>
+                    <th>Question <%= i + 1 %></th>
+                <% }) %>
+            </tr>
+        </thead>
+        <tbody>
+            <% responses.forEach(function(response) { %>
+                <tr>
+                    <td><%= response.takenBy %></td>
+                    <% response.responses.forEach(function(answer) { %>
+                        <td><%= answer %></td>
+                    <% }) %>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include ../partials/bottom_nav.ejs %>
+<!-- <script src="/Scripts/surveys/createSurvey.js"></script> -->
+<%- include ../partials/footer.ejs %>

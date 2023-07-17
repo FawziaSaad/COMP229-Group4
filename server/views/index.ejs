@@ -6,8 +6,44 @@
   <!-- Main Content -->
   <main class="container">
     <div class="jumbotron">
-      <h1 class="display-4">Welcome to the <%= title %> page</h1>
+      <!-- <h1 class="display-4">Welcome to the <%= title %> page</h1> -->
       
+      <div class="offset-md-1 col-md-11">
+        <h1><%= title %></h1>
+        <% if (typeof displayName == 'string' && displayName) { %>
+        <a href="/create-survey" class="btn btn-primary" role="button">
+            <i class="fas fa-plus-circle"></i> Create a new survey</a>
+        <% } %>
+        <br>
+        <table class="table table-bordered table-striped table-hover">
+            <!-- Header Row -->
+            <tr class="d-flex">
+                <% if (typeof displayName == 'string' && displayName) { %>
+                    <th class="text-center col-6">Survey</th>
+                    <th class="text-center col-6">Created By</th>
+                <% } else { %>
+                    <th class="text-center col-6">Survey</th>
+                    <th class="text-center col-6">Created By</th>
+                <% } %>
+            </tr>
+            <!-- Repeatable Template Row -->
+            <% for(let count = 0; count < SurveyList.length; count++) { %>
+                <tr class="d-flex">
+                    <% if (typeof displayName == 'string' && displayName) { %>
+                        <!-- <td class="text-center col-5"><%= SurveyList[count].name %></td> -->
+                        <td class="text-center col-6">
+                            <a href="/survey/<%= SurveyList[count]._id %>"> <%= SurveyList[count].name %></a>
+                        </td>
+                        <td class="text-center col-6"><%= SurveyList[count].creator %></td>
+
+                    <% } else { %>
+                        <td class="text-center col-6"><%= SurveyList[count].name %></td>
+                        <td class="text-center col-6"><%= SurveyList[count].creator %></td>
+                    <% } %>
+                </tr>
+            <% } %>
+        </table>
+    </div>
     </div>
   </main>
   
