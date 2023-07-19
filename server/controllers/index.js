@@ -19,14 +19,13 @@ module.exports.displayHomePage = async (req, res, next) => {
         // If we do not want a user to be able to take their own survey
         //==============================================================
         let id = req.user;
-        let SurveyList = await Surveys.find({ userid: { $ne: id } });
+        let SurveyList = await Surveys.find();
         //==============================================================
         // let SurveyList = await Surveys.find();   // Or change it back
-
-        res.render('surveys/landing', { 
-            title: 'Home', 
-            SurveyList: SurveyList,
-            displayName: req.user ? req.user.displayName : '' })
+        
+        res.header("Access-Control-Allow-Origin", "http://localhost:4200"); // update to match the domain you will make the request from
+       
+        res.json(SurveyList);
     } catch (err){
         console.log(err);
     }

@@ -1,0 +1,37 @@
+.logo {
+  width: 130px;
+  margin: 40px;
+}
+
+nav.navbar {
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.7rem 3%;
+  height: 6.5rem;
+  font-size: 1.2rem;
+}
+
+nav.navbar ul.navbar-nav {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav.navbar ul.navbar-nav li.nav-item {
+  margin-left: 35px;
+}
+
+nav.navbar ul.navbar-nav li.nav-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+nav.navbar ul.navbar-nav li.nav-item a:hover {
+  color: #555; /* Change color on hover */
+}
+
+h2 {
+   margin-bottom: 1%;
+    margin-top: 50px;
+    margin-left: 43%;
+  }

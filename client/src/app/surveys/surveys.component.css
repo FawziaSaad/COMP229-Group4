@@ -1,0 +1,50 @@
+
+.card {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 50px;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-title {
+  margin-top: 45px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.card-text {
+  margin-bottom: 35px;
+}
+
+.card-time {
+  position: absolute;
+  bottom: 0.5px;
+  right: 15px;
+  font-size: 12px;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 5px;
+}
+
+.col-lg-4 {
+  flex-basis: calc(25% - 60px);
+  margin: 0 5px;
+}

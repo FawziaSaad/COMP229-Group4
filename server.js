@@ -3,9 +3,9 @@
 /**
  * Module dependencies.
  */
-require('dotenv').config();
+
 var app = require('./server/config/app');
-var debug = require('debug')('comp229-m23-402-week3:server');
+var debug = require('debug')('week-4:server');
 var http = require('http');
 
 /**
