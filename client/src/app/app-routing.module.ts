@@ -7,12 +7,12 @@ import { CreateComponent } from './pages/surveys/create/create.component';
 import { MysurveysComponent } from './pages/surveys/mysurveys/mysurveys.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},
-  { path: '', component: HomeComponent},
-  { path: 'survey', component: SurveyComponent},
-  { path: 'error', component: ErrorComponent},
-  { path: 'create-survey', component: CreateComponent},
-  { path: 'my-survey', component: MysurveysComponent}
+  { path: 'home', component: HomeComponent, data: {title: 'Home'}},
+  { path: '', component: HomeComponent, data: {title: 'Home'}},
+  { path: 'survey', component: SurveyComponent, data: {title: 'Survey'}},
+  { path: 'error', component: ErrorComponent, data: {title: 'Error'}},
+  { path: 'create-survey', component: CreateComponent, data: {title: 'Create Survey'}},
+  { path: 'my-survey', component: MysurveysComponent, data: {title: 'My Survey'}}
 
 
 ];
