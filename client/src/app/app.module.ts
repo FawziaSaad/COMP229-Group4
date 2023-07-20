@@ -15,6 +15,7 @@ import { MysurveysComponent } from './pages/surveys/mysurveys/mysurveys.componen
 import { ReportComponent } from './pages/surveys/report/report.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { BasePageComponent } from './partials/base-page/base-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RegisterComponent } from './pages/auth/register/register.component';
     MysurveysComponent,
     ReportComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    BasePageComponent
   ],
   imports: [
     BrowserModule,
