@@ -1,3 +1,5 @@
 node_modules
 .env
 seed.js
+# Ignore Angular CLI cache folder
+.angular/cache
