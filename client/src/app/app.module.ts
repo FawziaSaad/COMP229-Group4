@@ -3,19 +3,20 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
-import { SurveysComponent } from './surveys/surveys.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SurveysModule } from './surveys/surveys.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SurveysComponent,
+    
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    PagesModule
+    PagesModule,
+    SurveysModule
   ],
   providers: [],
   bootstrap: [AppComponent]

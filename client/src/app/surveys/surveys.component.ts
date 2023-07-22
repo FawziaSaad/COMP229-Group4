@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { get } from 'jquery';
 
 @Component({
   selector: 'app-surveys',
@@ -30,7 +29,6 @@ export class SurveysComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get('http://localhost:3000').subscribe((response) => {
-      console.log(this.surveys);
       this.surveys = response;
     })
 
