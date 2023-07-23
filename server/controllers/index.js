@@ -31,6 +31,29 @@ module.exports.displayHomePage = async (req, res, next) => {
     }
 }
 
+//TODO:
+// GET ROUTE FOR TAKING THE SURVEY
+module.exports.respondtoSurvey = async (req, res, next) => {
+    console.log(req.params.id)
+    let id = req.params.id;
+    let surveyToTake = await Surveys.findById(id);
+    console.log("found" + surveyToTake);
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200"); // update to match the domain you will make the request from
+       
+    res.json(surveyToTake);
+    // res.render('survey',{
+    //     title: "Taking a Survey",
+    //     surveyToTake: surveyToTake
+    // })
+
+}
+
+
+
+
+
+// ```````````````````````````````````````````````````````````````````````````````````````````````````
+
 
 module.exports.displayMySurvey = async (req, res, next) => {
     let id = req.user._id
@@ -200,17 +223,6 @@ module.exports.performDelete = async (req, res, next) => {
     }
 };
 
-//TODO:
-// GET ROUTE FOR TAKING THE SURVEY
-module.exports.respondtoSurvey = async (req, res, next) => {
-    let id = req.params.id;
-    let surveyToTake = await Surveys.findById(id);
-    res.render('survey',{
-        title: "Taking a Survey",
-        surveyToTake: surveyToTake
-    })
-
-}
 
 //TODO:
 // POST THE RESPONSES FOR THE SURVEY
