@@ -1,8 +1,8 @@
-export class survey {
+export class Response {
     constructor(
         public _id?:number,
         public surveyId?:number,
-        public responseId?:number,
+        public respondentId?:number,
         public takenBy?:string,
         public datetaken?:Date,
         public question?:Array<string>,
