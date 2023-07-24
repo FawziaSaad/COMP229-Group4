@@ -1,3 +1,4 @@
+//Maybe the seperation of Q model and survey model is not needed
 export class Question {
     constructor(
         public _id?: number, 

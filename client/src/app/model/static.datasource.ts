@@ -31,8 +31,9 @@ export class StaticDataSource {
 
   private surveys: Survey[] = [
     new Survey(
-      1,
+      
       'Survey 1',
+      1,
       this.users[0]._id,
       this.users[0].username,
       new Date('2023-07-23'),
@@ -42,8 +43,9 @@ export class StaticDataSource {
     ),
 
     new Survey(
-      2,
+      
       'Survey 2',
+      2,
       this.users[0]._id,
       this.users[0].username,
       new Date('2023-06-13'),
@@ -52,8 +54,9 @@ export class StaticDataSource {
       [this.questions[1], this.questions[2]]
     ),
     new Survey(
-      3,
+      
       'Survey 3',
+      3,
       this.users[1]._id,
       this.users[1].username,
       new Date('2023-04-25'),
