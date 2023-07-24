@@ -48,10 +48,15 @@ export class SurveyRepository {
 //     return survay.questions;
 //   }
   
-  getresponses(surveyId:number): Response[] {
-    return this.responses.filter((r) => r.surveyId === surveyId);
-  }
-
+  // getResponses(surveyId:number): Response[] {
+  //   return this.responses.filter((r) => r.surveyId === surveyId);
+  // }
+  getResponses(surveyId?: number): Response[] {
+    if(surveyId) {
+        return this.responses.filter((r) => r.surveyId === surveyId);
+    }
+    return this.responses;
+}
 
   //Im not sure what else to add here!
 

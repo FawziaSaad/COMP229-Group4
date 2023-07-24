@@ -16,17 +16,16 @@ export class StaticDataSource {
   // moh = new User('1', 'Moh', 'baz@example.com', 'Moh');
   // dave = new User('2', 'Dave', 'foo@example.com', 'Dave');
   private questions: Question[] = [
-    new Question(1, 'Favourite Food', 'Pizza', 'Burgers', 'Pasta', 'Sushi'),
-    new Question(2, 'Favourite Drink', 'Coke', 'Pepsi', 'Fanta', 'Sprite'),
+    new Question( 'Favourite Food', 'Pizza', 'Burgers', 'Pasta', 'Sushi'),
+    new Question( 'Favourite Drink', 'Coke', 'Pepsi', 'Fanta', 'Sprite'),
     new Question(
-      3,
       'Favourite Game',
       'Chess',
       'Football',
       'Basketball',
       'Tennis'
     ),
-    new Question(4, 'Favourite Trip', 'Toronto', 'New York', 'London', 'Tokyo'),
+    new Question( 'Favourite Trip', 'Toronto', 'New York', 'London', 'Tokyo'),
   ];
 
   private surveys: Survey[] = [

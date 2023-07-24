@@ -10,6 +10,7 @@ export class Survey {
         public creator?: string,
         public startDate?: Date,
         public surveyType?: string,
+        // public surveyType?: 'SA' | 'MCQ',
         public endDate?: Date,
         public questions?: Question[]
     ) {}

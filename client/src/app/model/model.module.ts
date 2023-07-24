@@ -5,4 +5,4 @@ import { StaticDataSource } from "./static.datasource";
 @NgModule({
     providers: [SurveyRepository, StaticDataSource]
 })
-export class SurveyModule {}
+export class ModelModules {}
