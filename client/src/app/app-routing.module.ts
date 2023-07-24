@@ -8,6 +8,7 @@ import { TakeComponent } from './surveys/take/take.component';
 const routes: Routes = [
   { path: 'surveys', component: SurveysComponent, data: { title: 'All Surveys' } },
   { path: 'survey/:id', component: TakeComponent, data: { title: 'Take Survey' } },
+  { path: 'create', component: CreateComponent, data: { title: 'Create Survey' } },
  {path: '', redirectTo: '/surveys', pathMatch: 'full'}
 ];
 

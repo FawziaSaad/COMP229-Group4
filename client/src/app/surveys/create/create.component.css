@@ -1,0 +1,98 @@
+
+/* create.ejs css starts */
+h2 {
+   margin-bottom: 1%;
+    margin-top: 50px;
+    margin-left: 43%;
+  }
+  .survey-name-input {
+    margin-bottom: -5973%;
+    margin-left: 27.45%;
+    width: 45%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 30px; /* Increase this value for more rounded ends */
+    }
+
+
+.form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+}
+.question-container {
+    margin-left: 27%;
+    width:46%;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 6px;
+  }
+
+.add-question-btn {
+  padding: 10px 20px;
+  background-color: #717e8d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+  margin-bottom: 10px;
+  margin-left: 28%;
+}
+
+.add-question-btn:hover {
+  background-color: #0056b3;
+}
+
+#submitBtn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 29%;
+}
+
+#submitBtn:hover {
+  background-color: #0056b3;
+}
+
+.remove-question-btn {
+  padding: 4px 8px;
+  font-size: smaller;
+  background-color: #324660;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 7px;
+}
+
+.remove-question-btn:hover {
+  background-color: #c82333;
+}
+
+.add-answer-btn {
+  padding: 4px 8px;
+  font-size: smaller;
+  background-color: #324660;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 68%;
+}
+
+.add-answer-btn:hover {
+  background-color: #218838;
+}
