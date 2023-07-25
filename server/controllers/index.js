@@ -19,40 +19,18 @@ module.exports.displayHomePage = async (req, res, next) => {
         // If we do not want a user to be able to take their own survey
         //==============================================================
         let id = req.user;
-        let SurveyList = await Surveys.find();
+        let SurveyList = await Surveys.find({ userid: { $ne: id } });
         //==============================================================
         // let SurveyList = await Surveys.find();   // Or change it back
-        
-        res.header("Access-Control-Allow-Origin", "http://localhost:4200"); // update to match the domain you will make the request from
-       
-        res.json(SurveyList);
+
+        res.render('surveys/landing', { 
+            title: 'Home', 
+            SurveyList: SurveyList,
+            displayName: req.user ? req.user.displayName : '' })
     } catch (err){
         console.log(err);
     }
 }
-
-//TODO:
-// GET ROUTE FOR TAKING THE SURVEY
-module.exports.respondtoSurvey = async (req, res, next) => {
-    console.log(req.params.id)
-    let id = req.params.id;
-    let surveyToTake = await Surveys.findById(id);
-    console.log("found" + surveyToTake);
-    res.header("Access-Control-Allow-Origin", "http://localhost:4200"); // update to match the domain you will make the request from
-       
-    res.json(surveyToTake);
-    // res.render('survey',{
-    //     title: "Taking a Survey",
-    //     surveyToTake: surveyToTake
-    // })
-
-}
-
-
-
-
-
-// ```````````````````````````````````````````````````````````````````````````````````````````````````
 
 
 module.exports.displayMySurvey = async (req, res, next) => {
@@ -223,6 +201,17 @@ module.exports.performDelete = async (req, res, next) => {
     }
 };
 
+//TODO:
+// GET ROUTE FOR TAKING THE SURVEY
+module.exports.respondtoSurvey = async (req, res, next) => {
+    let id = req.params.id;
+    let surveyToTake = await Surveys.findById(id);
+    res.render('survey',{
+        title: "Taking a Survey",
+        surveyToTake: surveyToTake
+    })
+
+}
 
 //TODO:
 // POST THE RESPONSES FOR THE SURVEY

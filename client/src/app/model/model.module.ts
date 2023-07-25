@@ -1,11 +1,8 @@
-import { NgModule } from '@angular/core';
-import { StaticDataSource } from './static.datasource';
-import { RestDataSource } from './rest.datasource';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from "@angular/core";
+import { SurveyRepository } from "./survey.repository";
+import { StaticDataSource } from "./static.datasource";
 
 @NgModule({
-  imports: [HttpClientModule],
-  providers: [ StaticDataSource, 
-  {provide: StaticDataSource, useClass: StaticDataSource}]
+    providers: [SurveyRepository, StaticDataSource]
 })
-export class ModelModule {}
+export class ModelModules {}

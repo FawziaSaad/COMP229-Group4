@@ -7,13 +7,11 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent extends BasePageComponent implements OnInit {
-
-  constructor(route: ActivatedRoute) {
-    super(route);
-   }
-
-  ngOnInit(): void {
+export class HomeComponent extends BasePageComponent implements OnInit{
+  constructor(route: ActivatedRoute){
+    super(route)
   }
-
+  override ngOnInit(): void {
+    
+  }
 }

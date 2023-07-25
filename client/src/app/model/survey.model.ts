@@ -1,9 +1,17 @@
+import { Question } from './question.model';
 export class Survey {
-  constructor(
-    // tslint:disable-next-line: variable-name
-    public _id?: number,
-    public title?: string,
-    public creator?: string,
-    public startDate?: Date
-  ){}
+    constructor(
+        
+        public name?: string,
+        public _id?: number, // Use string type for _id
+        // Add other properties here if needed
+        // For example:
+        public userid?: number,
+        public creator?: string,
+        public startDate?: Date,
+        public surveyType?: string,
+        // public surveyType?: 'SA' | 'MCQ',
+        public endDate?: Date,
+        public questions?: Question[]
+    ) {}
 }
