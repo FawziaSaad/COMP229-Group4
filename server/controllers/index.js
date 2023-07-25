@@ -64,9 +64,6 @@ module.exports.processCreateSurvey = async (req, res, next) => {
     //extract survey type
     const surveyType = surveyData.surveyType;
 
-
-    // TODO: get the amount of questions from the backend
-
     // Extract questions and responses
     const questions = [];
     for (let count = 0; count < 2; count++) {           // get the data from the backend and make dynamic
@@ -89,7 +86,6 @@ module.exports.processCreateSurvey = async (req, res, next) => {
             });
 
         }
-
 
     }
     
