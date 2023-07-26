@@ -1,46 +1,96 @@
-<div class="container-fluid mt-3">
-    <div class="row">
-        <div class="col-md-3">
+      <div class="container-fluid mt-3">
+        <!-- Row for Cards -->
+        <div class="row">
+          <!-- Surveys Column -->
+          <div class="col-md-3">
             <div class="card">
-                <div class="card-header bg-info text-white">Surveys</div>
-                <div class="card-body">
-                    <h5 class="card-title">Total Surveys: {{surveys.length}}</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let survey of surveys">
-                            <strong>Title:</strong> {{survey.name}}
-                        </li>
-                    </ul>
-                </div>
+              <div class="card-header bg-info text-white">Surveys</div>
+              <div class="card-body">
+                <h5 class="card-title">Total Surveys: {{ surveys.length }}</h5>
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let survey of surveys">
+                    <strong>Title:</strong> {{ survey.name }}
+                  </li>
+                </ul>
+              </div>
             </div>
-        </div>
-
-        <div class="col-md-3">
+          </div>
+      
+          <!-- Questions Column -->
+          <div class="col-md-3">
             <div class="card">
-                <div class="card-header bg-success text-white">Questions</div>
-                <div class="card-body">
-                    <h5 class="card-title">Total Questions: {{questions.length}}</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let question of questions">
-                            <strong>Question:</strong> {{question.Question}}
-                        </li>
-                    </ul>
-                </div>
+              <div class="card-header bg-success text-white">Questions</div>
+              <div class="card-body">
+                <h5 class="card-title">Total Questions: {{ questions.length }}</h5>
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let question of questions">
+                    <strong>Question:</strong> {{ question.Question }}
+                  </li>
+                </ul>
+              </div>
             </div>
-        </div>
-
-        <div class="col-md-3">
+          </div>
+      
+          <!-- Responses Column -->
+          <div class="col-md-3">
             <div class="card">
-                <div class="card-header bg-warning text-white">Responses</div>
-                <div class="card-body">
-                    <h5 class="card-title">Total Responses: {{responses.length}}</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let response of responses">
-                            <strong>User:</strong> {{response.takenBy}} - <strong>Date:</strong> {{response.datetaken | date}}
-                        </li>
-                    </ul>
-                </div>
+              <div class="card-header bg-warning text-black">Responses</div>
+              <div class="card-body">
+                <h5 class="card-title">Total Responses: {{ responses.length }}</h5>
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let response of responses">
+                    <strong>User:</strong> {{ response.takenBy }} -
+                    <strong>Date:</strong> {{ response.datetaken | date }}
+                  </li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
-
-    </div>
-</div>
+      
+        <!-- Row for Filters and Pagination -->
+        <div class="row mt-3">
+          <div class="col-12">
+            <button (click)="setUserFilter(null)" class="btn btn-secondary">Show All</button>
+      
+            <ul class="list-group d-inline-block ml-3">
+              <li class="list-group-item" *ngFor="let creator of getCreators()">
+                <button (click)="setUserFilter(creator)" class="btn btn-light">{{ creator }}</button>
+              </li>
+            </ul>
+      
+            <div class="float-right">
+              <div class="form-inline float-left mr-1">
+                <select class="form-control" [value]="surveyesPerPage" (change)="changepagesize($event.target['value'])">
+                  <option value="2">2 per page</option>
+                  <option value="3">3 per page</option>
+                  <option value="6">6 per page</option>
+                  <option value="8">8 per page</option>
+                </select>
+              </div>
+              <div class="btn-group float-right">
+                <button *counter='let page of pageCount' (click)="changePage(page)" class="btn btn-secondary" [class.active]="page === selectedPage">{{ page }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Row for Survey Details -->
+        <div class="row mt-3">
+          <div class="col-12">
+            <div *ngFor="let survey of surveys" class="card m-1 p-1 bg-light">
+              <h4>
+                {{ survey.name }}
+                <span class="badge badge-pill badge-primary float-right text-black">
+                  {{
+                    survey.questions.length > 0
+                      ? survey.questions[0].Question
+                      : "No Questions"
+                  }}
+                </span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      
