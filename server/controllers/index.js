@@ -244,8 +244,8 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         // Create a new SurveyModel object
         const newResponse = new Response({
         surveyId: id,
-        respondentId: req.user.id,
-        takenBy: req.user.displayName,
+        respondentId: req.user ? req.user.id : new mongoose.Types.ObjectId(),
+        takenBy: req.user ? req.user.displayName : "Anonymous",
         questions: questions,
         responses: responses
         });
