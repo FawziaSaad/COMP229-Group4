@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { Survey } from '../../model/survey.model';
+import { Response } from '../../model/response.model';
+import { Question } from '../../model/question.model';
+import { SurveyRepository } from '../../model/survey.repository';
 
 
 @Component({
@@ -10,16 +13,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TakeComponent implements OnInit {
   id: any = this.route.snapshot.paramMap.get('id');
-  surveyToTake: any = [];
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private repository: SurveyRepository) { }
 
   ngOnInit(): void {
-    console.log(this.id);
+    
+  }
 
-    this.http.get(`http://localhost:3000/survey/${this.id}`).subscribe((response) => {
-      console.log(response);
-      this.surveyToTake = response;
-    })
+  get surveyToTake(): Survey {
+    console.log(this.repository.getSurvey(this.id));
+    return this.repository.getSurvey(this.id);
   }
 
 }

@@ -34,7 +34,7 @@ export class SurveyRepository {
   }
 
   getSurvey(id: number): Survey {
-    return this.surveys.find((s) => s._id === id);
+    return this.surveys.find((s) => s._id == id);
   }
 
   getCreators(): string[] {

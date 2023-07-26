@@ -77,8 +77,8 @@ export class StaticDataSource {
     new Response(
       2,
       this.surveys[0]._id,
-      this.users[2]._id,
-      this.users[2].username,
+      this.users[0]._id,
+      this.users[0].username,
       new Date('2023-07-25'),
       ['Favourite Food', 'Favourite Drink'],
       ['Burgers', 'Pepsi']
@@ -95,8 +95,8 @@ export class StaticDataSource {
     new Response(
       4,
       this.surveys[1]._id,
-      this.users[2]._id,
-      this.users[2].username,
+      this.users[0]._id,
+      this.users[0].username,
       new Date('2023-06-20'),
       ['Favourite Game', 'Favourite Trip'],
       ['Football', 'New York']

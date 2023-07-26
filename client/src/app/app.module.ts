@@ -3,13 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {SurveySiteModule} from './survey-site/survey-site.module';
+import { SurveySiteModule } from './survey-site/survey-site.module';
+import { SurveysModule } from './surveys/surveys.module';
 
 import { HeaderComponent } from './partials/header/header.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
-import { SurveyComponent } from './pages/survey/survey.component';
 import { CreateComponent } from './pages/surveys/create/create.component';
 import { EditComponent } from './pages/surveys/edit/edit.component';
 import { LandingComponent } from './pages/surveys/landing/landing.component';
@@ -27,7 +27,6 @@ import { BasePageComponent } from './partials/base-page/base-page.component';
     FooterComponent,
     HomeComponent,
     ErrorComponent,
-    SurveyComponent,
     CreateComponent,
     EditComponent,
     LandingComponent,
@@ -41,7 +40,8 @@ import { BasePageComponent } from './partials/base-page/base-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SurveySiteModule
+    SurveySiteModule,
+    SurveysModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

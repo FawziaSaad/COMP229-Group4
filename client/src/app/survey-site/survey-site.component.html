@@ -1,10 +1,46 @@
-<div class="container-fluid">
-    <div class="row text-white">
-        <div class="col-3 bg-info p-2"></div>
-        {{surveys.length}}
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-info text-white">Surveys</div>
+                <div class="card-body">
+                    <h5 class="card-title">Total Surveys: {{surveys.length}}</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let survey of surveys">
+                            <strong>Title:</strong> {{survey.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-        <div class="col-9 bg-light p-2 bg-success p-2"></div>
-        {{questions.length}}
-        
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-success text-white">Questions</div>
+                <div class="card-body">
+                    <h5 class="card-title">Total Questions: {{questions.length}}</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let question of questions">
+                            <strong>Question:</strong> {{question.Question}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-warning text-white">Responses</div>
+                <div class="card-body">
+                    <h5 class="card-title">Total Responses: {{responses.length}}</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let response of responses">
+                            <strong>User:</strong> {{response.takenBy}} - <strong>Date:</strong> {{response.datetaken | date}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
