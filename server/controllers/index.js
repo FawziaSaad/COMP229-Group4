@@ -271,7 +271,8 @@ module.exports.reportSurvey = async (req, res, next)=> {
         res.render('surveys/report', {
             title: 'Survey Report', 
             survey: survey, 
-            responses: responses, 
+            responses: responses,
+            numberOfResponses: responses.length, 
             displayName: req.user ? req.user.displayName : ''});
 
     }catch (err){
