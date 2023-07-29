@@ -17,7 +17,7 @@ export class RestDataSource
         this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
     }
 
-    getBooks(): Observable<Survey[]>
+    getSurvey(): Observable<Survey[]>
     {
         return this.http.get<Survey[]>(this.baseUrl + 'survey-site');
     }
