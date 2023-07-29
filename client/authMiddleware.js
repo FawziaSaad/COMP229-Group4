@@ -7,7 +7,7 @@ const mappings =
 {
     // get: ['/api/orders', '/orders'],
     // post: ['/api/books', '/books', 'api/categories', '/categories']
-    get: ['/api/orders', '/orders'],
+    get: ['/api/orders', '/orders', '/api/survey-site', 'survey-site'],
     post: ['/api/books', '/books', 'api/categories', '/categories']
 
 }
