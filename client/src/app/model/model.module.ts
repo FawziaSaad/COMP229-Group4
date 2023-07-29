@@ -7,6 +7,7 @@ import { RestDataSource } from "./rest.datasource";
 @NgModule({
     imports: [HttpClientModule],
     providers: [SurveyRepository, StaticDataSource,
-        {provide: StaticDataSource, useClass: RestDataSource}]
+        // {provide: StaticDataSource, useClass: RestDataSource}]
+    ]
 })
 export class ModelModules {}
