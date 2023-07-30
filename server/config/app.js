@@ -4,6 +4,7 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
+
 // modules for authentication
 let session = require('express-session');
 let passport = require('passport');
@@ -30,8 +31,8 @@ mongoDB.once('open', ()=>{
 let app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, '../views'));
+// app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -67,6 +68,9 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//cros origin 
+const cors = require('cors');
+app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
@@ -77,14 +81,21 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+// app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // res.locals.message = err.message;
+  // res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error', { title: 'Error'});
+  // // render the error page
+  // res.status(err.status || 500);
+  // res.render('error', { title: 'Error'});
+  app.use(function(err, req, res, next) {
+    // send error as JSON instead of rendering a view
+    res.status(err.status || 500).json({
+      message: err.message,
+      error: req.app.get('env') === 'development' ? err : {}
+    });
+  
 });
 
 module.exports = app;

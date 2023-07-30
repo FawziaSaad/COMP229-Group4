@@ -5,11 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {SurveySiteModule} from './survey-site/survey-site.module';
 import { PagesModule } from './pages/pages.module';
+import { RestDataSource } from './model/rest.datasource';
+import { CounterDirective } from './survey-site/counter.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    CounterDirective,
     // PagesModule,
     // PartialsModule
     // SurveySiteComponent,
@@ -20,7 +23,7 @@ import { PagesModule } from './pages/pages.module';
     SurveySiteModule,
     PagesModule
   ],
-  providers: [],
+  providers: [RestDataSource],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

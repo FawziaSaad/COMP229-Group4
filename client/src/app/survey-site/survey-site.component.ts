@@ -3,6 +3,7 @@ import { Survey } from '../model/survey.model';
 import { Response } from '../model/response.model';
 import { Question } from '../model/question.model';
 import { SurveyRepository } from '../model/survey.repository';
+import { CounterDirective } from './counter.directive';
 
 @Component({
   selector: 'app-survey-site',

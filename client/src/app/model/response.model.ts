@@ -5,8 +5,8 @@ export class Response {
         public respondentId?:number,
         public takenBy?:string,
         public datetaken?:Date,
-        public question?:Array<string>,
-        public response?:Array<string>,
+        public questions?:Array<string>,
+        public responses?:Array<string>,
         ){}
     
 }
