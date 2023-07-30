@@ -3,11 +3,12 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { ModelModules } from "../model/model.module";
 import { SurveySiteComponent } from "./survey-site.component";
+import { CounterDirective } from './counter.directive';
 
 
 @NgModule({
     imports: [ModelModules, BrowserModule, FormsModule],
-    declarations: [SurveySiteComponent],
+    declarations: [SurveySiteComponent,CounterDirective],
     exports: [SurveySiteComponent]
 
 })

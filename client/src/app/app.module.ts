@@ -6,13 +6,13 @@ import { AppComponent } from './app.component';
 import {SurveySiteModule} from './survey-site/survey-site.module';
 import { PagesModule } from './pages/pages.module';
 import { RestDataSource } from './model/rest.datasource';
-import { CounterDirective } from './survey-site/counter.directive';
+// import { CounterDirective } from './survey-site/counter.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CounterDirective,
+    // CounterDirective,
     // PagesModule,
     // PartialsModule
     // SurveySiteComponent,
