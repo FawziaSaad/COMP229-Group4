@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
 
+
+//=================================================================================================
+// THIS TILE IS HERE AS A TEMP FOR THE AUTH MODULE: TO STOP ANGULAR THROWING ERRORS FOR
+// SOMEO OF THE USER INFO IN THE HTML FILES.
+//=================================================================================================
+
+
+
 @Injectable({
   providedIn: 'root'
 })
