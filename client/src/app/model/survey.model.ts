@@ -3,10 +3,10 @@ export class Survey {
     constructor(
         
         public name?: string,
-        public _id?: number, // Use string type for _id
+        public _id?: string, // Use string type for _id
         // Add other properties here if needed
         // For example:
-        public userid?: number,
+        public userid?: string,
         public creator?: string,
         public startDate?: Date,
         public surveyType?: string,

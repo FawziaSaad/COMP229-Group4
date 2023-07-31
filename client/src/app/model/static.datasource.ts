@@ -9,8 +9,8 @@ import { get } from 'jquery';
 @Injectable()
 export class StaticDataSource {
   private users: User[] = [
-    new User(1, 'Moh', 'baz@example.com', 'Moh'),
-    new User(2, 'Dave', 'foo@example.com', 'Dave'),
+    new User("1", 'Moh', 'baz@example.com', 'Moh'),
+    new User("2", 'Dave', 'foo@example.com', 'Dave'),
   ];
   //you were right dave
   // moh = new User('1', 'Moh', 'baz@example.com', 'Moh');
@@ -32,7 +32,7 @@ export class StaticDataSource {
     new Survey(
       
       'Survey 1',
-      1,
+      "1",
       this.users[0]._id,
       this.users[0].username,
       new Date('2023-07-23'),
@@ -44,7 +44,7 @@ export class StaticDataSource {
     new Survey(
       
       'Survey 2',
-      2,
+      "2",
       this.users[0]._id,
       this.users[0].username,
       new Date('2023-06-13'),
@@ -55,7 +55,7 @@ export class StaticDataSource {
     new Survey(
       
       'Survey 3',
-      3,
+      "3",
       this.users[1]._id,
       this.users[1].username,
       new Date('2023-04-25'),
@@ -66,7 +66,7 @@ export class StaticDataSource {
   ];
   private responses: Response[] = [
     new Response(
-      1,
+      "1",
       this.surveys[0]._id,
       this.users[1]._id,
       this.users[1].username,
@@ -75,7 +75,7 @@ export class StaticDataSource {
       ['Pizza', 'Coke']
     ),
     new Response(
-      2,
+      "2",
       this.surveys[0]._id,
       this.users[0]._id,
       this.users[0].username,
@@ -84,7 +84,7 @@ export class StaticDataSource {
       ['Burgers', 'Pepsi']
     ),
     new Response(
-      3,
+      "3",
       this.surveys[1]._id,
       this.users[1]._id,
       this.users[1].username,
@@ -93,7 +93,7 @@ export class StaticDataSource {
       ['Chess', 'Paris']
     ),
     new Response(
-      4,
+      "4",
       this.surveys[1]._id,
       this.users[0]._id,
       this.users[0].username,
@@ -102,7 +102,7 @@ export class StaticDataSource {
       ['Football', 'New York']
     ),
     new Response(
-      5,
+      "5",
       this.surveys[2]._id,
       this.users[1]._id,
       this.users[1].username,
@@ -111,7 +111,7 @@ export class StaticDataSource {
       ['Blue', 'Dog']
     ),
     new Response(
-      6,
+      "6",
       this.surveys[2]._id,
       this.users[1]._id,
       this.users[1].username,

@@ -33,7 +33,7 @@ export class SurveyRepository {
     return this.surveys.filter((s) => creator == null || creator === s.creator);
   }
 
-  getSurvey(id: number): Survey {
+  getSurvey(id: string): Survey {
     return this.surveys.find((s) => s._id === id);
   }
 
@@ -51,7 +51,7 @@ export class SurveyRepository {
   // getResponses(surveyId:number): Response[] {
   //   return this.responses.filter((r) => r.surveyId === surveyId);
   // }
-  getResponses(surveyId?: number): Response[] {
+  getResponses(surveyId?: string): Response[] {
     if(surveyId) {
         return this.responses.filter((r) => r.surveyId === surveyId);
     }
