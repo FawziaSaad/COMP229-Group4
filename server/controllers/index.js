@@ -76,7 +76,7 @@ module.exports.processCreateSurvey = async (req, res, next) => {
 
     // Extract questions and responses
     const questions = [];
-    for (let count = 0; count < 5; count++) {           // get the data from the backend and make dynamic
+    for (let count = 0; count < 2; count++) {           // get the data from the backend and make dynamic
         const questionKey = `Question${count + 1}`;
         const responseKey = `response${count + 1}`;
         const question = surveyData[questionKey];
@@ -160,7 +160,7 @@ module.exports.processEditSurvey = async (req, res, next) => {
 
     // Extract questions and responses
     const questions = [];
-    for (let count = 0; count < 5; count++) { // number of questions should be dynamic -> HUNG
+    for (let count = 0; count < 2; count++) { // number of questions should be dynamic -> HUNG
         if (surveyType === "MCQ") {
             const questionKey = `Question${count + 1}`;
             const responseKey = `response${count + 1}`;
