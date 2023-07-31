@@ -15,11 +15,11 @@ export class MysurveysComponent implements OnInit {
 
   constructor(private repository: SurveyRepository) {}
 
-  ngOnInit(): void {
-    this.loadSurveys();
-  }
+  ngOnInit(): void {}
 
-  loadSurveys() {
-    this.mySurveys = this.repository.getSurveys();
+  get surveys(): Survey[] {
+
+    const id: string = 	"64b04fdc4038f37b48c37ce7";
+    return this.repository.getSurveys().filter((survey) => survey.userid === id);
   }
 }
