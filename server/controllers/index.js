@@ -37,8 +37,7 @@ module.exports.displayHomePage = async (req, res, next) => {
 
 
 module.exports.displayMySurvey = async (req, res, next) => {
-    // let id = req.user._id
-    let id = '64af8fd980dd9f85a3f7e807';
+    let id = req.user._id
     try {
 
         let SurveyList = await Surveys.find({ userid: id });
