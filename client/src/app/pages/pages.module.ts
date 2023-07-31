@@ -8,7 +8,6 @@ import { LandingComponent } from './surveys/landing/landing.component';
 import { EditComponent } from './surveys/edit/edit.component';
 import { CreateComponent } from './surveys/create/create.component';
 import { ReportComponent } from './surveys/report/report.component';
-import { SurveyComponent } from './survey/survey.component';
 import { RouterModule } from '@angular/router';
 
 
@@ -21,8 +20,7 @@ import { RouterModule } from '@angular/router';
     LandingComponent,
     EditComponent,
     CreateComponent,
-    ReportComponent,
-    SurveyComponent
+    ReportComponent
 
   ],
   exports: [
@@ -32,8 +30,7 @@ import { RouterModule } from '@angular/router';
     LandingComponent,
     EditComponent,
     CreateComponent,
-    ReportComponent,
-    SurveyComponent
+    ReportComponent
     ]
 })
 export class PagesModule {}
