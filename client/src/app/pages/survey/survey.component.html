@@ -1,1 +1,45 @@
 
+<!-- survey-take.component.html -->
+<div class="jumbotron">
+    <h1 class="display-4">The "{{ surveyToTake.name }}" Survey</h1>
+    <h5 class="display-10"><i>By: "{{ surveyToTake.creator }}"</i></h5>
+  
+    <br />
+  
+    <form (ngSubmit)="submitSurvey()" #surveyForm="ngForm">
+      <ng-container *ngFor="let question of surveyToTake.questions; let count = index">
+        <h5 class="display-7">Question {{ count + 1 }}: {{ question.Question }}</h5>
+  
+        <div class="form-group" *ngIf="surveyToTake.surveyType === 'MCQ'">
+          <div class="form-check" *ngFor="let option of question.options">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="answers[{{ count }}]"
+              id="flexRadioDefault{{ count }}{{ option }}"
+              value="{{ option }}"
+              [(ngModel)]="selectedAnswers[count]"
+            />
+            <label class="form-check-label" for="flexRadioDefault{{ count }}{{ option }}">
+              {{ option }}
+            </label>
+          </div>
+        </div>
+  
+        <input
+          class="form-control"
+          type="text"
+          name="answers[{{ count }}]"
+          value="{{ surveyToTake.questions[count].OptionFour }}"
+          *ngIf="surveyToTake.surveyType === 'SA'"
+          [(ngModel)]="selectedAnswers[count]"
+        />
+        <br />
+      </ng-container>
+  
+      <br />
+  
+      <button type="submit" class="btn btn-primary">Submit Survey</button>
+    </form>
+  </div>
+  

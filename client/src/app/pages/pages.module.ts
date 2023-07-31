@@ -9,6 +9,7 @@ import { EditComponent } from './surveys/edit/edit.component';
 import { CreateComponent } from './surveys/create/create.component';
 import { ReportComponent } from './surveys/report/report.component';
 import { RouterModule } from '@angular/router';
+import { TakeSurveyComponent } from './survey/survey.component';
 
 
 
@@ -20,7 +21,8 @@ import { RouterModule } from '@angular/router';
     LandingComponent,
     EditComponent,
     CreateComponent,
-    ReportComponent
+    ReportComponent,
+    TakeSurveyComponent
 
   ],
   exports: [
@@ -30,7 +32,8 @@ import { RouterModule } from '@angular/router';
     LandingComponent,
     EditComponent,
     CreateComponent,
-    ReportComponent
+    ReportComponent,
+    TakeSurveyComponent
     ]
 })
 export class PagesModule {}

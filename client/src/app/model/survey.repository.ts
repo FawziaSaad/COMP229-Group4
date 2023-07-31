@@ -33,10 +33,9 @@ export class SurveyRepository {
     return this.surveys.filter((s) => creator == null || creator === s.creator);
   }
 
-  getSurvey(id: string): Survey {
+  getSurveyById(id: string): Survey {
     return this.surveys.find((s) => s._id === id);
   }
-
   getCreators(): string[] {
     return this.creators;
   }

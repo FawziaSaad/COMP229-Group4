@@ -1,34 +1,44 @@
+// survey-take.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BasePageComponent } from '../../partials/base-page/base-page.component';
 import { Survey } from 'src/app/model/survey.model';
+import { SurveyRepository } from 'src/app/model/survey.repository';
 
 
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
-  styleUrls: ['./survey.component.css']
+  styleUrls: ['./survey.component.css'],
 })
-export class TakeSurveyComponent extends BasePageComponent implements OnInit{
+export class TakeSurveyComponent implements OnInit {
+  surveyToTake: Survey;
+  selectedAnswers: any[] = [];
 
-  surveyToTake: Survey | undefined;
+  constructor(
+    private surveyRepository: SurveyRepository,
+    private route: ActivatedRoute
+  ) {}
 
-  constructor(route: ActivatedRoute){
-    super(route)
-  }
-  override ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
-    this.getSurveyById(id);
-  }
-
-  getSurveyById(id: string): void {
-    // Implement the logic to fetch the survey data using Angular's HttpClient or any other method.
-    // Assign the survey data to the surveyToTake property.
-  }
-
-
-  onSubmit(): void {
-    // Implement the logic to handle form submission when the "Submit Survey" button is clicked.
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const surveyId = params.get('id');
+      this.loadSurvey(surveyId);
+    });
   }
 
+  loadSurvey(surveyId: string) {
+    this.surveyToTake = this.surveyRepository.getSurveyById(surveyId);
+    this.initializeAnswers();
+  }
+
+  initializeAnswers() {
+    if (this.surveyToTake) {
+      this.selectedAnswers = new Array(this.surveyToTake.questions.length).fill('');
+    }
+  }
+
+  submitSurvey() {
+    // Handle the form submission logic here, using the selectedAnswers array.
+    console.log(this.selectedAnswers);
+  }
 }
