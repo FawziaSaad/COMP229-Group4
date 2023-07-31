@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CreateComponent extends BasePageComponent implements OnInit{
   
-  questionLength : number[] = new Array(5);
+  questionLength : number[] = new Array(2);
   MCQoptions : number[] = new Array(4);
   selectedSurveyType: string = '';
   formData: any = {};
@@ -24,29 +24,43 @@ export class CreateComponent extends BasePageComponent implements OnInit{
     
   }
 
-  onSurveyTypeChange() {
-    // You can perform any additional logic here if needed when the selection changes.
-    // For example, you could reset form fields or perform some action based on the selected value.
-  }
+  onSurveyTypeChange() {}
 
-  onSubmit() {
+  onMCQFormSubmit() {
+    // Handle the submission logic for the MCQ form.
     const postData = {
+      surveyType: 'MCQ',
       questions: this.formData
     };
-    this.http.post('YOUR_API_ENDPOINT', postData)
-      .subscribe(
-        (response) => {
-          console.log('POST request successful:', response);
-          // Handle the response as needed
-        },
-        (error) => {
-          console.error('Error occurred:', error);
-          // Handle errors if any
-        }
-      );
+    this.http.post('/create-survey', postData).subscribe(
+      (response) => {
+        console.log('MCQ Form submitted:', response);
+        // Handle the response as needed
+      },
+      (error) => {
+        console.error('Error occurred:', error);
+      }
+    );
+  }
 
+  onSAFormSubmit() {
+    // Handle the submission logic for the SA form.
 
+    console.log(`DEBUG SA`)
 
+    const postData = {
+      surveyType: 'SA',
+      questions: this.formData
+    };
+    this.http.post('/create-survey', postData).subscribe(
+      (response) => {
+        console.log('SA Form submitted:', response);
+        // Handle the response as needed
+      },
+      (error) => {
+        console.error('Error occurred:', error);
+      }
+    );
   }
 
 

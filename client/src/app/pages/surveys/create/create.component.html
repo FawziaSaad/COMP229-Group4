@@ -15,7 +15,7 @@
 
 </div>
 
-<form class="form mcq-container" method="POST"  *ngIf="selectedSurveyType === 'MCQ'" (ngSubmit)="onSubmit()">
+<form class="form mcq-container" method="POST"  *ngIf="selectedSurveyType === 'MCQ'" (ngSubmit)="onMCQFormSubmit()">
   <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input" required>
   <div class="container">
         <!-- For MCQ -->
@@ -45,7 +45,7 @@
   <button id="submitBtn" class="submit-btn" type="submit">Submit</button>
 </form>
 
-<form class="form sa-container" method="POST" *ngIf="selectedSurveyType === 'SA'" (ngSubmit)="onSubmit()">
+<form class="form sa-container" method="POST" *ngIf="selectedSurveyType === 'SA'" (ngSubmit)="onSAFormSubmit()">
   <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input" required>
     <div class="container">
     <!-- <input type="hidden" name="surveyType" value="SA"> -->
