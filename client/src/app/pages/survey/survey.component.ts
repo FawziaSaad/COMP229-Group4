@@ -8,7 +8,7 @@ import { BasePageComponent } from '../../partials/base-page/base-page.component'
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css']
 })
-export class SurveyComponent extends BasePageComponent implements OnInit{
+export class TakeSurveyComponent extends BasePageComponent implements OnInit{
   constructor(route: ActivatedRoute){
     super(route)
   }
