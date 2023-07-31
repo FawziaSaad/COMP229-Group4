@@ -12,7 +12,7 @@
           <h5 class="card-title">{{ survey.name }}</h5>
           <p class="card-text">{{ survey.creator }}</p>
           <p class="card-time">Expires on: {{survey.endDate}}</p> <!-- new class for "Time left" text -->
-          <a href="survey/survey._id" class="btn btn-primary">Take Survey</a>
+          <a href="survey/survey.{{survey._id}}" class="btn btn-primary">Take Survey</a>
         </div>
       </div>
     </div>
