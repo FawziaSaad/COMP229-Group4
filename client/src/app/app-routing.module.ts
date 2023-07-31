@@ -13,8 +13,7 @@ const routes: Routes = [
   { path: 'error', component: ErrorComponent, data: {title: 'Error'}},
   { path: 'survey-site', component: SurveySiteComponent, data: {title: 'Survey Site'}},
   { path: 'create-survey', component: CreateComponent, data: {title: 'Create Survey'}},
-  // { path: 'my-survey', component: MysurveysComponent, data: {title: 'My Survey'}},
-  { path: 'mysurveys', component: MysurveysComponent, data: {title: 'My Surveys'}},
+  { path: 'survey/mysurveys', component: MysurveysComponent, data: {title: 'My Surveys'}},
   { path: 'survey/:id', component: TakeSurveyComponent, data: {title: 'Take Survey'}}
 
 
