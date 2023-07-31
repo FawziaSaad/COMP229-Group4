@@ -27,18 +27,9 @@ export class TakeSurveyComponent implements OnInit {
   }
 
   loadSurvey(surveyId: string) {
+    console.log(surveyId);
     this.surveyToTake = this.surveyRepository.getSurveyById(surveyId);
-    this.initializeAnswers();
   }
 
-  initializeAnswers() {
-    if (this.surveyToTake) {
-      this.selectedAnswers = new Array(this.surveyToTake.questions.length).fill('');
-    }
-  }
 
-  submitSurvey() {
-    // Handle the form submission logic here, using the selectedAnswers array.
-    console.log(this.selectedAnswers);
-  }
 }
