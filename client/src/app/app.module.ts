@@ -5,9 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SurveySiteModule } from './survey-site/survey-site.module';
 import { SurveysModule } from './surveys/surveys.module';
-
-import { HeaderComponent } from './partials/header/header.component';
-import { FooterComponent } from './partials/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { CreateComponent } from './pages/surveys/create/create.component';
@@ -17,14 +14,12 @@ import { MysurveysComponent } from './pages/surveys/mysurveys/mysurveys.componen
 import { ReportComponent } from './pages/surveys/report/report.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
-import { BasePageComponent } from './partials/base-page/base-page.component';
+import { PartialsModule } from './partials/partials.module';
 // import { SurveySiteComponent } from './survey-site/survey-site.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
     HomeComponent,
     ErrorComponent,
     CreateComponent,
@@ -34,7 +29,6 @@ import { BasePageComponent } from './partials/base-page/base-page.component';
     ReportComponent,
     LoginComponent,
     RegisterComponent,
-    BasePageComponent,
     // SurveySiteComponent,
   ],
   imports: [
@@ -42,6 +36,7 @@ import { BasePageComponent } from './partials/base-page/base-page.component';
     AppRoutingModule,
     SurveySiteModule,
     SurveysModule,
+    PartialsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
