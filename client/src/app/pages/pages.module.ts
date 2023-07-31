@@ -9,11 +9,12 @@ import { EditComponent } from './surveys/edit/edit.component';
 import { CreateComponent } from './surveys/create/create.component';
 import { ReportComponent } from './surveys/report/report.component';
 import { SurveyComponent } from './survey/survey.component';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, PartialsModule],
+  imports: [BrowserModule, FormsModule, PartialsModule, RouterModule],
   declarations: [
     HomeComponent,
     MysurveysComponent,
