@@ -1,2 +1,48 @@
-<p>mysurveys works!</p>
-<app-base-page></app-base-page>
+<main class="container">
+    <div class="jumbotron">
+      <h1>{{ title }}</h1>
+      <a *ngIf="displayName" href="/create-survey" class="btn btn-primary" role="button">
+        <i class="fas fa-plus-circle"></i> Create a new survey</a>
+      <br>
+      <table class="table table-bordered table-striped table-hover">
+        <!-- Header Row -->
+        <tr class="d-flex">
+          <ng-container *ngIf="!displayName">
+            <th class="text-center col-4">Survey</th>
+            <th class="text-center col-3">Created By</th>
+            <th class="text-center col-2"></th>
+            <th class="text-center col-2"></th>
+            <th class="text-center col-2"></th>
+          </ng-container>
+          <!-- <ng-container *ngIf="!displayName">
+            <th class="text-center col-2">Survey</th>
+            <th class="text-center col-2">Created By</th>
+          </ng-container> -->
+        </tr>
+        <!-- Repeatable Template Row -->
+        <tr class="d-flex" *ngFor="let survey of mySurveys">
+          <ng-container *ngIf="!displayName">
+            <td class="text-center col-4">{{ survey.name }}</td>
+            <td class="text-center col-3">{{ survey.creator }}</td>
+            <td class="text-center col-2">
+              <a [routerLink]="'/survey/edit/' + survey._id" class="btn btn-primary btn-sm">
+                <i class="fas fa-pencil-alt"></i> Edit</a>
+            </td>
+            <td class="text-center col-2">
+              <a [routerLink]="'/survey/report/' + survey._id" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-list"></i> Report</a>
+            </td>
+            <td class="text-center col-2">
+              <a [routerLink]="'/delete/' + survey._id" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash-alt"></i> Delete</a>
+            </td>
+          </ng-container>
+          <!-- <ng-container *ngIf="!displayName">
+            <td class="text-center col-2">{{ survey.name }}</td>
+            <td class="text-center col-2">{{ survey.creator }}</td>
+          </ng-container> -->
+        </tr>
+      </table>
+    </div>
+  </main>
+  
