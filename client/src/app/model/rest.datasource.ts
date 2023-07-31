@@ -20,7 +20,7 @@ export class RestDataSource
 
     }
 
-    getSurvey(): Observable<Survey[]>
+    getSurveylist(): Observable<Survey[]>
     {
         // return this.http.get<Survey[]>(this.baseUrl + 'survey-site');
         return this.http.get<Survey[]>(this.baseUrl + API_ENDPOINTS.HOME_PAGE);

@@ -15,9 +15,9 @@ export class SurveyRepository {
   private responses: Response[] = [];
 
   constructor(private dataSource: RestDataSource) {
-    this.dataSource.getSurvey().subscribe((data) => {
-      this.surveys = data;
-      this.creators = data
+    this.dataSource.getSurveylist().subscribe((data) => {
+      this.surveys = data['SurveyList'];
+      this.creators = data['SurveyList']
         .map((s) => s.creator)
         .filter((c, index, array) => array.indexOf(c) === index)
         .sort();
