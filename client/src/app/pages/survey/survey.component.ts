@@ -13,6 +13,8 @@ import { SurveyRepository } from 'src/app/model/survey.repository';
 export class TakeSurveyComponent implements OnInit {
   surveyToTake: Survey;
   selectedAnswers: any[] = [];
+  MCQoptions : number[] = new Array(4);
+
 
   constructor(
     private surveyRepository: SurveyRepository,
@@ -29,6 +31,10 @@ export class TakeSurveyComponent implements OnInit {
   loadSurvey(surveyId: string) {
     console.log(surveyId);
     this.surveyToTake = this.surveyRepository.getSurveyById(surveyId);
+  }
+
+  submitSurvey(){
+    // What happens when we submit
   }
 
 
