@@ -26,16 +26,17 @@ function requireAuth(req, res, next)
 router.get('/', indexController.displayHomePage);
 
 /* GET home page. */
-router.get('/home', indexController.displayHomePage);
+// router.get('/home', indexController.displayHomePage);
 
 /* GET create survey page. */
 router.get('/create-survey',  requireAuth, indexController.displayCreateSurvey);  
-
 // POST Route for processing the Create Survey Page - CREATE Operation
 router.post('/create-survey', requireAuth, indexController.processCreateSurvey); 
 
 // Get to perform Deletion - Delete Operation
-router.get('/delete/:id', requireAuth, indexController.performDelete); 
+// router.get('/delete/:id', requireAuth, indexController.performDelete); 
+router.delete('/survey/:id', requireAuth, indexController.performDelete); 
+
 
 router.get('/survey/report/:id', requireAuth, indexController.reportSurvey); 
 
@@ -47,10 +48,11 @@ router.get('/survey/mysurveys', requireAuth, indexController.displayMySurvey);
 // 3-implement the edit controller / route / view
 
 // Get to edit survey
-router.get('/survey/edit/:id', indexController.displayEditSurvey);
+router.get('/survey/edit/:id', requireAuth,indexController.displayEditSurvey);
+router.put('/survey/edit/:id', requireAuth,indexController.processEditSurvey); 
 
 // Get to edit survey
-router.post('/survey/edit/:id', indexController.processEditSurvey);
+// router.post('/survey/edit/:id', indexController.processEditSurvey);
 
 // 13.07.2023
 // TODO: Confirm that the data is getting into the DB okay
@@ -65,18 +67,26 @@ router.post('/survey/:id', requireAuth, indexController.submitSurveyResponses);
 
 // Leave the login / logout
 /* Get Route for displaying the Login Page */
-router.get('/login', indexController.displayLoginPage);
-
+// router.get('/login', indexController.displayLoginPage);
 /* Post Route for processing the Login Page */
-router.post('/login', indexController.processLoginPage);
-
+// router.post('/login', indexController.processLoginPage);
 /* Get Route for displaying the Register Page */
-router.get('/register', indexController.displayRegisterPage);
-
+// router.get('/register', indexController.displayRegisterPage);
 /* Get Route for processing the Register Page */
-router.post('/register', indexController.processRegisterPage);
-
+// router.post('/register', indexController.processRegisterPage);
 /* Get to perform UserLogout */
-router.get('/logout', indexController.performLogout);
+// router.get('/logout', indexController.performLogout);
 
+router.post('/login', indexController.processLoginPage);
+router.post('/register', indexController.processRegisterPage);
+router.post('/logout', indexController.performLogout);
+
+router.get('/surveys', (req, res) => {
+    Survey.find({}, (err, surveys) => {
+      if (err) {
+        return res.status(500).json({ error: 'Error fetching surveys' });
+      }
+      return res.json(surveys);
+    });
+  });
 module.exports = router;

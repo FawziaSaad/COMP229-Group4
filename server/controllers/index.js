@@ -23,12 +23,15 @@ module.exports.displayHomePage = async (req, res, next) => {
         //==============================================================
         // let SurveyList = await Surveys.find();   // Or change it back
 
-        res.render('surveys/landing', { 
+        // res.render('surveys/landing', { 
+            res.json({ 
             title: 'Home', 
             SurveyList: SurveyList,
             displayName: req.user ? req.user.displayName : '' })
     } catch (err){
         console.log(err);
+        res.status(500).json({ error: err.message });
+
     }
 }
 
@@ -36,16 +39,20 @@ module.exports.displayHomePage = async (req, res, next) => {
 module.exports.displayMySurvey = async (req, res, next) => {
     let id = req.user._id
     try {
+
         let SurveyList = await Surveys.find({ userid: id });
         // res.json(surveyList);
-        res.render('surveys/mysurveys', { 
+        // res.render('surveys/mysurveys', { 
+            res.json({ 
             title: 'My Surveys', 
             SurveyList: SurveyList,
             displayName: req.user ? req.user.displayName : '' })
     } catch (err){
         console.log(err);
+        res.status(500).json({ error: err.message });
     }
 }
+
 
 module.exports.displayCreateSurvey = async (req, res, next)=>{
     try {
@@ -106,7 +113,9 @@ module.exports.processCreateSurvey = async (req, res, next) => {
         // Save the new survey to the database
         await newSurvey.save();
     
-        res.redirect('/survey/mysurveys');
+        // res.redirect('/survey/mysurveys');
+        await newSurvey.save();
+    res.json({ message: "Survey created successfully!" });
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -122,10 +131,15 @@ module.exports.displayEditSurvey = async (req, res, next) => {
 
     try {
         let surveyToEdit = await Surveys.findById(id);
-        res.render('surveys/edit', 
-        {title: 'Edit', 
-        survey: surveyToEdit,
-        displayName: req.user ? req.user.displayName : ''});
+        // res.render('surveys/edit', 
+        // {title: 'Edit', 
+        // survey: surveyToEdit,
+        // displayName: req.user ? req.user.displayName : ''});
+        res.json({
+            title: 'Edit', 
+            survey: surveyToEdit,
+            displayName: req.user ? req.user.displayName : ''
+        });
     } catch (err){
         console.log(err);
         res.status(500).send(err);
@@ -180,7 +194,9 @@ module.exports.processEditSurvey = async (req, res, next) => {
 
     try {
         await Surveys.updateOne({_id: id}, updatedSurvey);
-        res.redirect('/survey/mysurveys'); // redirect to a page of your choice
+        // res.redirect('/survey/mysurveys'); // redirect to a page of your choice
+        res.json({ message: "Survey updated successfully!" });
+
     } catch (err){
         console.log(err);
         res.status(500).send(err);
@@ -194,7 +210,9 @@ module.exports.performDelete = async (req, res, next) => {
 
     try {
         await Surveys.findByIdAndRemove(id);
-        res.redirect('/survey/mysurveys');
+        // res.redirect('/survey/mysurveys');
+        res.json({ message: "Survey deleted successfully!" });
+
     }catch (err){
         console.log(err);
         res.status(500).send(err);

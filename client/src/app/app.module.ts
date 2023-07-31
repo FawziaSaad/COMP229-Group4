@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {SurveySiteModule} from './survey-site/survey-site.module';
 import { PagesModule } from './pages/pages.module';
+import { RestDataSource } from './model/rest.datasource';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { PagesModule } from './pages/pages.module';
     SurveySiteModule,
     PagesModule
   ],
-  providers: [],
+  providers: [RestDataSource],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
