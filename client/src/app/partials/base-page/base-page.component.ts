@@ -9,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 export class BasePageComponent implements OnInit {
   title: string;
 
-  constructor(private route: ActivatedRoute) { }
+  // Changed from 'private route' so that it is accessible in the survey.component.ts file!
+  constructor(protected route: ActivatedRoute) { }
   ngOnInit(): void {
     this.title = this.route.snapshot.data['title'];
   }
