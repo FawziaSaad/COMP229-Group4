@@ -1,4 +1,4 @@
-export class Response {
+ export class Response {
     constructor(
         public _id?:string,
         public surveyId?:string,
@@ -8,5 +8,5 @@ export class Response {
         public question?:Array<string>,
         public response?:Array<string>,
         ){}
-    
-}
+        
+    }
