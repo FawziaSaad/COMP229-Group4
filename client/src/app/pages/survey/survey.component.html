@@ -7,7 +7,7 @@
          <!-- else  -->
          <!-- end if  -->
          <br/> 
-        <form method="POST">
+        <form method="POST" (ngSubmit)="submitSurvey()">
             <div *ngFor="let question of surveyToTake.questions; index as i;">
 
                 <h5 class="display-7">Question  {{i +1 }}: {{surveyToTake.questions[i].Question}}</h5>
