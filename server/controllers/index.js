@@ -267,7 +267,7 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
 
         await newResponse.save();
     
-        res.json({ message: "Survey created successfully!" });
+        res.json({ message: "Survey responses submitted successfully!" });
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
