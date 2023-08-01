@@ -24,8 +24,7 @@ module.exports.displayHomePage = async (req, res, next) => {
         // let SurveyList = await Surveys.find();   // Or change it back
 
         // res.render('surveys/landing', { 
-        res.header("Access-Control-Allow-Origin", "*")
-            res.json({ 
+         res.json({ 
             title: 'Home', 
             SurveyList: SurveyList,
             displayName: req.user ? req.user.displayName : '' })
