@@ -31,7 +31,7 @@ router.get('/', indexController.displayHomePage);
 /* GET create survey page. */
 router.get('/create-survey',  requireAuth, indexController.displayCreateSurvey);  
 // POST Route for processing the Create Survey Page - CREATE Operation
-router.post('/create-survey', requireAuth, indexController.processCreateSurvey); 
+router.post('/create-survey', indexController.processCreateSurvey); 
 
 // Get to perform Deletion - Delete Operation
 // router.get('/delete/:id', requireAuth, indexController.performDelete); 

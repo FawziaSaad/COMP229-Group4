@@ -65,13 +65,10 @@ module.exports.displayCreateSurvey = async (req, res, next)=>{
 
 module.exports.processCreateSurvey = async (req, res, next) => {
     const surveyData = req.body;
-    
     // Extract survey name
     const surveyName = surveyData.surveyName;
     //extract survey type
     const surveyType = surveyData.surveyType;
-
-
     // TODO: get the amount of questions from the backend
 
     // Extract questions and responses
@@ -94,18 +91,15 @@ module.exports.processCreateSurvey = async (req, res, next) => {
             questions.push({
                 Question: question
             });
-
         }
-
-
     }
     
     try {
         // Create a new SurveyModel object
         const newSurvey = new Surveys({
         name: surveyName,
-        creator: req.user.displayName,
-        userid: req.user._id,
+        creator:"error",
+        userid: "error",
         surveyType: surveyType,                      // remember to dynamically specify, NOT HARD CODE
         questions: questions,
         });
