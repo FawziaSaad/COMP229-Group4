@@ -64,7 +64,7 @@ export class TakeSurveyComponent implements OnInit {
     try {
       this.http.post(`http://localhost:3000/survey/${this.id}`, responseToSend).subscribe(
         (response) => {
-          console.log('SA Form submitted:', response);
+          console.log('Responses:', response);
           // Handle the response as needed
         }
       );
