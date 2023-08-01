@@ -259,15 +259,15 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         // Create a new SurveyModel object
         const newResponse = new Response({
         surveyId: id,
-        respondentId: req.user.id,
-        takenBy: req.user.displayName,
+        respondentId: "error",
+        takenBy: "error",
         questions: questions,
         responses: responses
         });
 
         await newResponse.save();
     
-        res.redirect('/');
+        res.json({ message: "Survey created successfully!" });
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
