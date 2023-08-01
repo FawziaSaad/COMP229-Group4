@@ -11,10 +11,9 @@ import { SurveyRepository } from 'src/app/model/survey.repository';
   styleUrls: ['./survey.component.css'],
 })
 export class TakeSurveyComponent implements OnInit {
-  surveyToTake: Survey;
   selectedAnswers: any[] = [];
   MCQoptions : number[] = new Array(4);
-
+  id: any = this.route.snapshot.paramMap.get('id');
 
   constructor(
     private surveyRepository: SurveyRepository,
@@ -22,15 +21,12 @@ export class TakeSurveyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      const surveyId = params.get('id');
-      this.loadSurvey(surveyId);
-    });
+   
   }
 
-  loadSurvey(surveyId: string) {
-    console.log(surveyId);
-    this.surveyToTake = this.surveyRepository.getSurveyById(surveyId);
+  get surveyToTake() {
+    // this.surveyToTake = this.surveyRepository.getSurveyById(this.id);
+    return  this.surveyRepository.getSurveyById(this.id);
   }
 
   submitSurvey(){

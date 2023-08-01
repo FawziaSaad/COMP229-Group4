@@ -24,6 +24,7 @@ module.exports.displayHomePage = async (req, res, next) => {
         // let SurveyList = await Surveys.find();   // Or change it back
 
         // res.render('surveys/landing', { 
+        res.header("Access-Control-Allow-Origin", "*")
             res.json({ 
             title: 'Home', 
             SurveyList: SurveyList,
@@ -224,10 +225,9 @@ module.exports.performDelete = async (req, res, next) => {
 module.exports.respondtoSurvey = async (req, res, next) => {
     let id = req.params.id;
     let surveyToTake = await Surveys.findById(id);
-    res.render('survey',{
-        title: "Taking a Survey",
-        surveyToTake: surveyToTake
-    })
+    console.log(surveyToTake);
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.json(surveyToTake)
 
 }
 

@@ -38,7 +38,7 @@ export class SurveyRepository {
     console.log(id);
     this.foundSurvey = this.surveys.find((s) => s._id === id);
     console.log(this.foundSurvey);
-    return this.foundSurvey;
+    return this.surveys.find((s) => s._id === id);
   }
   
   getCreators(): string[] {

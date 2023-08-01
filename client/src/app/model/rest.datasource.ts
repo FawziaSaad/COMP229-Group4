@@ -10,7 +10,7 @@ import { API_BASE_URL, API_ENDPOINTS } from './api-endpoints';
 @Injectable()
 export class RestDataSource
 {
-    baseUrl: string;
+    baseUrl: string = API_BASE_URL;
 
 
     constructor(private http: HttpClient)
@@ -26,10 +26,11 @@ export class RestDataSource
     }
 
 
-    // NB:  In Angular, HTTP requests are asynchronous, so when you call this.http.get method, 
+    // NB:  In Angular, HTTP requests are asynchronous, so when you call this.http.get method,
     // it returns an observable, and you need to subscribe to it to get the actual data.
-    getSurveyById(id: string): Observable<Survey> {
-        return this.http.get<Survey>(this.baseUrl + API_ENDPOINTS.TAKE_SURVEY + id);
-    }
+    // getSurveyById(id: string): Observable<Survey> {
+    //     return this.http.get<Survey>(this.baseUrl + API_ENDPOINTS.TAKE_SURVEY + id);
+    // } 
+    // UNESSARY API CALL
 
 }
