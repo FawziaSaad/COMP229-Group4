@@ -14,24 +14,24 @@
 
                     <div *ngIf="surveyToTake.surveyType === 'MCQ'" class="form-group">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="answers[{{i }}]" id="flexRadioDefault1" value="{{surveyToTake.questions[i].OptionOne}}">
-                            <label class="form-check-label" for="flexRadioDefault1"> {{surveyToTake.questions[i].OptionOne}}
+                            <input class="form-check-input" type="radio" name="answers{{i}}" id="flexRadioDefault1{{i}}" value="{{surveyToTake.questions[i].OptionOne}}">
+                            <label class="form-check-label" for="flexRadioDefault1{{i}}"> {{surveyToTake.questions[i].OptionOne}}
                                 <!-- IF WE CHANGE THE VALUES OF OptionOne TO SAY Option1, THEN WE COULD USE A SECOND INNER FOR LOOP TO LABEL AND CUT DOWN ON REDUNDANCY -->
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="answers[{{i }}]" id="flexRadioDefault2" value="{{surveyToTake.questions[i].OptionTwo}}">
-                            <label class="form-check-label" for="flexRadioDefault2"> {{surveyToTake.questions[i].OptionTwo}}
+                            <input class="form-check-input" type="radio" name="answers{{i}}" id="flexRadioDefault2{{i}}" value="{{surveyToTake.questions[i].OptionTwo}}">
+                            <label class="form-check-label" for="flexRadioDefault2{{i}}"> {{surveyToTake.questions[i].OptionTwo}}
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="answers[{{i }}]" id="flexRadioDefault3" value="{{surveyToTake.questions[i].OptionThree}}">
-                            <label class="form-check-label" for="flexRadioDefault3"> {{surveyToTake.questions[i].OptionThree }}
+                            <input class="form-check-input" type="radio" name="answers{{i}}" id="flexRadioDefault3{{i}}" value="{{surveyToTake.questions[i].OptionThree}}">
+                            <label class="form-check-label" for="flexRadioDefault3{{i}}"> {{surveyToTake.questions[i].OptionThree }}
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="answers[{{ i }}]" id="flexRadioDefault4" value="{{surveyToTake.questions[i].OptionFour}}">
-                            <label class="form-check-label" for="flexRadioDefault4"> {{surveyToTake.questions[i].OptionFour}}
+                            <input class="form-check-input" type="radio" name="answers{{i}}" id="flexRadioDefault4{{i}}" value="{{surveyToTake.questions[i].OptionFour}}">
+                            <label class="form-check-label" for="flexRadioDefault4{{i}}"> {{surveyToTake.questions[i].OptionFour}}
                             </label>
                         </div>
                     </div>
