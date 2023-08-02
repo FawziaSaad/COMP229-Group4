@@ -46,11 +46,11 @@ export class TakeSurveyComponent implements OnInit {
       questions.push(q.Question);
     }
 
-    // Check the arrays
-    console.log('//=============================================');
-    console.log(questions);
-    console.log(responses[0])
-    console.log('//=============================================');
+    // // Check the arrays
+    // console.log('//=============================================');
+    // console.log(questions);
+    // console.log(responses[0])
+    // console.log('//=============================================');
 
     let responseToSend = {
       surveyId: this.id,
@@ -60,6 +60,7 @@ export class TakeSurveyComponent implements OnInit {
       responses: responses[0]
     };
 
+    console.log("Response to send:");
     console.log(responseToSend)
     try {
       this.http.post(`http://localhost:3000/survey/${this.id}`, responseToSend).subscribe(
