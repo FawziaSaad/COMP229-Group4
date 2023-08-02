@@ -32,4 +32,10 @@ export class RestDataSource
         return this.http.get<Survey>(this.baseUrl + API_ENDPOINTS.TAKE_SURVEY + id);
     }
 
+    deleteSurveyById(id: string): Observable<Survey> {
+        console.log(id + " Hello");
+        console.log(this.baseUrl + API_ENDPOINTS.DELETE_SURVEY + id);
+        return this.http.get<Survey>(this.baseUrl + API_ENDPOINTS.DELETE_SURVEY + id);
+    }
+
 }

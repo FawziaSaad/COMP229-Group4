@@ -40,6 +40,19 @@ export class SurveyRepository {
     console.log(this.foundSurvey);
     return this.foundSurvey;
   }
+
+  deleteSurvey(id: string): void {
+    console.log(id);
+    // this.foundSurvey = this.surveys.find((s) => s._id === id);
+    // console.log(this.foundSurvey);
+    // const index = this.surveys.indexOf(this.foundSurvey);
+    // console.log(index);
+    // if (index > -1) {
+    //   this.surveys.splice(index, 1);
+    // }
+    this.dataSource.deleteSurveyById(id);
+    // return this.foundSurvey;
+  } 
   
   getCreators(): string[] {
     return this.creators;

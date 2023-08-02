@@ -34,8 +34,8 @@ router.get('/create-survey',  requireAuth, indexController.displayCreateSurvey);
 router.post('/create-survey', requireAuth, indexController.processCreateSurvey); 
 
 // Get to perform Deletion - Delete Operation
-// router.get('/delete/:id', requireAuth, indexController.performDelete); 
-router.delete('/survey/:id', requireAuth, indexController.performDelete); 
+router.get('/delete/:id', indexController.performDelete); 
+// router.delete('/survey/:id', requireAuth, indexController.performDelete); 
 
 
 router.get('/survey/report/:id', requireAuth, indexController.reportSurvey); 
