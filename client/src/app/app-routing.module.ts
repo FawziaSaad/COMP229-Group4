@@ -6,6 +6,8 @@ import { CreateComponent } from './pages/surveys/create/create.component';
 import { MysurveysComponent } from './pages/surveys/mysurveys/mysurveys.component';
 import { SurveySiteComponent } from './survey-site/survey-site.component';
 import { TakeSurveyComponent } from './pages/survey/survey.component';
+/////tim added below line
+import { EditComponent } from './pages/surveys/edit/edit.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: {title: 'Recent Surveys'}},
@@ -14,7 +16,9 @@ const routes: Routes = [
   { path: 'survey-site', component: SurveySiteComponent, data: {title: 'Survey Site'}},
   { path: 'create-survey', component: CreateComponent, data: {title: 'Create Survey'}},
   { path: 'survey/mysurveys', component: MysurveysComponent, data: {title: 'My Surveys'}},
-  { path: 'survey/:id', component: TakeSurveyComponent, data: {title: 'Take Survey'}}
+  { path: 'survey/:id', component: TakeSurveyComponent, data: {title: 'Take Survey'}},
+  /////tim added below line
+  { path: 'survey/edit/:id', component: EditComponent, data: {title: 'Edit Survey'}}
 
 
 ];
