@@ -233,21 +233,15 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
     let id = req.params.id; // get the survey to be referrenced
     try {
 
-        let { responsesBody } = req.body;
         // get questions
         let questions = [];
         let responses = [];
-
-        // Get the answers
-        for (const answerKey in responsesBody) {
-            responses.push(responsesBody[answerKey]);
-          }
 
         // Get the questions
         let survey = await Surveys.findById(id);
         for (let i = 0; i < survey.questions.length; i++) {
             questions.push(survey.questions[i].Question);
-            responses.push(req.body[`answers[${i}]`]);
+            responses.push(req.body.responses[i]);
         }
 
         // Debugging
@@ -264,10 +258,9 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         questions: questions,
         responses: responses
         });
-
         await newResponse.save();
     
-        res.json({ message: "Survey responses submitted successfully!" });
+        res.json({ message: "Survey responses submitted successfully!", backend: newResponse });
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
