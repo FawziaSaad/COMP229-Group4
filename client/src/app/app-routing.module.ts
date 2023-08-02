@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'survey-site', component: SurveySiteComponent, data: {title: 'Survey Site'}},
   { path: 'create-survey', component: CreateComponent, data: {title: 'Create Survey'}},
   { path: 'survey/mysurveys', component: MysurveysComponent, data: {title: 'My Surveys'}},
-  { path: 'survey/:id', component: TakeSurveyComponent, data: {title: 'Take Survey'}}
+  { path: 'survey/:id', component: TakeSurveyComponent, data: {title: 'Take Survey'}},
+  { path: 'survey/delete/:id', component: MysurveysComponent},
 
 
 ];

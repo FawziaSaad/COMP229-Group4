@@ -35,7 +35,7 @@ router.post('/create-survey', indexController.processCreateSurvey);
 
 // Get to perform Deletion - Delete Operation
 // router.get('/delete/:id', requireAuth, indexController.performDelete); 
-router.delete('/survey/:id', requireAuth, indexController.performDelete); 
+router.delete('/survey/delete/:id', indexController.performDelete); 
 
 
 router.get('/survey/report/:id', requireAuth, indexController.reportSurvey); 
@@ -63,7 +63,7 @@ router.put('/survey/edit/:id', requireAuth,indexController.processEditSurvey);
 router.get('/survey/:id', requireAuth, indexController.respondtoSurvey); 
 
 //POST ROUTE FOR POSTING THE RESPONSES
-router.post('/survey/:id', indexController.submitSurveyResponses);  // Auth removed for now
+router.post('/survey/:id', indexController.submitSurveyResponses);  // Auth removed for nowSS
 
 // Leave the login / logout
 /* Get Route for displaying the Login Page */
