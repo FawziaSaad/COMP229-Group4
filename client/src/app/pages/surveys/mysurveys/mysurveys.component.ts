@@ -26,8 +26,8 @@ export class MysurveysComponent implements OnInit {
   get surveys(): Survey[] {
 
 
-    // const id: string = 	"error";
-    const id: string = '64af8fd980dd9f85a3f7e807'; //admin
+    const id: string = 	"error";
+    // const id: string = '64af8fd980dd9f85a3f7e807'; //admin
     // const id: string = '64b04fdc4038f37b48c37ce7'; //Fawzia
     return this.repository.getSurveys().filter((survey) => survey.userid === id);
   }
@@ -53,8 +53,8 @@ export class MysurveysComponent implements OnInit {
 
   private updateSurveyList() {
     // Fetch the updated list of surveys after deletion
-    // const id: string = 'error'; // Replace this with the actual user ID or any other identifier you use for filtering
-    const id: string = '64af8fd980dd9f85a3f7e807'; //admin
+    const id: string = 'error'; // Replace this with the actual user ID or any other identifier you use for filtering
+    // const id: string = '64af8fd980dd9f85a3f7e807'; //admin
     // const id: string = '64b04fdc4038f37b48c37ce7'; //Fawzia
     this.mySurveys = this.repository.getSurveys().filter((survey) => survey.userid === id);
   }
