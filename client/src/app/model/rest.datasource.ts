@@ -25,6 +25,11 @@ export class RestDataSource
         return this.http.get<Survey[]>(this.baseUrl + API_ENDPOINTS.HOME_PAGE);
     }
 
+    getResponseList(): Observable<Response[]>
+    {
+        return this.http.get<Response[]>(this.baseUrl + API_ENDPOINTS.HOME_PAGE);
+    }
+
 
     // NB:  In Angular, HTTP requests are asynchronous, so when you call this.http.get method,
     // it returns an observable, and you need to subscribe to it to get the actual data.

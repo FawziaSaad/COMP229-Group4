@@ -20,6 +20,9 @@ module.exports.displayHomePage = async (req, res, next) => {
         //==============================================================
         let id = req.user;
         let SurveyList = await Surveys.find({ userid: { $ne: id } });
+
+        let ResponseList = await Response.find({});
+        
         //==============================================================
         // let SurveyList = await Surveys.find();   // Or change it back
 
@@ -27,6 +30,7 @@ module.exports.displayHomePage = async (req, res, next) => {
          res.json({ 
             title: 'Home', 
             SurveyList: SurveyList,
+            ResponseList: ResponseList,
             displayName: req.user ? req.user.displayName : '' })
     } catch (err){
         console.log(err);

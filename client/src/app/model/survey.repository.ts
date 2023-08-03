@@ -35,7 +35,7 @@ export class SurveyRepository {
   }
 
   getSurveyById(id: string): Survey {
-    console.log(id);
+    // console.log(id);
     this.foundSurvey = this.surveys.find((s) => s._id === id);
     // console.log(this.foundSurvey);
     return this.surveys.find((s) => s._id === id);

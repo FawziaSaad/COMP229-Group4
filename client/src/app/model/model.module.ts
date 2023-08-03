@@ -3,10 +3,11 @@ import { SurveyRepository } from "./survey.repository";
 import { StaticDataSource } from "./static.datasource";
 import { HttpClientModule } from "@angular/common/http";
 import { RestDataSource } from "./rest.datasource";
+import { ResponseRepository } from "./response.repository";
 
 @NgModule({
     imports: [HttpClientModule],
-    providers: [SurveyRepository, StaticDataSource,
+    providers: [SurveyRepository, StaticDataSource, ResponseRepository
         // {provide: StaticDataSource, useClass: RestDataSource}]
     ]
 })
