@@ -131,7 +131,7 @@ module.exports.displayEditSurvey = async (req, res, next) => {
         // displayName: req.user ? req.user.displayName : ''});
         res.json({
             title: 'Edit', 
-            survey: surveyToEdit,
+            surveyToEdit: surveyToEdit,
             displayName: req.user ? req.user.displayName : ''
         });
     } catch (err){

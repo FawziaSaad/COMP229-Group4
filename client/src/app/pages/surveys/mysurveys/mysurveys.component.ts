@@ -19,7 +19,8 @@ export class MysurveysComponent implements OnInit {
 
   get surveys(): Survey[] {
 
-    const id: string = 	"64b04fdc4038f37b48c37ce7";
+    // const id: string = 	"64b04fdc4038f37b48c37ce7";
+    const id: string = 	"64af8fd980dd9f85a3f7e807";
     return this.repository.getSurveys().filter((survey) => survey.userid === id);
   }
 }
