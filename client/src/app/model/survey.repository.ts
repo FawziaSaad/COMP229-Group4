@@ -5,6 +5,7 @@ import { User } from './user.model';
 import { Response } from './response.model';
 // import { StaticDataSource } from './static.datasource';
 import { RestDataSource } from './rest.datasource';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
 export class SurveyRepository {
@@ -60,6 +61,14 @@ export class SurveyRepository {
         return this.responses.filter((r) => r.surveyId === surveyId);
     }
     return this.responses;
+}
+
+getEditableSurvey(id: string): Observable<Survey> {
+  return this.dataSource.getSurveyToEdit(id) ;
+}
+saveSurvey(survey: Survey): void {
+  this.dataSource.updateSurvey(survey._id, survey).subscribe(response => {
+  });
 }
 
   //Im not sure what else to add here!

@@ -1,20 +1,6 @@
-
-
-<!-- Main Content -->
-
-<h2>Create Survey</h2>
-<!-- should this also not be in the form? -->
-<div class="container">
-  <select #surveyType (change)="onSurveyTypeChange(surveyType.value)" required name='surveyType' ngModel>
-    <option value="" disabled>Select survey type</option>
-    <option value="SA">Single Answer</option>
-    <option value="MCQ">Multiple Choice</option>
-  </select>
-
-</div>
-
-<form #questionForm1= "ngForm" class="form mcq-container" [style.display]="mcqContainerDisplay" (ngSubmit)= "onSubmit1(questionForm1.value)">
-  <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input" ngModel required>
+<h2>Edit Survey</h2>
+<form #questionForm1="ngForm" class="form mcq-container" [style.display]="mcqContainerDisplay" (ngSubmit)= "onSubmit1(questionForm1.value)">
+  <input type="text" placeholder="Enter survey name" value="{{surveyToedit.name}}" name="surveyName" class="survey-name-input" ngModel required>
   <div class="container">
     <input type="hidden" name="surveyType" value="MCQ" >
     <!-- <input type="hidden" name="surveyType" value="MCQ"> -->
@@ -22,20 +8,42 @@
         <div class="row">
           <div class="offset-md-3 col-md-6" style="margin: 0 auto;">
             <div class="form-group">
-              <input type="text" class="form-control"
+              <input type="text" value="{{surveyToedit.questions[count].Question}}" class="form-control"
                 id="nameTextField"
                 placeholder="Question  {{count+1}}"
                 name="Question{{count+1}}"
                 required ngModel>
             </div>
-
-              <div *ngFor = "let i of [0,1,2,3]" class="form-group" >
-                <input type="text" class="form-control"
-                  id="nameTextField"
-                  placeholder="Response {{i+1}}"
-                  name="response{{count+1}}{{i+1}}"
-                  required ngModel>
-              </div>
+            
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="answers{{count}}" 
+              id="flexRadioDefault1{{count}}" value="{{surveyToedit.questions[count].OptionOne}}" >
+              <label class="form-check-label" for="flexRadioDefault1{{count}}"> 
+                  {{surveyToedit.questions[count].OptionOne}}
+                  <!-- IF WE CHANGE THE VALUES OF OptionOne TO SAY Option1, THEN WE COULD USE A SECOND INNER FOR LOOP TO LABEL AND CUT DOWN ON REDUNDANCY -->
+              </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="answers{{count}}"
+                id="flexRadioDefault2{{count}}" value="{{surveyToedit.questions[count].OptionTwo}}">
+                <label class="form-check-label" for="flexRadioDefault2{{count}}"> 
+                    {{surveyToedit.questions[count].OptionTwo}}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="answers{{count}}" 
+                id="flexRadioDefault3{{count}}" value="{{surveyToedit.questions[count].OptionThree}}">
+                <label class="form-check-label" for="flexRadioDefault3{{count}}"> 
+                    {{surveyToedit.questions[count].OptionThree }}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="answers{{count}}" 
+                id="flexRadioDefault4{{count}}" value="{{surveyToedit.questions[count].OptionFour}}">
+                <label class="form-check-label" for="flexRadioDefault4{{count}}"> 
+                    {{surveyToedit.questions[count].OptionFour}}
+                </label>
+            </div>
           </div>
         </div>
       </div>
@@ -52,7 +60,7 @@
           <div class="row">
             <div class="offset-md-3 col-md-6" style="margin: 0 auto;">
               <div class="form-group">
-                <input type="text" class="form-control"
+                <input type="text" value="surveyToedit.questions" class="form-control"
                   id="nameTextField"
                   placeholder="Question {{count+1}}"
                   name="Question{{count+1}}"
@@ -65,8 +73,6 @@
   <button id="submitBtn" class="submit-btn" type="submit" >Submit</button>
 </form>
 
-
-
 <script>
-
+ 
 </script>
