@@ -3,6 +3,7 @@ import { Survey } from '../model/survey.model';
 import { Response } from '../model/response.model';
 import { Question } from '../model/question.model';
 import { SurveyRepository } from '../model/survey.repository';
+import { ReportRepository } from '../model/report.repository';
 
 @Component({
   selector: 'app-survey-site',
@@ -18,7 +19,7 @@ export class SurveySiteComponent implements OnInit {
   public surveyesPerPage = 4;
   public selectedPage = 1;
 
-  constructor(private repository: SurveyRepository) {}
+  constructor(private repository: SurveyRepository, private rpRepository : ReportRepository) {}
   
 
   ngOnInit(): void {}
@@ -33,7 +34,7 @@ export class SurveySiteComponent implements OnInit {
 
 
   get responses(): Response[] {
-    return this.repository.getResponses();
+    return this.rpRepository.getResponses();
     }
 
   get questions(): Question[] {

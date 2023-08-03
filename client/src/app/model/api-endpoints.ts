@@ -11,7 +11,7 @@ export const API_ENDPOINTS = {
   DELETE_SURVEY: '/survey/:id',
   TAKE_SURVEY: '/survey/:id',
   SUBMIT_SURVEY_RESPONSES: '/survey/:id',
-  SURVEY_REPORT: '/survey/report/:id',
+  SURVEY_REPORT: '/survey/report/',
   USER_LOGIN: '/login',
   USER_REGISTRATION: '/register',
   USER_LOGOUT: '/logout',

@@ -273,10 +273,10 @@ module.exports.reportSurvey = async (req, res, next)=> {
     
     try {
         let survey = await Surveys.findById(id);
-        let responses = await Response.find({surveyId: id});
-
-        console.log(responses);
-        res.json({ 
+        let responses = await Response.find();
+ 
+        // console.log(responses);
+        res.json({ success: true,
             title: 'Survey Report', 
             survey: survey, 
             responses: responses, 

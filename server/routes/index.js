@@ -38,7 +38,7 @@ router.post('/create-survey', indexController.processCreateSurvey);
 router.delete('/survey/delete/:id', indexController.performDelete); 
 
 
-router.get('/survey/report/:id', indexController.reportSurvey); 
+router.get('/survey/report/', indexController.reportSurvey); 
 
 /* GET my survey page. */
 router.get('/survey/mysurveys', requireAuth, indexController.displayMySurvey);

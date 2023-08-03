@@ -12,7 +12,7 @@ export class SurveyRepository {
   private creators: string[] = [];
   private questions: Question[] = [];
   private responses: Response[] = [];
-  private foundSurvey : Survey;
+  private foundSurvey: Survey;
 
   constructor(private dataSource: RestDataSource) {
     this.dataSource.getSurveylist().subscribe((data) => {
@@ -35,7 +35,7 @@ export class SurveyRepository {
   }
 
   getSurveyById(id: string): Survey {
-    console.log(id);
+    // console.log(id);
     this.foundSurvey = this.surveys.find((s) => s._id === id);
     // console.log(this.foundSurvey);
     return this.surveys.find((s) => s._id === id);
@@ -47,21 +47,13 @@ export class SurveyRepository {
   getQuestions(): Question[] {
     return this.questions;
   }
-//   getQuestionsBySurvay(survayId: number): Question[] {
-//     var survay = this.surveys.find((s) => s._id === survayId);
-//     return survay.questions;
-//   }
+  //   getQuestionsBySurvay(survayId: number): Question[] {
+  //     var survay = this.surveys.find((s) => s._id === survayId);
+  //     return survay.questions;
+  //   }
   
   // getResponses(surveyId:number): Response[] {
   //   return this.responses.filter((r) => r.surveyId === surveyId);
   // }
-  getResponses(surveyId?: string): Response[] {
-    if(surveyId) {
-        return this.responses.filter((r) => r.surveyId === surveyId);
-    }
-    return this.responses;
-}
-
-  //Im not sure what else to add here!
-
+  
 }

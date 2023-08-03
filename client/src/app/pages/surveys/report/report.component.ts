@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BasePageComponent } from '../../../partials/base-page/base-page.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Survey } from 'src/app/model/survey.model';
 import { Response } from 'src/app/model/response.model';
 import { SurveyRepository } from 'src/app/model/survey.repository';
+import { ReportRepository } from 'src/app/model/report.repository';
+
 
 @Component({
   selector: 'app-report',
@@ -12,19 +14,19 @@ import { SurveyRepository } from 'src/app/model/survey.repository';
   styleUrls: ['./report.component.css']
 })
 
-export class ReportComponent extends BasePageComponent implements OnInit{
-  id: any = this.route.snapshot.paramMap.get('id');
-
-  constructor(private repository: SurveyRepository, route: ActivatedRoute, private http: HttpClient){
-    super(route)
+export class ReportComponent implements OnInit{
+  id: any =  this.route.snapshot.paramMap.get('id');
+  surveyToTake: Survey;
+  constructor(private repository: SurveyRepository, private rpRepository: ReportRepository,private route: ActivatedRoute, private http: HttpClient){
   }
 
-  override ngOnInit(): void {
+  ngOnInit(): void {
   }
 
   get survey(): Survey {
 
     // const id: string = 	"64b04fdc4038f37b48c37ce7";
+
     return this.repository.getSurveyById(this.id);
   }
 
@@ -32,7 +34,7 @@ export class ReportComponent extends BasePageComponent implements OnInit{
 
     // const id: string = 	"64b04fdc4038f37b48c37ce7";
     // const id: string = 	"error";
-    console.log(this.repository.getResponses())
-    return this.repository.getResponses();
+    
+    return this.rpRepository.getResponsesById(this.id)
   }
 }
