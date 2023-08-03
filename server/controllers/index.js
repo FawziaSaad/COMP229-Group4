@@ -276,12 +276,16 @@ module.exports.reportSurvey = async (req, res, next)=> {
         let responses = await Response.find({surveyId: id});
 
         console.log(responses);
-        res.render('surveys/report', {
+        res.json({ 
             title: 'Survey Report', 
             survey: survey, 
             responses: responses, 
-            displayName: req.user ? req.user.displayName : ''});
-
+            displayName: req.user ? req.user.displayName : '' });
+        // res.render('surveys/report', {
+        //     title: 'Survey Report', 
+        //     survey: survey, 
+        //     responses: responses, 
+        //     displayName: req.user ? req.user.displayName : ''});
     }catch (err){
         console.log(err);
         res.status(500).send(err);

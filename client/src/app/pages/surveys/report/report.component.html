@@ -1,2 +1,28 @@
-<p>report works!</p>
+<div class="container">
+    <div class="container">
+        <h2>Survey Report</h2>
+        <p><strong>Survey Name:</strong>  {{ survey.name }}</p>
+        <p><strong>Created By:</strong> {{ survey.creator }}</p>
+        <p><strong>End Date:</strong>  {{ expiryDate }}</p>
+        <br>
+    </div>
+    
+    <div>
+        <div class="d-flex" *ngFor="let resp of response">
+            <caption>Taken By:  {{ resp.takenBy }}</caption>
+            <table class="table">
+                <thead>
+                    <th class="text-center col-6">Question</th>
+                    <th class="text-center col-6">Answer</th>
+                </thead>
+                <tr *ngFor="let quest of resp.question; let i = index">
+                    <td class="text-center col-6"> {{ quest }}</td>
+                    <td class="text-center col-6"> {{ resp.response[i] }}</td>
+                </tr>
+            </table>
+            <br>
+        </div>
+    </div>
+</div>
+
 <app-base-page></app-base-page>
