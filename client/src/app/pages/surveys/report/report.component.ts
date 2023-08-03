@@ -14,7 +14,7 @@ import { SurveyRepository } from 'src/app/model/survey.repository';
 
 export class ReportComponent extends BasePageComponent implements OnInit{
   id: any = this.route.snapshot.paramMap.get('id');
-  expiryDate;
+
   constructor(private repository: SurveyRepository, route: ActivatedRoute, private http: HttpClient){
     super(route)
   }
@@ -33,7 +33,6 @@ export class ReportComponent extends BasePageComponent implements OnInit{
     // const id: string = 	"64b04fdc4038f37b48c37ce7";
     // const id: string = 	"error";
     console.log(this.repository.getResponses())
-    this.expiryDate = new Date(this.survey.endDate).toLocaleString();
     return this.repository.getResponses();
   }
 }
