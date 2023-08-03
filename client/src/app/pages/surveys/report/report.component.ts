@@ -11,14 +11,17 @@ import { SurveyRepository } from 'src/app/model/survey.repository';
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css']
 })
+
 export class ReportComponent extends BasePageComponent implements OnInit{
   id: any = this.route.snapshot.paramMap.get('id');
   expiryDate;
   constructor(private repository: SurveyRepository, route: ActivatedRoute, private http: HttpClient){
     super(route)
   }
+
   override ngOnInit(): void {
   }
+
   get survey(): Survey {
 
     // const id: string = 	"64b04fdc4038f37b48c37ce7";
