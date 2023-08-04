@@ -4,6 +4,7 @@
         <p><strong>Survey Name:</strong> {{ survey.name }}</p>
         <p><strong>Created By:</strong> {{ survey.creator }}</p>
         <p><strong>End Date:</strong> {{ survey.endDate }}</p>
+        <p><strong>Number of respondents: </strong>{{response.length}}</p>
         <br>
       </div>
       <div *ngFor="let resp of response ">
