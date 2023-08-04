@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
 export class SurveyRepository {
+  [x: string]: any;
   private surveys: Survey[] = [];
   private creators: string[] = [];
   private questions: Question[] = [];
@@ -41,7 +42,7 @@ export class SurveyRepository {
     // console.log(this.foundSurvey);
     return this.surveys.find((s) => s._id === id);
   }
-  
+
   getCreators(): string[] {
     return this.creators;
   }
@@ -52,7 +53,7 @@ export class SurveyRepository {
 //     var survay = this.surveys.find((s) => s._id === survayId);
 //     return survay.questions;
 //   }
-  
+
   // getResponses(surveyId:number): Response[] {
   //   return this.responses.filter((r) => r.surveyId === surveyId);
   // }

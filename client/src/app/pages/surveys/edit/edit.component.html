@@ -5,11 +5,12 @@
 
 
 
-<form #questionForm1="ngForm" class="form mcq-container" *ngIf="surveyToEdit.surveyType === 'MCQ'"
+<form #questionForm1="ngForm" class="form mcq-container"
+ *ngIf="surveyToEdit.surveyType === 'MCQ'"
 (ngSubmit)= "onSubmit1(questionForm1.value)">
-  <input type="hidden" name="surveyType" value="SA">
+  <input type="hidden" name="surveyType" [(ngModel)]="surveyToEdit.surveyType">
 
-  <input type="text" name="surveyName" class="survey-name-input" 
+  <input type="text" name="surveyName" class="survey-name-input"
   [(ngModel)]="surveyToEdit.name"  placeholder="Add title here">
   <div class="container">
       <!-- MCQ SURVEY -->
@@ -73,31 +74,31 @@
           </div>
         <!-- </div> -->
       </div>
-    </div>  
+    </div>
     <!-- <input type="hidden" name="surveyType" value="MCQ" >
     <input type="hidden" name="surveyType" value="MCQ"> -->
-  
-  <button id="submitBtn" class="submit-btn" type="submit" >Submit</button>
+
+  <button id="submitBtn" class="submit-btn" type="submit" >Update</button>
 </form>
 
 
 
+<!-- is this part under here doing anything?-->
 
-
-<form #questionForm2 = "ngForm" class="form sa-container" 
+<form #questionForm2 = "ngForm" class="form sa-container"
       *ngIf="surveyToEdit.surveyType === 'SA'"
       (ngSubmit)= "onSubmit2(questionForm2.value)">
   <!-- MCQ SURVEY -->
   <input type="text" name="surveyName" class="survey-name-input" [(ngModel)]="surveyToEdit.name" Required>
     <div class="container">
-      
+
     <input type="hidden" name="surveyType" value="SA">
       <!-- <input type="hidden" name="surveyType" value="short answer"> -->
         <div *ngFor = "let count of [0,1]" class="container" style="margin:2rem 0;">
           <div class="row">
             <div class="offset-md-3 col-md-6" style="margin: 0 auto;">
               <div class="form-group">
-                <input type="text" [value]="surveyToEdit.questions[count].Question" class="form-control"
+                <input type="text" class="form-control"
                   id="nameTextField"
                   name="Question{{count+1}}"
                   required ngModel
@@ -107,9 +108,9 @@
           </div>
         </div>
     </div>
-  <button id="submitBtn" class="submit-btn" type="submit" >Submit</button>
+  <button id="submitBtn" class="submit-btn" type="submit" >Update</button>
 </form>
 
 <script>
- 
+
 </script>
