@@ -29,7 +29,7 @@ router.get('/', indexController.displayHomePage);
 // router.get('/home', indexController.displayHomePage);
 
 /* GET create survey page. */
-router.get('/create-survey',  requireAuth, indexController.displayCreateSurvey);  
+router.get('/create-survey',   indexController.displayCreateSurvey);  
 // POST Route for processing the Create Survey Page - CREATE Operation
 router.post('/create-survey', indexController.processCreateSurvey); 
 
@@ -41,15 +41,15 @@ router.delete('/survey/delete/:id', indexController.performDelete);
 router.get('/survey/report/', indexController.reportSurvey); 
 
 /* GET my survey page. */
-router.get('/survey/mysurveys', requireAuth, indexController.displayMySurvey);
+router.get('/survey/mysurveys',  indexController.displayMySurvey);
 
 // 14.07.2023
 // 2-add button to front if the user is the owner of a survey they can edit it. <<<
 // 3-implement the edit controller / route / view
 
 // Get to edit survey
-router.get('/survey/edit/:id', requireAuth,indexController.displayEditSurvey);
-router.put('/survey/edit/:id', requireAuth,indexController.processEditSurvey); 
+router.get('/survey/edit/:id', indexController.displayEditSurvey);
+router.put('/survey/edit/:id', indexController.processEditSurvey); 
 
 // Get to edit survey
 // router.post('/survey/edit/:id', indexController.processEditSurvey);
@@ -60,7 +60,7 @@ router.put('/survey/edit/:id', requireAuth,indexController.processEditSurvey);
 //       ... we can then just take the response entry and map the questions and answers to fill out the table int the reports section.
 
 //GET ROUTE FOR BRINGING UP THE SURVEY
-router.get('/survey/:id', requireAuth, indexController.respondtoSurvey); 
+router.get('/survey/:id',  indexController.respondtoSurvey); 
 
 //POST ROUTE FOR POSTING THE RESPONSES
 router.post('/survey/:id', indexController.submitSurveyResponses);  // Auth removed for nowSS

@@ -6,6 +6,8 @@ import { CreateComponent } from './pages/surveys/create/create.component';
 import { MysurveysComponent } from './pages/surveys/mysurveys/mysurveys.component';
 import { SurveySiteComponent } from './survey-site/survey-site.component';
 import { TakeSurveyComponent } from './pages/survey/survey.component';
+///// tim added below line
+import { EditComponent } from './pages/surveys/edit/edit.component';
 import { ReportComponent } from './pages/surveys/report/report.component';
 
 const routes: Routes = [
@@ -18,6 +20,9 @@ const routes: Routes = [
   { path: 'survey/:id', component: TakeSurveyComponent, data: {title: 'Take Survey'}},
   { path: 'survey/delete/:id', component: MysurveysComponent},
   { path: 'survey/report/:id', component: ReportComponent, data: { title: 'Survey Report' } }
+  ///// tim added below line
+  { path: 'survey/edit/:id', component: EditComponent, data: {title: 'Edit Survey'}}
+
 
 ];
 

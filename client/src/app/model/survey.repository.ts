@@ -5,9 +5,11 @@ import { User } from './user.model';
 import { Response } from './response.model';
 // import { StaticDataSource } from './static.datasource';
 import { RestDataSource } from './rest.datasource';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
 export class SurveyRepository {
+  [x: string]: any;
   private surveys: Survey[] = [];
   private creators: string[] = [];
   private questions: Question[] = [];
@@ -40,7 +42,7 @@ export class SurveyRepository {
     // console.log(this.foundSurvey);
     return this.surveys.find((s) => s._id === id);
   }
-  
+
   getCreators(): string[] {
     return this.creators;
   }
@@ -56,4 +58,29 @@ export class SurveyRepository {
   //   return this.responses.filter((r) => r.surveyId === surveyId);
   // }
   
+//   getQuestionsBySurvay(survayId: number): Question[] {
+//     var survay = this.surveys.find((s) => s._id === survayId);
+//     return survay.questions;
+//   }
+
+  // getResponses(surveyId:number): Response[] {
+  //   return this.responses.filter((r) => r.surveyId === surveyId);
+  // }
+  getResponses(surveyId?: string): Response[] {
+    if(surveyId) {
+        return this.responses.filter((r) => r.surveyId === surveyId);
+    }
+    return this.responses;
+}
+
+getEditableSurvey(id: string): Observable<Survey> {
+  return this.dataSource.getSurveyToEdit(id) ;
+}
+saveSurvey(survey: Survey): void {
+  this.dataSource.updateSurvey(survey._id, survey).subscribe(response => {
+  });
+}
+
+
+
 }
