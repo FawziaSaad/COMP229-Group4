@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'survey/mysurveys', component: MysurveysComponent, data: {title: 'My Surveys'}},
   { path: 'survey/:id', component: TakeSurveyComponent, data: {title: 'Take Survey'}},
   { path: 'survey/delete/:id', component: MysurveysComponent},
-  { path: 'survey/report/:id', component: ReportComponent, data: { title: 'Survey Report' } }
+  { path: 'survey/report/:id', component: ReportComponent, data: { title: 'Survey Report' } },
   ///// tim added below line
   { path: 'survey/edit/:id', component: EditComponent, data: {title: 'Edit Survey'}}
 
