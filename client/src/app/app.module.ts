@@ -6,6 +6,13 @@ import { AppComponent } from './app.component';
 import {SurveySiteModule} from './survey-site/survey-site.module';
 import { PagesModule } from './pages/pages.module';
 import { RestDataSource } from './model/rest.datasource';
+import { JwtModule } from '@auth0/angular-jwt';
+
+
+export function jwtTokenGetter(): string
+{
+  return localStorage.getItem('id_token');
+}
 
 
 @NgModule({
@@ -19,7 +26,13 @@ import { RestDataSource } from './model/rest.datasource';
     BrowserModule,
     AppRoutingModule,
     SurveySiteModule,
-    PagesModule
+    PagesModule,
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: jwtTokenGetter
+      }
+    })
   ],
   providers: [RestDataSource],
   bootstrap: [AppComponent]

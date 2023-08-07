@@ -4,11 +4,11 @@ import { ReportRepository } from "./report.repository";
 import { StaticDataSource } from "./static.datasource";
 import { HttpClientModule } from "@angular/common/http";
 import { RestDataSource } from "./rest.datasource";
+import { AuthService } from "./auth.service";
 
 @NgModule({
     imports: [HttpClientModule],
-    providers: [SurveyRepository,ReportRepository, StaticDataSource,RestDataSource
-        // {provide: StaticDataSource, useClass: RestDataSource}]
-    ]
+    providers: [SurveyRepository,ReportRepository, StaticDataSource, RestDataSource,
+        {provide: StaticDataSource, useClass: RestDataSource}, AuthService]
 })
 export class ModelModules {}

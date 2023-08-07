@@ -3,6 +3,7 @@ import { SurveyRepository } from 'src/app/model/survey.repository';
 import { Survey } from 'src/app/model/survey.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-mysurveys',
@@ -14,6 +15,7 @@ export class MysurveysComponent implements OnInit {
   displayName: string = '';
   title: string = 'My Surveys';
   mySurveys: Survey[] = []; // Changed property name to mySurveys
+  user: User;
 
   constructor(private repository: SurveyRepository, 
               private http: HttpClient,
@@ -26,7 +28,8 @@ export class MysurveysComponent implements OnInit {
   get surveys(): Survey[] {
 
     // const id: string = 	"64b04fdc4038f37b48c37ce7";
-    const id: string = 	"error";
+    // const id: string = 	"error";
+    const id: string = 	this.user._id;
     return this.repository.getSurveys().filter((survey) => survey.userid === id);
   }
 

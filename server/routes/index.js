@@ -1,5 +1,8 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+
+let jwt = require('jsonwebtoken');
+let passport = require('passport');
 
 let indexController = require('../controllers/index');
 
@@ -29,27 +32,27 @@ router.get('/', indexController.displayHomePage);
 // router.get('/home', indexController.displayHomePage);
 
 /* GET create survey page. */
-router.get('/create-survey',   indexController.displayCreateSurvey);  
+//router.get('/create-survey',   indexController.displayCreateSurvey);  
 // POST Route for processing the Create Survey Page - CREATE Operation
-router.post('/create-survey', indexController.processCreateSurvey); 
+router.post('/create-survey',passport.authenticate('jwt', {session: false}), indexController.processCreateSurvey); 
 
 // Get to perform Deletion - Delete Operation
 // router.get('/delete/:id', requireAuth, indexController.performDelete); 
-router.delete('/survey/delete/:id', indexController.performDelete); 
+router.delete('/survey/delete/:id',passport.authenticate('jwt', {session: false}), indexController.performDelete); 
 
 
-router.get('/survey/report/', indexController.reportSurvey); 
+//router.get('/survey/report/', indexController.reportSurvey); 
 
 /* GET my survey page. */
-router.get('/survey/mysurveys',  indexController.displayMySurvey);
+//router.get('/survey/mysurveys',  indexController.displayMySurvey);
 
 // 14.07.2023
 // 2-add button to front if the user is the owner of a survey they can edit it. <<<
 // 3-implement the edit controller / route / view
 
 // Get to edit survey
-router.get('/survey/edit/:id', indexController.displayEditSurvey);
-router.put('/survey/edit/:id', indexController.processEditSurvey); 
+//router.get('/survey/edit/:id', indexController.displayEditSurvey);
+router.put('/survey/edit/:id', passport.authenticate('jwt', {session: false}), indexController.processEditSurvey); 
 
 // Get to edit survey
 // router.post('/survey/edit/:id', indexController.processEditSurvey);

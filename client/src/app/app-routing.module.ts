@@ -13,6 +13,8 @@ import { ReportComponent } from './pages/surveys/report/report.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: {title: 'Recent Surveys'}},
   { path: '', component: HomeComponent, data: {title: 'Recent Surveys'}},
+  // { path: 'login', data: {title: 'Login'}, redirectTo: 'survey/mysurveys', pathMatch: 'full'}, 
+  {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
   { path: 'error', component: ErrorComponent, data: {title: 'Error'}},
   { path: 'survey-site', component: SurveySiteComponent, data: {title: 'Survey Site'}},
   { path: 'create-survey', component: CreateComponent, data: {title: 'Create Survey'}},
@@ -21,8 +23,9 @@ const routes: Routes = [
   { path: 'survey/delete/:id', component: MysurveysComponent},
   { path: 'survey/report/:id', component: ReportComponent, data: { title: 'Survey Report' } },
   ///// tim added below line
-  { path: 'survey/edit/:id', component: EditComponent, data: {title: 'Edit Survey'}}
-
+  { path: 'survey/edit/:id', component: EditComponent, data: {title: 'Edit Survey'}},
+  // {path: '', redirectTo: '/home', pathMatch: 'full'},
+  // {path: '**', redirectTo: '/home', pathMatch: 'full'}
 
 ];
 

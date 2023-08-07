@@ -13,6 +13,9 @@ let Surveys = require('../models/survey');
 // import the Response Model instance
 let Response = require('../models/response');
 
+// enable jwt
+let jwt = require('jsonwebtoken');
+
 
 module.exports.displayHomePage = async (req, res, next) => {
     try {
@@ -253,8 +256,10 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         // Create a new SurveyModel object
         const newResponse = new Response({
         surveyId: id,
-        respondentId: "error",
-        takenBy: "error",
+        // respondentId: "error",
+        respondentId: req.user,
+        // takenBy: "error",
+        takenBy: req.user,
         questions: questions,
         responses: responses
         });
@@ -297,12 +302,12 @@ module.exports.displayLoginPage = (req, res, next) => {
     // check if the user is already logged in
     if(!req.user)
     {
-        res.render('auth/login',
+        res.render('auth/login', 
         {
-            title: "Login",
-            messages: req.flash('loginMessage'),
-            displayName: req.user ? req.user.displayName : ''
-        });
+           title: "Login",
+           messages: req.flash('loginMessage'),
+           displayName: req.user ? req.user.displayName : '' 
+        })
     }
     else
     {
@@ -313,26 +318,48 @@ module.exports.displayLoginPage = (req, res, next) => {
 module.exports.processLoginPage = (req, res, next) => {
     passport.authenticate('local',
     (err, user, info) => {
-        //server err?
+        // server err?
         if(err)
         {
             return next(err);
         }
-        // is there a user login err?
-        if(!user){
+        // is there a user login error?
+        if(!user)
+        {
             req.flash('loginMessage', 'Authentication Error');
             return res.redirect('/login');
         }
         req.login(user, (err) => {
-            //server err?
+            // server error?
             if(err)
             {
                 return next(err);
             }
-            return res.redirect('/');
+
+            const payload = 
+            {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }
+
+            const authToken = jwt.sign(payload, DB.Secret, {
+                expiresIn: 604800 // 1 week
+            });
+            
+            return res.json({success: true, msg: 'User Logged in Successfully!', user: {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }, token: authToken});
+
+            //return res.redirect('/book-list');
         });
     })(req, res, next);
 }
+
 
 module.exports.displayRegisterPage = (req, res, next) => {
     // check if the user is not already logged in
@@ -340,7 +367,7 @@ module.exports.displayRegisterPage = (req, res, next) => {
     {
         res.render('auth/register',
         {
-            title: "Register",
+            title: 'Register',
             messages: req.flash('registerMessage'),
             displayName: req.user ? req.user.displayName : ''
         });
@@ -352,9 +379,10 @@ module.exports.displayRegisterPage = (req, res, next) => {
 }
 
 module.exports.processRegisterPage = (req, res, next) => {
-    //initialize an user object
+    // instantiate a user object
     let newUser = new User({
         username: req.body.username,
+        //password: req.body.password
         email: req.body.email,
         displayName: req.body.displayName
     });
@@ -362,42 +390,42 @@ module.exports.processRegisterPage = (req, res, next) => {
     User.register(newUser, req.body.password, (err) => {
         if(err)
         {
-            console.log(err);
             console.log("Error: Inserting New User");
-            if(err.name == 'UserExistsError')
+            if(err.name == "UserExistsError")
             {
                 req.flash(
                     'registerMessage',
                     'Registration Error: User Already Exists!'
                 );
-                console.log('Error: User Already Exists!');
+                console.log('Error: User Already Exists!')
             }
             return res.render('auth/register',
             {
-                title: "Register",
+                title: 'Register',
                 messages: req.flash('registerMessage'),
                 displayName: req.user ? req.user.displayName : ''
             });
         }
         else
         {
-            //if registration is success
+            // if no error exists, then registration is successful
+
+            // redirect the user and authenticate them
+
+            return res.json({success: true, msg: 'User Registered Successfully!'});
+
+            /*
             return passport.authenticate('local')(req, res, () => {
-                res.redirect('/')
+                res.redirect('/book-list')
             });
+            */
         }
     });
 }
 
 module.exports.performLogout = (req, res, next) => {
-    req.logout((err) => {
-        if (err)
-        {
-            //handle error here
-            console.log(err);
-            return next(err);
-        }
-        return res.redirect('/');
-    });
+    req.logout();
+    //res.redirect('/');
+    res.json({success: true, msg: 'User Successfully Logged out!'});
 }
 
