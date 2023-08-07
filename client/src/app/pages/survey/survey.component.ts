@@ -5,6 +5,7 @@ import { Survey } from 'src/app/model/survey.model';
 import { SurveyRepository } from 'src/app/model/survey.repository';
 import { HttpClient} from '@angular/common/http';
 import { User } from 'src/app/model/user.model';
+import { AuthService } from 'src/app/model/auth.service';
 
 @Component({
   selector: 'app-survey',
@@ -22,12 +23,19 @@ export class TakeSurveyComponent implements OnInit {
     private surveyRepository: SurveyRepository,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-   
+
+  //===============================================================
+  // Same Jank, from the Auth service
+  this.user = this.authService.getCurrentUser();
+   console.log("Current User: " + this.user);
   }
+  //===============================================================
+
 
   get surveyToTake() {
     // this.surveyToTake = this.surveyRepository.getSurveyById(this.id);

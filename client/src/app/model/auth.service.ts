@@ -35,4 +35,12 @@ export class AuthService
     return this.datasource.logout();
   }
 
+  //===============================================================
+  //Dave's Jank ~ how do we get the current user to be accessible?
+  getCurrentUser(): User {
+    console.log("In authService, this is user:" + this.user);
+    return this.user;
+  }
+  //===============================================================
+
 }
