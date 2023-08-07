@@ -15,6 +15,7 @@ let Response = require('../models/response');
 
 // enable jwt
 let jwt = require('jsonwebtoken');
+let DB = require('../config/db');
 
 
 module.exports.displayHomePage = async (req, res, next) => {
