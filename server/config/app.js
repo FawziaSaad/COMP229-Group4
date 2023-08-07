@@ -95,13 +95,15 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
 // implement User Authentication Strategy
 passport.use(strategy);
 
-// serialize and deserialize the User Info
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// // serialize and deserialize the User Info
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../../public/index.html'));
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

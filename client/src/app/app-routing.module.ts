@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, data: {title: 'Recent Surveys'}},
   { path: '', component: HomeComponent, data: {title: 'Recent Surveys'}},
   // { path: 'login', data: {title: 'Login'}, redirectTo: 'survey/mysurveys', pathMatch: 'full'}, 
-  {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
+  { path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
   { path: 'error', component: ErrorComponent, data: {title: 'Error'}},
   { path: 'survey-site', component: SurveySiteComponent, data: {title: 'Survey Site'}},
   { path: 'create-survey', component: CreateComponent, data: {title: 'Create Survey'}},
@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'survey/edit/:id', component: EditComponent, data: {title: 'Edit Survey'}},
   // {path: '', redirectTo: '/home', pathMatch: 'full'},
   // {path: '**', redirectTo: '/home', pathMatch: 'full'}
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
 
 ];
 
