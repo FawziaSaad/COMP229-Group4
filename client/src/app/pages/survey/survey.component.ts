@@ -75,7 +75,7 @@ export class TakeSurveyComponent implements OnInit {
     console.log("Response to send:");
     console.log(responseToSend)
     try {
-      this.http.post(`http://localhost:3000/survey/${this.id}`, responseToSend).subscribe(
+      this.http.post(`https://g4serverside.azurewebsites.net/survey/${this.id}`, responseToSend).subscribe(
         (response) => {
           console.log('Responses:', response);
           // Handle the response as needed

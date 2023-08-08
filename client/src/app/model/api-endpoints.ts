@@ -1,5 +1,5 @@
 // Base URL for your server
-export const API_BASE_URL = 'http://localhost:3000';
+export const API_BASE_URL = 'https://g4serverside.azurewebsites.net';
 // Define the API endpoints as constants
 export const API_ENDPOINTS = {
   HOME_PAGE: '/',

@@ -50,7 +50,7 @@ export class MysurveysComponent implements OnInit {
   onDeleteSurvey(surveyId: string ){
     try {
       
-      this.http.delete(`http://localhost:3000/survey/delete/${surveyId}`).subscribe(
+      this.http.delete(`https://g4serverside.azurewebsites.net/survey/delete/${surveyId}`).subscribe(
         (response) => {
           console.log('SA Form submitted:', response);
           // Handle the response as needed

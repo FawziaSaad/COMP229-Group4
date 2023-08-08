@@ -49,7 +49,7 @@ export class CreateComponent implements OnInit {
     }
 
     try {
-      this.http.post('http://localhost:3000/create-survey', surveyToSend).subscribe(
+      this.http.post('https://g4serverside.azurewebsites.net/create-survey', surveyToSend).subscribe(
         (response) => {
           console.log('SA Form submitted:', response);
           // Handle the response as needed
@@ -79,7 +79,7 @@ export class CreateComponent implements OnInit {
     }
 
     try {
-      this.http.post('http://localhost:3000/create-survey', surveyToSend).subscribe(
+      this.http.post('https://g4serverside.azurewebsites.net/create-survey', surveyToSend).subscribe(
         (response) => {
           console.log('SA Form submitted:', response);
           // Handle the response as needed

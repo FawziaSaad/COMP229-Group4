@@ -60,7 +60,7 @@ export class EditComponent implements OnInit {
     }
 
     try {
-      this.http.post(`http://localhost:3000/survey/edit/${this.id}`, surveyToEdit).subscribe(
+      this.http.post(`https://g4serverside.azurewebsites.net/survey/edit/${this.id}`, surveyToEdit).subscribe(
         (response) => {
           console.log('MCQ Form submitted:', response);
           // Handle the response as needed
@@ -87,7 +87,7 @@ export class EditComponent implements OnInit {
     }
 
     try {
-      this.http.post(`http://localhost:3000/survey/edit/${this.id}`, surveyToSend).subscribe(
+      this.http.post(`https://g4serverside.azurewebsites.net/survey/edit/${this.id}`, surveyToSend).subscribe(
         (response) => {
           console.log('SA Form submitted:', response);
           // Handle the response as needed
