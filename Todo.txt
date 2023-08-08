@@ -32,3 +32,8 @@ front end to do by request of Fawzia the maginificent!
 
 
 
+07.08.2023
+---
+1. "get" the user so that we can use it throughout the site and post the info into the backend
+2. put the authguard to not allow non-signed in users to take surveys or access restricted parts of site
+
