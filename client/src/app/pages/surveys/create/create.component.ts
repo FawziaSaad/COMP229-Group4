@@ -1,78 +1,7 @@
-// import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute } from '@angular/router';
-// import { BasePageComponent } from '../../../partials/base-page/base-page.component';
-// import { HttpClient } from '@angular/common/http';
-
-// @Component({
-//   selector: 'app-create',
-//   templateUrl: './create.component.html',
-//   styleUrls: ['./create.component.css']
-// })
-// export class CreateComponent extends BasePageComponent implements OnInit{
-  
-//   questionLength : number[] = new Array(2);
-//   MCQoptions : number[] = new Array(4);
-//   selectedSurveyType: string = '';
-//   formData: any = {};
-
-  
-//   constructor(route: ActivatedRoute, private http : HttpClient){
-//     super(route)
-//   }
-  
-//   override ngOnInit(): void {
-    
-//   }
-
-//   onSurveyTypeChange() {}
-
-//   onMCQFormSubmit() {
-//     // Handle the submission logic for the MCQ form.
-//     const postData = {
-//       surveyType: 'MCQ',
-//       questions: this.formData
-//     };
-//     console.log(postData)
-//     this.http.post('/create-survey', postData).subscribe(
-//       (response) => {
-//         console.log('MCQ Form submitted:', response);
-//         // Handle the response as needed
-//       },
-//       (error) => {
-//         console.error('Error occurred:', error);
-//       }
-//     );
-//   }
-
-//   onSAFormSubmit() {
-//     // Handle the submission logic for the SA form.
-
-//     console.log(`DEBUG SA`)
-
-//     const postData = {
-//       surveyType: 'SA',
-//       questions: this.formData
-//     };
-//     console.log(postData)
-//     this.http.post('/create-survey', postData).subscribe(
-//       (response) => {
-//         console.log('SA Form submitted:', response);
-//         // Handle the response as needed
-//       },
-//       (error) => {
-//         console.error('Error occurred:', error);
-//       }
-//     );
-//   }
-
-
-// }
-
-
-
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-create',
@@ -82,6 +11,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CreateComponent implements OnInit {
   mcqContainerDisplay = 'none';
   saContainerDisplay = 'none';
+  user: any;
+  displayName: string = '';
+  userid: string = '';
   @ViewChild ('surveyType') surveyType: ElementRef;
 
   constructor(private router: Router, private http: HttpClient) { }
@@ -101,6 +33,8 @@ export class CreateComponent implements OnInit {
     // POST METHOD GO HERE TO CREATE SURVEY IN SERVER
     let surveyToSend = {
       surveyName: data.surveyName,
+      displayName: this.displayName,
+      userid: this.userid,
       surveyType: this.surveyType.nativeElement.value,
       Question1: String,
       Question2: String,
@@ -135,6 +69,8 @@ export class CreateComponent implements OnInit {
     let surveyToSend = {
       surveyName: data.surveyName,
       surveyType: this.surveyType.nativeElement.value,
+      displayName: this.displayName,
+      userid: this.userid,
       Question1: String,
       Question2: String
     }
@@ -155,6 +91,11 @@ export class CreateComponent implements OnInit {
     this.router.navigate(['/']);
   }
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.userid = this.user.id;
+    this.displayName = this.user.displayName;
+    console.log(this.user.displayName);
+  
   }
 
 }

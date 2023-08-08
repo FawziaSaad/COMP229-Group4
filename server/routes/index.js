@@ -34,14 +34,15 @@ router.get('/', indexController.displayHomePage);
 /* GET create survey page. */
 //router.get('/create-survey',   indexController.displayCreateSurvey);  
 // POST Route for processing the Create Survey Page - CREATE Operation
-router.post('/create-survey',passport.authenticate('jwt', {session: false}), indexController.processCreateSurvey); 
+router.post('/create-survey', indexController.processCreateSurvey); 
 
 // Get to perform Deletion - Delete Operation
 // router.get('/delete/:id', requireAuth, indexController.performDelete); 
-router.delete('/survey/delete/:id',passport.authenticate('jwt', {session: false}), indexController.performDelete); 
+// router.delete('/survey/delete/:id',passport.authenticate('jwt', {session: false}), indexController.performDelete); 
 
+router.delete('/survey/delete/:id', indexController.performDelete); 
 
-//router.get('/survey/report/', indexController.reportSurvey); 
+router.get('/survey/report/', indexController.reportSurvey); 
 
 /* GET my survey page. */
 //router.get('/survey/mysurveys',  indexController.displayMySurvey);
