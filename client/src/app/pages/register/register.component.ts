@@ -22,6 +22,9 @@ export class RegisterComponent implements OnInit {
   }
 
   register(data) : void {
+    console.log('Register method called.');
+    console.log(data);
+
     
     let userToRegister = {
       username: data.username,
@@ -29,24 +32,23 @@ export class RegisterComponent implements OnInit {
       email: data.email,
       displayName: data.displayName,
     }
+
     console.log(userToRegister);
     
-
-    if (data)
-    {
-      try {
-        this.http.post(`https://g4serverside.azurewebsites.net/register`, userToRegister).subscribe(
-          (response) => {
-            console.log('Responses:', response);
-            // Handle the response as needed
-          }
-        );
-      console.log(data);
-      }
-      catch (err) {
-        console.log(err);
-      }
-      this.router.navigate(['/']);
+    try {
+      this.http.post(`https://g4serverside.azurewebsites.net/register`, userToRegister).subscribe(
+        (response) => {
+          console.log('Responses:', response);
+          // Handle the response as needed
+        }
+      );
+    console.log(data);
     }
+    catch (err) {
+      console.log(err);
+    }
+    this.router.navigate(['/']);
+
+
   }
 }

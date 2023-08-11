@@ -380,17 +380,32 @@ module.exports.displayRegisterPage = (req, res, next) => {
 }
 
 module.exports.processRegisterPage = (req, res, next) => {
+    const userFormInfo = req.body;
 
     let newUser = new User({
-        username: username,
-        email: email,
-        displayName: displayName,
+        username: userFormInfo.username,
+        email: userFormInfo.email,
+        displayName: userFormInfo.displayName,
     });
 
     User.register(newUser, password, (err) => {
         if(err)
         {
-            return next(err);
+            console.log("Error: Inserting New User");
+            if(err.name == "UserExistsError")
+            {
+                req.flash(
+                    'registerMessage',
+                    'Registration Error: User Already Exists!'
+                );
+                console.log('Error: User Already Exists!')
+            }
+            return res.render('auth/register',
+            {
+                title: 'Register',
+                messages: req.flash('registerMessage'),
+                displayName: req.user ? req.user.displayName : ''
+            });
         }
         else
         {
@@ -398,12 +413,7 @@ module.exports.processRegisterPage = (req, res, next) => {
 
             // redirect the user and authenticate them
 
-            return res.json({success: true, msg: 'User Registered Successfully!', user: {
-                id: newUser._id,
-                displayName: newUser.displayName,
-                username: newUser.username,
-                email: newUser.email
-                }   
+            return res.json({success: true, msg: 'User Registered Successfully!', user: newUser   
             });
 
             /*
