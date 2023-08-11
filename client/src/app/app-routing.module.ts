@@ -25,7 +25,7 @@ const routes: Routes = [
   ///// tim added below line
   { path: 'survey/edit/:id', component: EditComponent, data: {title: 'Edit Survey'}},
   // {path: '', redirectTo: '/home', pathMatch: 'full'},
-  // {path: '**', redirectTo: '/home', pathMatch: 'full'}
+  {path: '**', redirectTo: '/home', pathMatch: 'full'}, // Needs to be here for the logout redirect in header!
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
 
 ];
