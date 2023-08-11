@@ -1,0 +1,56 @@
+ <main class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">{{surveyToTake.name }}</h1>
+        <h5 class="display-10"><i>By: "{{surveyToTake.creator }}"</i></h5>
+    
+
+         <br/> 
+        <form #surveyForm="ngForm" (ngSubmit)= "submitSurvey(surveyForm.value)">
+            <div *ngFor="let question of surveyToTake.questions; index as i;">
+
+                <h5 class="display-7">Question  {{i +1 }}: {{surveyToTake.questions[i].Question}}</h5>
+
+                    <div *ngIf="surveyToTake.surveyType === 'MCQ'" class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="answers{{i}}" [(ngModel)]="selectedAnswers[i]"
+                            id="flexRadioDefault1{{i}}" value="{{surveyToTake.questions[i].OptionOne}}" >
+                            <label class="form-check-label" for="flexRadioDefault1{{i}}"> 
+                                {{surveyToTake.questions[i].OptionOne}}
+                                <!-- IF WE CHANGE THE VALUES OF OptionOne TO SAY Option1, THEN WE COULD USE A SECOND INNER FOR LOOP TO LABEL AND CUT DOWN ON REDUNDANCY -->
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="answers{{i}}" [(ngModel)]="selectedAnswers[i]"
+                            id="flexRadioDefault2{{i}}" value="{{surveyToTake.questions[i].OptionTwo}}">
+                            <label class="form-check-label" for="flexRadioDefault2{{i}}"> 
+                                {{surveyToTake.questions[i].OptionTwo}}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="answers{{i}}" [(ngModel)]="selectedAnswers[i]"
+                            id="flexRadioDefault3{{i}}" value="{{surveyToTake.questions[i].OptionThree}}">
+                            <label class="form-check-label" for="flexRadioDefault3{{i}}"> 
+                                {{surveyToTake.questions[i].OptionThree }}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="answers{{i}}" [(ngModel)]="selectedAnswers[i]"
+                            id="flexRadioDefault4{{i}}" value="{{surveyToTake.questions[i].OptionFour}}">
+                            <label class="form-check-label" for="flexRadioDefault4{{i}}"> 
+                                {{surveyToTake.questions[i].OptionFour}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"> -->
+                    <input *ngIf="surveyToTake.surveyType === 'SA'" class="form-control" type="text" [(ngModel)]="selectedAnswers[i]"
+                    name="answers[{{ i }}]" value="{{surveyToTake.questions[i].OptionFour}}">
+                
+                <br/> 
+          
+            </div>
+            <br/> 
+            <button type="submit" class="btn btn-primary">Submit Survey</button>
+        </form>
+    </div>
+  </main>

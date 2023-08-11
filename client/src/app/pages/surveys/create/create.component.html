@@ -1,0 +1,72 @@
+
+
+<!-- Main Content -->
+
+<h2>Create Survey</h2>
+<!-- should this also not be in the form? -->
+<div class="container">
+  <select #surveyType (change)="onSurveyTypeChange(surveyType.value)" required name='surveyType' ngModel>
+    <option value="" disabled>Select survey type</option>
+    <option value="SA">Single Answer</option>
+    <option value="MCQ">Multiple Choice</option>
+  </select>
+
+</div>
+
+<form #questionForm1= "ngForm" class="form mcq-container" [style.display]="mcqContainerDisplay" (ngSubmit)= "onSubmit1(questionForm1.value)">
+  <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input" ngModel required>
+  <div class="container">
+    <input type="hidden" name="surveyType" value="MCQ" >
+    <!-- <input type="hidden" name="surveyType" value="MCQ"> -->
+      <div *ngFor = "let count of [0,1]"  class="container" style="margin:2rem 0;">
+        <div class="row">
+          <div class="offset-md-3 col-md-6" style="margin: 0 auto;">
+            <div class="form-group">
+              <input type="text" class="form-control"
+                id="nameTextField"
+                placeholder="Question  {{count+1}}"
+                name="Question{{count+1}}"
+                required ngModel>
+            </div>
+            
+              <div *ngFor = "let i of [0,1,2,3]" class="form-group" >
+                <input type="text" class="form-control"
+                  id="nameTextField"
+                  placeholder="Response {{i+1}}"
+                  name="response{{count+1}}{{i+1}}"
+                  required ngModel>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <button id="submitBtn" class="submit-btn" type="submit" >Submit</button>
+</form>
+
+<form #questionForm2 = "ngForm" class="form sa-container"  [style.display]="saContainerDisplay" (ngSubmit)= "onSubmit2(questionForm2.value)">
+  <input type="text" placeholder="Enter survey name" name="surveyName" class="survey-name-input" ngModel required>
+    <div class="container">
+    <input type="hidden" name="surveyType" value="SA">
+      <!-- <input type="hidden" name="surveyType" value="short answer"> -->
+        <div *ngFor = "let count of [0,1]" class="container" style="margin:2rem 0;">
+          <div class="row">
+            <div class="offset-md-3 col-md-6" style="margin: 0 auto;">
+              <div class="form-group">
+                <input type="text" class="form-control"
+                  id="nameTextField"
+                  placeholder="Question {{count+1}}"
+                  name="Question{{count+1}}"
+                  required ngModel>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  <button id="submitBtn" class="submit-btn" type="submit" >Submit</button>
+</form>
+
+
+
+<script>
+ 
+</script>

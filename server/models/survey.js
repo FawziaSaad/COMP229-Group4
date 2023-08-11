@@ -5,9 +5,11 @@ let mongoose = require('mongoose');
 let SurveyModel = mongoose.Schema({
     name: String, 
     userid: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'User',
+        // required: true
+
+        type: String,
       },
     creator: String,
 

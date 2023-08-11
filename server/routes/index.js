@@ -1,5 +1,8 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+
+let jwt = require('jsonwebtoken');
+let passport = require('passport');
 
 let indexController = require('../controllers/index');
 
@@ -26,28 +29,31 @@ function requireAuth(req, res, next)
 router.get('/', indexController.displayHomePage);
 
 /* GET home page. */
-router.get('/home', indexController.displayHomePage);
+// router.get('/home', indexController.displayHomePage);
 
 /* GET create survey page. */
-router.get('/create-survey',  requireAuth, indexController.displayCreateSurvey);  
-
+//router.get('/create-survey',   indexController.displayCreateSurvey);  
 // POST Route for processing the Create Survey Page - CREATE Operation
-router.post('/create-survey', requireAuth, indexController.processCreateSurvey); 
+router.post('/create-survey', indexController.processCreateSurvey); 
 
 // Get to perform Deletion - Delete Operation
-router.get('/delete/:id', requireAuth, indexController.performDelete); 
+// router.get('/delete/:id', requireAuth, indexController.performDelete); 
+// router.delete('/survey/delete/:id',passport.authenticate('jwt', {session: false}), indexController.performDelete); 
 
-router.get('/survey/report/:id', requireAuth, indexController.reportSurvey); 
+router.delete('/survey/delete/:id', indexController.performDelete); 
+
+router.get('/survey/report/', indexController.reportSurvey); 
 
 /* GET my survey page. */
-router.get('/survey/mysurveys', requireAuth, indexController.displayMySurvey);
+//router.get('/survey/mysurveys',  indexController.displayMySurvey);
 
 // 14.07.2023
 // 2-add button to front if the user is the owner of a survey they can edit it. <<<
 // 3-implement the edit controller / route / view
 
 // Get to edit survey
-router.get('/survey/edit/:id', indexController.displayEditSurvey);
+//router.get('/survey/edit/:id', indexController.displayEditSurvey);
+// router.put('/survey/edit/:id', passport.authenticate('jwt', {session: false}), indexController.processEditSurvey); 
 
 // Get to edit survey
 router.post('/survey/edit/:id', indexController.processEditSurvey);
@@ -58,25 +64,33 @@ router.post('/survey/edit/:id', indexController.processEditSurvey);
 //       ... we can then just take the response entry and map the questions and answers to fill out the table int the reports section.
 
 //GET ROUTE FOR BRINGING UP THE SURVEY
-router.get('/survey/:id', indexController.respondtoSurvey); 
+router.get('/survey/:id',  indexController.respondtoSurvey); 
 
 //POST ROUTE FOR POSTING THE RESPONSES
-router.post('/survey/:id', indexController.submitSurveyResponses);
+router.post('/survey/:id', indexController.submitSurveyResponses);  // Auth removed for nowSS
 
 // Leave the login / logout
 /* Get Route for displaying the Login Page */
-router.get('/login', indexController.displayLoginPage);
-
+// router.get('/login', indexController.displayLoginPage);
 /* Post Route for processing the Login Page */
-router.post('/login', indexController.processLoginPage);
-
+// router.post('/login', indexController.processLoginPage);
 /* Get Route for displaying the Register Page */
-router.get('/register', indexController.displayRegisterPage);
-
+// router.get('/register', indexController.displayRegisterPage);
 /* Get Route for processing the Register Page */
-router.post('/register', indexController.processRegisterPage);
-
+// router.post('/register', indexController.processRegisterPage);
 /* Get to perform UserLogout */
-router.get('/logout', indexController.performLogout);
+// router.get('/logout', indexController.performLogout);
 
+router.post('/login', indexController.processLoginPage);
+router.post('/register', indexController.processRegisterPage);
+router.post('/logout', indexController.performLogout);
+
+router.get('/surveys', (req, res) => {
+    Survey.find({}, (err, surveys) => {
+      if (err) {
+        return res.status(500).json({ error: 'Error fetching surveys' });
+      }
+      return res.json(surveys);
+    });
+  });
 module.exports = router;

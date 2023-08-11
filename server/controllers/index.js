@@ -13,6 +13,10 @@ let Surveys = require('../models/survey');
 // import the Response Model instance
 let Response = require('../models/response');
 
+// enable jwt
+let jwt = require('jsonwebtoken');
+let DB = require('../config/db');
+
 
 module.exports.displayHomePage = async (req, res, next) => {
     try {
@@ -23,12 +27,15 @@ module.exports.displayHomePage = async (req, res, next) => {
         //==============================================================
         // let SurveyList = await Surveys.find();   // Or change it back
 
-        res.render('surveys/landing', { 
+        // res.render('surveys/landing', { 
+         res.json({ 
             title: 'Home', 
             SurveyList: SurveyList,
             displayName: req.user ? req.user.displayName : '' })
     } catch (err){
         console.log(err);
+        res.status(500).json({ error: err.message });
+
     }
 }
 
@@ -36,16 +43,20 @@ module.exports.displayHomePage = async (req, res, next) => {
 module.exports.displayMySurvey = async (req, res, next) => {
     let id = req.user._id
     try {
+
         let SurveyList = await Surveys.find({ userid: id });
         // res.json(surveyList);
-        res.render('surveys/mysurveys', { 
+        // res.render('surveys/mysurveys', { 
+            res.json({ 
             title: 'My Surveys', 
             SurveyList: SurveyList,
             displayName: req.user ? req.user.displayName : '' })
     } catch (err){
         console.log(err);
+        res.status(500).json({ error: err.message });
     }
 }
+
 
 module.exports.displayCreateSurvey = async (req, res, next)=>{
     try {
@@ -58,11 +69,13 @@ module.exports.displayCreateSurvey = async (req, res, next)=>{
 
 module.exports.processCreateSurvey = async (req, res, next) => {
     const surveyData = req.body;
-    
     // Extract survey name
     const surveyName = surveyData.surveyName;
     //extract survey type
     const surveyType = surveyData.surveyType;
+    const displayName = surveyData.displayName;
+    const userid = surveyData.userid;
+    // TODO: get the amount of questions from the backend
 
     // Extract questions and responses
     const questions = [];
@@ -84,17 +97,15 @@ module.exports.processCreateSurvey = async (req, res, next) => {
             questions.push({
                 Question: question
             });
-
         }
-
     }
     
     try {
         // Create a new SurveyModel object
         const newSurvey = new Surveys({
         name: surveyName,
-        creator: req.user.displayName,
-        userid: req.user._id,
+        creator:displayName,
+        userid: userid,
         surveyType: surveyType,                      // remember to dynamically specify, NOT HARD CODE
         questions: questions,
         });
@@ -102,7 +113,9 @@ module.exports.processCreateSurvey = async (req, res, next) => {
         // Save the new survey to the database
         await newSurvey.save();
     
-        res.redirect('/survey/mysurveys');
+        // res.redirect('/survey/mysurveys');
+        await newSurvey.save();
+    res.json({ message: "Survey created successfully!" });
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -118,10 +131,15 @@ module.exports.displayEditSurvey = async (req, res, next) => {
 
     try {
         let surveyToEdit = await Surveys.findById(id);
-        res.render('surveys/edit', 
-        {title: 'Edit', 
-        survey: surveyToEdit,
-        displayName: req.user ? req.user.displayName : ''});
+        // res.render('surveys/edit', 
+        // {title: 'Edit', 
+        // survey: surveyToEdit,
+        // displayName: req.user ? req.user.displayName : ''});
+        res.json({
+            title: 'Edit', 
+            surveyToEdit: surveyToEdit,
+            displayName: req.user ? req.user.displayName : ''
+        });
     } catch (err){
         console.log(err);
         res.status(500).send(err);
@@ -176,7 +194,9 @@ module.exports.processEditSurvey = async (req, res, next) => {
 
     try {
         await Surveys.updateOne({_id: id}, updatedSurvey);
-        res.redirect('/survey/mysurveys'); // redirect to a page of your choice
+        // res.redirect('/survey/mysurveys'); // redirect to a page of your choice
+        res.json({ message: "Survey updated successfully!" });
+
     } catch (err){
         console.log(err);
         res.status(500).send(err);
@@ -190,7 +210,9 @@ module.exports.performDelete = async (req, res, next) => {
 
     try {
         await Surveys.findByIdAndRemove(id);
-        res.redirect('/survey/mysurveys');
+        // res.redirect('/survey/mysurveys');
+        res.json({ message: "Survey deleted successfully!" });
+
     }catch (err){
         console.log(err);
         res.status(500).send(err);
@@ -202,10 +224,9 @@ module.exports.performDelete = async (req, res, next) => {
 module.exports.respondtoSurvey = async (req, res, next) => {
     let id = req.params.id;
     let surveyToTake = await Surveys.findById(id);
-    res.render('survey',{
-        title: "Taking a Survey",
-        surveyToTake: surveyToTake
-    })
+    console.log(surveyToTake);
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.json(surveyToTake)
 
 }
 
@@ -218,21 +239,15 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
     let id = req.params.id; // get the survey to be referrenced
     try {
 
-        let { responsesBody } = req.body;
         // get questions
         let questions = [];
         let responses = [];
-
-        // Get the answers
-        for (const answerKey in responsesBody) {
-            responses.push(responsesBody[answerKey]);
-          }
 
         // Get the questions
         let survey = await Surveys.findById(id);
         for (let i = 0; i < survey.questions.length; i++) {
             questions.push(survey.questions[i].Question);
-            responses.push(req.body[`answers[${i}]`]);
+            responses.push(req.body.responses[i]);
         }
 
         // Debugging
@@ -244,15 +259,14 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
         // Create a new SurveyModel object
         const newResponse = new Response({
         surveyId: id,
-        respondentId: req.user ? req.user.id : new mongoose.Types.ObjectId(),
-        takenBy: req.user ? req.user.displayName : "Anonymous",
+        respondentId: req.body.respondentId,
+        takenBy: req.body.takenBy,
         questions: questions,
         responses: responses
         });
-
         await newResponse.save();
     
-        res.redirect('/');
+        res.json({ message: "Survey responses submitted successfully!", backend: newResponse });
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -265,15 +279,19 @@ module.exports.reportSurvey = async (req, res, next)=> {
     
     try {
         let survey = await Surveys.findById(id);
-        let responses = await Response.find({surveyId: id});
-
-        console.log(responses);
-        res.render('surveys/report', {
+        let responses = await Response.find();
+ 
+        // console.log(responses);
+        res.json({ success: true,
             title: 'Survey Report', 
             survey: survey, 
             responses: responses, 
-            numberOfResponses: responses.length, 
-            displayName: req.user ? req.user.displayName : ''});
+            displayName: req.user ? req.user.displayName : '' });
+        // res.render('surveys/report', {
+        //     title: 'Survey Report', 
+        //     survey: survey, 
+        //     responses: responses, 
+        //     displayName: req.user ? req.user.displayName : ''});
 
     }catch (err){
         console.log(err);
@@ -285,12 +303,12 @@ module.exports.displayLoginPage = (req, res, next) => {
     // check if the user is already logged in
     if(!req.user)
     {
-        res.render('auth/login',
+        res.render('auth/login', 
         {
-            title: "Login",
-            messages: req.flash('loginMessage'),
-            displayName: req.user ? req.user.displayName : ''
-        });
+           title: "Login",
+           messages: req.flash('loginMessage'),
+           displayName: req.user ? req.user.displayName : '' 
+        })
     }
     else
     {
@@ -301,26 +319,48 @@ module.exports.displayLoginPage = (req, res, next) => {
 module.exports.processLoginPage = (req, res, next) => {
     passport.authenticate('local',
     (err, user, info) => {
-        //server err?
+        // server err?
         if(err)
         {
             return next(err);
         }
-        // is there a user login err?
-        if(!user){
+        // is there a user login error?
+        if(!user)
+        {
             req.flash('loginMessage', 'Authentication Error');
             return res.redirect('/login');
         }
         req.login(user, (err) => {
-            //server err?
+            // server error?
             if(err)
             {
                 return next(err);
             }
-            return res.redirect('/');
+
+            const payload = 
+            {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }
+
+            const authToken = jwt.sign(payload, DB.Secret, {
+                expiresIn: 604800 // 1 week
+            });
+            
+            return res.json({success: true, msg: 'User Logged in Successfully!', user: {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }, token: authToken});
+
+            //return res.redirect('/book-list');
         });
     })(req, res, next);
 }
+
 
 module.exports.displayRegisterPage = (req, res, next) => {
     // check if the user is not already logged in
@@ -328,7 +368,7 @@ module.exports.displayRegisterPage = (req, res, next) => {
     {
         res.render('auth/register',
         {
-            title: "Register",
+            title: 'Register',
             messages: req.flash('registerMessage'),
             displayName: req.user ? req.user.displayName : ''
         });
@@ -340,9 +380,10 @@ module.exports.displayRegisterPage = (req, res, next) => {
 }
 
 module.exports.processRegisterPage = (req, res, next) => {
-    //initialize an user object
+    // instantiate a user object
     let newUser = new User({
         username: req.body.username,
+        //password: req.body.password
         email: req.body.email,
         displayName: req.body.displayName
     });
@@ -350,42 +391,42 @@ module.exports.processRegisterPage = (req, res, next) => {
     User.register(newUser, req.body.password, (err) => {
         if(err)
         {
-            console.log(err);
             console.log("Error: Inserting New User");
-            if(err.name == 'UserExistsError')
+            if(err.name == "UserExistsError")
             {
                 req.flash(
                     'registerMessage',
                     'Registration Error: User Already Exists!'
                 );
-                console.log('Error: User Already Exists!');
+                console.log('Error: User Already Exists!')
             }
             return res.render('auth/register',
             {
-                title: "Register",
+                title: 'Register',
                 messages: req.flash('registerMessage'),
                 displayName: req.user ? req.user.displayName : ''
             });
         }
         else
         {
-            //if registration is success
+            // if no error exists, then registration is successful
+
+            // redirect the user and authenticate them
+
+            return res.json({success: true, msg: 'User Registered Successfully!'});
+
+            /*
             return passport.authenticate('local')(req, res, () => {
-                res.redirect('/')
+                res.redirect('/book-list')
             });
+            */
         }
     });
 }
 
 module.exports.performLogout = (req, res, next) => {
-    req.logout((err) => {
-        if (err)
-        {
-            //handle error here
-            console.log(err);
-            return next(err);
-        }
-        return res.redirect('/');
-    });
+    req.logout();
+    //res.redirect('/');
+    res.json({success: true, msg: 'User Successfully Logged out!'});
 }
 

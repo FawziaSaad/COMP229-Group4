@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="container">
+        <h2>Survey Report</h2>
+        <p><strong>Survey Name:</strong> {{ survey.name }}</p>
+        <p><strong>Created By:</strong> {{ survey.creator }}</p>
+        <p><strong>End Date:</strong> {{ survey.endDate }}</p>
+        <p><strong>Number of respondents: </strong>{{response.length}}</p>
+        <br>
+      </div>
+      <div *ngFor="let resp of response ">
+        <caption>Taken By: {{ resp.takenBy }}</caption>
+        <table class="table">
+          <thead>
+            <th class="text-center col-6">Question</th>
+            <th class="text-center col-6">Answer</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let quest of resp.questions; index as j">
+              <td class="text-center col-6">{{ quest }}</td>
+              <td class="text-center col-6">{{ resp.responses[j] }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+    </div>
+</div>  

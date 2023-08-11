@@ -5,10 +5,12 @@ let mongoose = require('mongoose');
 let ResponseModel = mongoose.Schema({
     
     surveyId: {
-        type: mongoose.Schema.Types.ObjectId
+        // type: mongoose.Schema.Types.ObjectId // must uncomment when User is implemented!
+        type: String,
     },
     respondentId: {
-        type: mongoose.Schema.Types.ObjectId
+        // type: mongoose.Schema.Types.ObjectId // must uncomment when User is implemented!
+        type: String,
     },
     takenBy:{
         type: String, 
