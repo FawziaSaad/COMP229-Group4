@@ -61,7 +61,7 @@ export class EditComponent implements OnInit {
     }
 
     try {
-      this.http.post(`https://g4serverside.azurewebsites.net/survey/edit/${this.id}`, surveyToEdit).subscribe(
+      this.http.post(`/survey/edit/${this.id}`, surveyToEdit).subscribe(
         (response) => {
           console.log('MCQ Form submitted:', response);
           // Handle the response as needed
@@ -71,7 +71,7 @@ export class EditComponent implements OnInit {
     catch (err) {
       console.log(err);
     }
-    this.router.navigate(['/survey/mysurveys']);
+    this.router.navigate(['http://localhost:3000/survey/mysurveys']);
   }
   onSubmit2(data): void {
     // console.log(JSON.stringify(data) + this.surveyType.nativeElement.value);
@@ -88,7 +88,7 @@ export class EditComponent implements OnInit {
     }
 
     try {
-      this.http.post(`https://g4serverside.azurewebsites.net/survey/edit/${this.id}`, surveyToSend).subscribe(
+      this.http.post(`http://localhost:3000/survey/edit/${this.id}`, surveyToSend).subscribe(
         (response) => {
           console.log('SA Form submitted:', response);
           // Handle the response as needed

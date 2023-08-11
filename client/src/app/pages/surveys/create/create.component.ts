@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/model/user.model';
@@ -6,6 +6,7 @@ import { User } from 'src/app/model/user.model';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
@@ -95,7 +96,7 @@ export class CreateComponent implements OnInit {
     this.userid = this.user.id;
     this.displayName = this.user.displayName;
     console.log(this.user.displayName);
-  
+
   }
 
 }
