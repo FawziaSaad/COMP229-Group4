@@ -380,32 +380,17 @@ module.exports.displayRegisterPage = (req, res, next) => {
 }
 
 module.exports.processRegisterPage = (req, res, next) => {
-    // instantiate a user object
+
     let newUser = new User({
-        username: req.body.username,
-        //password: req.body.password
-        email: req.body.email,
-        displayName: req.body.displayName
+        username: username,
+        email: email,
+        displayName: displayName,
     });
 
-    User.register(newUser, req.body.password, (err) => {
+    User.register(newUser, password, (err) => {
         if(err)
         {
-            console.log("Error: Inserting New User");
-            if(err.name == "UserExistsError")
-            {
-                req.flash(
-                    'registerMessage',
-                    'Registration Error: User Already Exists!'
-                );
-                console.log('Error: User Already Exists!')
-            }
-            return res.render('auth/register',
-            {
-                title: 'Register',
-                messages: req.flash('registerMessage'),
-                displayName: req.user ? req.user.displayName : ''
-            });
+            return next(err);
         }
         else
         {
@@ -413,7 +398,13 @@ module.exports.processRegisterPage = (req, res, next) => {
 
             // redirect the user and authenticate them
 
-            return res.json({success: true, msg: 'User Registered Successfully!'});
+            return res.json({success: true, msg: 'User Registered Successfully!', user: {
+                id: newUser._id,
+                displayName: newUser.displayName,
+                username: newUser.username,
+                email: newUser.email
+                }   
+            });
 
             /*
             return passport.authenticate('local')(req, res, () => {

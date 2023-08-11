@@ -1,0 +1,53 @@
+<p>register works!</p>
+
+<main class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-sm-8 offset-sm-1">
+        <h1>Please Register</h1>
+        <!-- <form autocomplete='off' #registerForm='ngForm' (ngSubmit)='register(registerForm)'> -->
+          <form #registerForm='ngForm' (ngSubmit)='register(registerForm.value)'>
+          
+        <fieldset class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control"
+            name='username' placeholder='Enter Username'
+            id='username' autofocus autocomplete='off' >
+        </fieldset>
+  
+        <fieldset class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control"
+            name='password' placeholder='Enter Password'
+            id='password' autocomplete='off'>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="username">Email:</label>
+            <input type="text" class="form-control"
+            name='email' placeholder='Enter Email'
+            id='email' autofocus autocomplete='off'>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="username">Display Name:</label>
+            <input type="text" class="form-control"
+            name='displayName' placeholder='Enter Display Name'
+            id='displayName' autofocus autocomplete='off'>
+        </fieldset>
+  
+        <fieldset class="form-group text-right mt-3">
+          <button class='btn btn-primary m-2'>
+            <i class="fas fa-sign-in-alt"></i>
+            Register
+          </button>
+          <button class='btn btn-secondary m-2' (click)="navigateToHome()">
+            <i class="fas fa-undo"></i>
+            Cancel
+          </button>
+        </fieldset>
+
+      </form>
+
+      </div>
+    </div>
+  </main>
