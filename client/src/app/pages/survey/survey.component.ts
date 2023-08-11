@@ -17,7 +17,9 @@ export class TakeSurveyComponent implements OnInit {
   MCQoptions : number[] = new Array(4);
   id: any = this.route.snapshot.paramMap.get('id');
   currentSurvey : Survey;
-  user : User;
+  user: any;
+  userid: string = '';
+  displayName: string = '';
 
   constructor(
     private surveyRepository: SurveyRepository,
@@ -29,12 +31,11 @@ export class TakeSurveyComponent implements OnInit {
 
   ngOnInit(): void {
 
-  //===============================================================
-  // Same Jank, from the Auth service
-  this.user = this.authService.getCurrentUser();
-   console.log("Current User: " + this.user);
+  this.user = JSON.parse(localStorage.getItem('user'));
+  this.userid = this.user.id;
+  this.displayName = this.user.displayName;
   }
-  //===============================================================
+
 
 
   get surveyToTake() {
@@ -62,10 +63,17 @@ export class TakeSurveyComponent implements OnInit {
     // console.log(responses[0])
     // console.log('//=============================================');
 
+    // If there is no user logged in, during post, set the values to anonymous
+    if (this.displayName === "" || this.userid === ""){
+      this.displayName = "Anonymous"
+      this.userid = "Anonymous"
+    }
+
     let responseToSend = {
+
       surveyId: this.id,
-      respondentId: "1", // the req.user.id -> current user will go here
-      takenBy: "Moh", //req.user.displayName -> Same for this one
+      respondentId: this.userid, // the req.user.id -> current user will go here
+      takenBy: this.displayName, //req.user.displayName -> Same for this one
       // respondentId: this.user._id, //  -> current user will go here
       // takenBy: this.user.displayName, // -> Same for this one
       questions: questions,
