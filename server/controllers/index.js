@@ -158,8 +158,6 @@ module.exports.processEditSurvey = async (req, res, next) => {
 
     const surveyType = surveyData.surveyType;
 
-    console.log("Edit controller trying to work")
-
     // Extract questions and responses
     const questions = [];
     for (let count = 0; count < 2; count++) { // number of questions should be dynamic -> HUNG

@@ -53,11 +53,10 @@ router.get('/survey/report/', indexController.reportSurvey);
 
 // Get to edit survey
 //router.get('/survey/edit/:id', indexController.displayEditSurvey);
-//router.put('/survey/edit/:id', passport.authenticate('jwt', {session: false}), indexController.processEditSurvey); 
-router.put('/survey/edit/:id', indexController.processEditSurvey); 
+router.put('/survey/edit/:id', passport.authenticate('jwt', {session: false}), indexController.processEditSurvey); 
 
 // Get to edit survey
- router.post('/survey/edit/:id', indexController.processEditSurvey);
+// router.post('/survey/edit/:id', indexController.processEditSurvey);
 
 // 13.07.2023
 // TODO: Confirm that the data is getting into the DB okay
