@@ -7,6 +7,7 @@ import {SurveySiteModule} from './survey-site/survey-site.module';
 import { PagesModule } from './pages/pages.module';
 import { RestDataSource } from './model/rest.datasource';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './admin/auth/auth.guard';
 
 
 export function jwtTokenGetter(): string
@@ -34,7 +35,7 @@ export function jwtTokenGetter(): string
       }
     })
   ],
-  providers: [RestDataSource],
+  providers: [RestDataSource, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
