@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Survey } from '../../../model/survey.model';
 import { SurveyRepository } from '../../../model/survey.repository';
@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
@@ -17,8 +18,8 @@ export class EditComponent implements OnInit {
 
 
   constructor(
-    private route: ActivatedRoute, 
-    private surveyRepository: SurveyRepository, 
+    private route: ActivatedRoute,
+    private surveyRepository: SurveyRepository,
     private router: Router,
     private http: HttpClient
   ) { }
