@@ -20,14 +20,8 @@ let DB = require('../config/db');
 
 module.exports.displayHomePage = async (req, res, next) => {
     try {
-        // If we do not want a user to be able to take their own survey
-        //==============================================================
         let id = req.user;
         let SurveyList = await Surveys.find({ userid: { $ne: id } });
-        //==============================================================
-        // let SurveyList = await Surveys.find();   // Or change it back
-
-        // res.render('surveys/landing', { 
          res.json({ 
             title: 'Home', 
             SurveyList: SurveyList,
@@ -45,8 +39,6 @@ module.exports.displayMySurvey = async (req, res, next) => {
     try {
 
         let SurveyList = await Surveys.find({ userid: id });
-        // res.json(surveyList);
-        // res.render('surveys/mysurveys', { 
             res.json({ 
             title: 'My Surveys', 
             SurveyList: SurveyList,
@@ -75,11 +67,9 @@ module.exports.processCreateSurvey = async (req, res, next) => {
     const surveyType = surveyData.surveyType;
     const displayName = surveyData.displayName;
     const userid = surveyData.userid;
-    // TODO: get the amount of questions from the backend
-
     // Extract questions and responses
     const questions = [];
-    for (let count = 0; count < 2; count++) {           // get the data from the backend and make dynamic
+    for (let count = 0; count < 2; count++) {           
         const questionKey = `Question${count + 1}`;
         const responseKey = `response${count + 1}`;
         const question = surveyData[questionKey];
@@ -106,14 +96,13 @@ module.exports.processCreateSurvey = async (req, res, next) => {
         name: surveyName,
         creator:displayName,
         userid: userid,
-        surveyType: surveyType,                      // remember to dynamically specify, NOT HARD CODE
+        surveyType: surveyType,                    
         questions: questions,
         });
     
         // Save the new survey to the database
         await newSurvey.save();
     
-        // res.redirect('/survey/mysurveys');
         await newSurvey.save();
     res.json({ message: "Survey created successfully!" });
     } catch (err) {
@@ -131,10 +120,6 @@ module.exports.displayEditSurvey = async (req, res, next) => {
 
     try {
         let surveyToEdit = await Surveys.findById(id);
-        // res.render('surveys/edit', 
-        // {title: 'Edit', 
-        // survey: surveyToEdit,
-        // displayName: req.user ? req.user.displayName : ''});
         res.json({
             title: 'Edit', 
             surveyToEdit: surveyToEdit,
@@ -151,7 +136,6 @@ module.exports.processEditSurvey = async (req, res, next) => {
     let id = req.params.id;
     
     const surveyData = req.body;
-    // res.json({data:surveyData});
     // Extract survey name
     const surveyName = surveyData.surveyName;
     //extract survey type
@@ -160,7 +144,7 @@ module.exports.processEditSurvey = async (req, res, next) => {
 
     // Extract questions and responses
     const questions = [];
-    for (let count = 0; count < 2; count++) { // number of questions should be dynamic -> HUNG
+    for (let count = 0; count < 2; count++) { 
         if (surveyType === "MCQ") {
             const questionKey = `Question${count + 1}`;
             const responseKey = `response${count + 1}`;
@@ -187,14 +171,11 @@ module.exports.processEditSurvey = async (req, res, next) => {
 
     let updatedSurvey = {
         "name": surveyName,
-        // "creator": req.user.displayName,   // assuming the creator does not change
-        // "surveyType": surveyType,               // assuming the surveyType does not change
         "questions": questions,
     };
 
     try {
         await Surveys.updateOne({_id: id}, updatedSurvey);
-        // res.redirect('/survey/mysurveys'); // redirect to a page of your choice
         res.json({ message: "Survey updated successfully!" });
 
     } catch (err){
@@ -210,7 +191,6 @@ module.exports.performDelete = async (req, res, next) => {
 
     try {
         await Surveys.findByIdAndRemove(id);
-        // res.redirect('/survey/mysurveys');
         res.json({ message: "Survey deleted successfully!" });
 
     }catch (err){
@@ -219,19 +199,16 @@ module.exports.performDelete = async (req, res, next) => {
     }
 };
 
-//TODO:
 // GET ROUTE FOR TAKING THE SURVEY
 module.exports.respondtoSurvey = async (req, res, next) => {
     let id = req.params.id;
     let surveyToTake = await Surveys.findById(id);
     console.log(surveyToTake);
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "*");
     res.json(surveyToTake)
 
 }
 
-//TODO:
-// POST THE RESPONSES FOR THE SURVEY
 // -- CREATING A RESPONSE OBJECT WITH REF TO USER, SURVEY AND RESPONSES
 // THIS RESPONSE OBJECT WILL BE WHAT IS REFERENCED IN THE GENERATE REPORT SECTION
 module.exports.submitSurveyResponses = async (req, res, next) => {
@@ -249,12 +226,6 @@ module.exports.submitSurveyResponses = async (req, res, next) => {
             questions.push(survey.questions[i].Question);
             responses.push(req.body.responses[i]);
         }
-
-        // Debugging
-        // res.json({
-        //     questions: questions,
-        //     responses: responses
-        // });
 
         // Create a new SurveyModel object
         const newResponse = new Response({
@@ -281,17 +252,11 @@ module.exports.reportSurvey = async (req, res, next)=> {
         let survey = await Surveys.findById(id);
         let responses = await Response.find();
  
-        // console.log(responses);
         res.json({ success: true,
             title: 'Survey Report', 
             survey: survey, 
             responses: responses, 
             displayName: req.user ? req.user.displayName : '' });
-        // res.render('surveys/report', {
-        //     title: 'Survey Report', 
-        //     survey: survey, 
-        //     responses: responses, 
-        //     displayName: req.user ? req.user.displayName : ''});
 
     }catch (err){
         console.log(err);
@@ -356,7 +321,6 @@ module.exports.processLoginPage = (req, res, next) => {
                 email: user.email
             }, token: authToken});
 
-            //return res.redirect('/book-list');
         });
     })(req, res, next);
 }
@@ -383,7 +347,6 @@ module.exports.processRegisterPage = (req, res, next) => {
     // instantiate a user object
     let newUser = new User({
         username: req.body.username,
-        //password: req.body.password
         email: req.body.email,
         displayName: req.body.displayName
     });
@@ -414,19 +377,12 @@ module.exports.processRegisterPage = (req, res, next) => {
             // redirect the user and authenticate them
 
             return res.json({success: true, msg: 'User Registered Successfully!'});
-
-            /*
-            return passport.authenticate('local')(req, res, () => {
-                res.redirect('/book-list')
-            });
-            */
         }
     });
 }
 
 module.exports.performLogout = (req, res, next) => {
     req.logout();
-    //res.redirect('/');
     res.json({success: true, msg: 'User Successfully Logged out!'});
 }
 

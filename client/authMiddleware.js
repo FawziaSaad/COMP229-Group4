@@ -5,8 +5,6 @@ const PASSWORD = '123456';
 
 const mappings =
 {
-    // get: ['/api/orders', '/orders'],
-    // post: ['/api/books', '/books', 'api/categories', '/categories']
     get: ['/api/orders', '/orders', '/api/survey-site', 'survey-site'],
     post: ['/api/books', '/books', 'api/categories', '/categories']
 
@@ -23,7 +21,6 @@ module.exports = function (req, res, next)
     if (req.url.endsWith('/login') && req.method == 'POST') 
     {
         if (req.body && req.body.name == USERNAME && req.body.password == PASSWORD)
-        // if (req.body && req.body.name == USERNAME && req.body.PASSWORD == PASSWORD)
         {
             let token = jwt.sign({ data: USERNAME, expiresIn: '1h' }, APP_SECRET);
             res.json({ success: true, token: token });

@@ -1,9 +1,6 @@
 <%- include ../partials/header.ejs %>
 
 <%- include ../partials/main_nav.ejs %>
-
-  
-
   <!-- Main Content -->
   <main class="container">
     <div class="jumbotron">
@@ -32,7 +29,6 @@
             <% for(let count = 0; count < SurveyList.length; count++) { %>
                 <tr class="d-flex">
                     <% if (typeof displayName == 'string' && displayName) { %>
-                        <!-- <td class="text-center col-5"><%= SurveyList[count].name %></td> -->
                         <td class="text-center col-4"><%= SurveyList[count].name %></td>                       
                         <td class="text-center col-3"><%= SurveyList[count].creator %></td>
                         <td class="text-center col-2">

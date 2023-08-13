@@ -4,10 +4,8 @@
 
 
 <main class="container">
-  <!-- Header -  Later will be changed accordingly to filter -->
   <h3>Available Surveys</h3>
   <!-- Survey List -->
-  <!-- Need add variable later! -->
   <div class="row">
     <% SurveyList.forEach(function(survey) { %>
       <% if (survey.endDate >  new Date()) {%> 

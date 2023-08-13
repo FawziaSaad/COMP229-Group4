@@ -20,11 +20,10 @@ let ResponseModel = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    // Moh, Should we update also the question here? So for the reporting, it's all in this Schema?
     questions: [{
         type: String
     }],
-    responses: [{   // Also, changed the name from 'response' to 'responses'
+    responses: [{   
         type: String
     }]
 },

@@ -1,14 +1,9 @@
 let mongoose = require('mongoose');
-// let Question = require('./question');
 
 // create model class
 let SurveyModel = mongoose.Schema({
     name: String, 
     userid: {
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'User',
-        // required: true
-
         type: String,
       },
     creator: String,
