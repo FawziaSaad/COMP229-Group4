@@ -3,15 +3,12 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/model/auth.service';
 import { User } from 'src/app/model/user.model';
 
-
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  // displayName: string = '';
   user: User;
 
   constructor(private authService: AuthService,
@@ -19,7 +16,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = new User();
-    // this.displayName = this.authService.getCurrentUser();
   }
 
   onLogoutClick(): void
@@ -38,6 +34,4 @@ export class HeaderComponent implements OnInit {
     }
     return result;
   }
-
-
 }

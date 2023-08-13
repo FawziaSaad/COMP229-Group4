@@ -33,16 +33,9 @@ export class MysurveysComponent implements OnInit {
     console.log(this.displayName);
     console.log("user id");
     console.log(this.user.id);
-    // const newUserObject = JSON.parse(JSON.stringify(this.user));
-    // const userId = newUserObject.id;
-    // console.log(userId);
-    // this.userid = userId;
   }
 
   get surveys(): Survey[] {
-
-    // const id: string = 	"64b04fdc4038f37b48c37ce7";
-    // const id: string = 	"error";
     const id: string = 	"error";
     return this.repository.getSurveys().filter((survey) => survey.userid === this.user.id);
   }
@@ -68,7 +61,6 @@ export class MysurveysComponent implements OnInit {
 
   private updateSurveyList() {
     // Fetch the updated list of surveys after deletion
-    // const id: string = 'error'; // Replace this with the actual user ID or any other identifier you use for filtering
     this.mySurveys = this.repository.getSurveys().filter((survey) => survey.userid === this.user.id);
    
   }

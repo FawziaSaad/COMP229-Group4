@@ -7,10 +7,6 @@ import { Response } from './response.model';
 import { User } from './user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-
-// const PROTOCOL = 'http';
-// const PORT = 3500;
-
 @Injectable()
 export class RestDataSource
 {
@@ -32,7 +28,6 @@ export class RestDataSource
       // new user
       this.user = new User();
 
-        // this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
       this.baseUrl = API_BASE_URL;
 
     }
@@ -52,26 +47,21 @@ export class RestDataSource
     
     getSurveyToEdit(id: string): Observable<Survey> {
 
-        this.loadToken(); // put here?
+        this.loadToken(); 
         return this.http.get<Survey>(`${this.baseUrl}${API_ENDPOINTS.EDIT_SURVEY_PAGE.replace(':id', id)}`);
 
     }
 
 
     updateSurvey(id: string, surveyData: any): Observable<any> {
-      // const headers = new HttpHeaders({
-      //   'Content-Type': 'application/json'
-      // });
 
-      this.loadToken(); // put here?
-      // return this.http.put(`${this.baseUrl}${API_ENDPOINTS.EDIT_SURVEY.replace(':id', id)}`, surveyData, { headers: headers });
+      this.loadToken(); 
       return this.http.put(`${this.baseUrl}${API_ENDPOINTS.EDIT_SURVEY.replace(':id', id)}`, surveyData, this.httpOptions);
     }
 
     authenticate(user: User): Observable<any>
     {
       return this.http.post<any>(this.baseUrl + '/login', user, this.httpOptions);
-      // return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);
     }
       
     storeUserData(token: any, user: User): void
@@ -105,12 +95,6 @@ export class RestDataSource
 
   }
 
-    // NB:  In Angular, HTTP requests are asynchronous, so when you call this.http.get method,
-    // it returns an observable, and you need to subscribe to it to get the actual data.
-    // getSurveyById(id: string): Observable<Survey> {
-    //     return this.http.get<Survey>(this.baseUrl + API_ENDPOINTS.TAKE_SURVEY + id);
-    // } 
-    // UNESSARY API CALL
 
 
 

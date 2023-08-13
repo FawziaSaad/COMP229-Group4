@@ -14,16 +14,11 @@
             <th class="text-center col-2"></th>
             <th class="text-center col-2"></th>
           </ng-container>
-          <!-- <ng-container *ngIf="!displayName">
-            <th class="text-center col-2">Survey</th>
-            <th class="text-center col-2">Created By</th>
-          </ng-container> -->
         </tr>
         <!-- Repeatable Template Row -->
         <tr class="d-flex" *ngFor="let survey of surveys">
             <td class="text-center col-4">{{ survey.name }}</td>
             <td class="text-center col-3">{{ survey.creator }}</td>
-            <!-- <td class="text-center col-3">{{ survey.userid }}</td> -->
 
             <td class="text-center col-2">
               <a [routerLink]="'/survey/edit/' + survey._id" class="btn btn-primary btn-sm">
@@ -37,11 +32,6 @@
               <a (click)="onDeleteSurvey(survey._id)" class="btn btn-danger btn-sm">
                 <i class="fas fa-trash-alt"></i> Delete</a>
             </td>
-          <!-- </ng-container> -->
-          <!-- <ng-container *ngIf="!displayName">
-            <td class="text-center col-2">{{ survey.name }}</td>
-            <td class="text-center col-2">{{ survey.creator }}</td>
-          </ng-container> -->
         </tr>
       </table>
     </div>

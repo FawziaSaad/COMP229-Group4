@@ -12,9 +12,7 @@ export class StaticDataSource {
     new User("1", 'Moh', 'password', 'baz@example.com', 'Moh'),
     new User("2", 'Dave', 'password', 'foo@example.com', 'Dave'),
   ];
-  //you were right dave
-  // moh = new User('1', 'Moh', 'baz@example.com', 'Moh');
-  // dave = new User('2', 'Dave', 'foo@example.com', 'Dave');
+
   private questions: Question[] = [
     new Question( 'Favourite Food', 'Pizza', 'Burgers', 'Pasta', 'Sushi'),
     new Question( 'Favourite Drink', 'Coke', 'Pepsi', 'Fanta', 'Sprite'),

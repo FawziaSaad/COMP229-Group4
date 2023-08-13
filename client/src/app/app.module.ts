@@ -15,13 +15,9 @@ export function jwtTokenGetter(): string
   return localStorage.getItem('id_token');
 }
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    // PagesModule,
-    // PartialsModule
-    // SurveySiteComponent,
   ],
   imports: [
     BrowserModule,

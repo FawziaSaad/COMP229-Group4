@@ -29,7 +29,6 @@ export class CreateComponent implements OnInit {
     }
   }
   onSubmit1(data) {
-    // console.log(JSON.stringify(data) + this.surveyType.nativeElement.value);
     // POST METHOD GO HERE TO CREATE SURVEY IN SERVER
     let surveyToSend = {
       surveyName: data.surveyName,
@@ -63,7 +62,6 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit2(data) {
-    // console.log(JSON.stringify(data) + this.surveyType.nativeElement.value);
     // POST METHOD GO HERE TO CREATE SURVEY IN SERVER
 
     let surveyToSend = {

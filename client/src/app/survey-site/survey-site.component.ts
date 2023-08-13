@@ -55,11 +55,6 @@ export class SurveySiteComponent implements OnInit {
     this.surveyesPerPage = Number(newSize);
     this.changePage(1);
   }
-
-  // get pageNumbers (): number {
-  //   return Math.ceil(this.repository.getSurveys(this.selectedUser).length / this.surveyesPerPage);
-  //   // return Array(Math.ceil(this.repository.getSurveys(this.selectedUser).length / this.surveyesPerPage)).fill(0).map((x, i) => i + 1);
-  // }
   
   get pageCount(): number {
     return Math.ceil(this.repository.getSurveys(this.selectedUser).length / this.surveyesPerPage);

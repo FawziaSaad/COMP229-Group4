@@ -12,8 +12,6 @@ import { RouterModule } from '@angular/router';
 import { TakeSurveyComponent } from './survey/survey.component';
 import { RegisterComponent } from './auth/register/register.component';
 
-
-
 @NgModule({
   imports: [BrowserModule, FormsModule, PartialsModule, RouterModule],
   declarations: [

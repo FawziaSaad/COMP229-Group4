@@ -3,7 +3,6 @@ import { Survey } from './survey.model';
 import { Question } from './question.model';
 import { User } from './user.model';
 import { Response } from './response.model';
-// import { StaticDataSource } from './static.datasource';
 import { RestDataSource } from './rest.datasource';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -24,12 +23,6 @@ export class SurveyRepository {
         .filter((c, index, array) => array.indexOf(c) === index)
         .sort();
     });
-    // dataSource.getQuestions().subscribe((data) => {
-    //   this.questions = data;
-    // });
-    // dataSource.getResponses().subscribe((data) => {
-    //   this.responses = data;
-    // });
   }
 
   getSurveys(creator: string = null): Survey[] {
@@ -37,9 +30,7 @@ export class SurveyRepository {
   }
 
   getSurveyById(id: string): Survey {
-    // console.log(id);
     this.foundSurvey = this.surveys.find((s) => s._id === id);
-    // console.log(this.foundSurvey);
     return this.surveys.find((s) => s._id === id);
   }
 
@@ -49,23 +40,6 @@ export class SurveyRepository {
   getQuestions(): Question[] {
     return this.questions;
   }
-  //   getQuestionsBySurvay(survayId: number): Question[] {
-  //     var survay = this.surveys.find((s) => s._id === survayId);
-  //     return survay.questions;
-  //   }
-  
-  // getResponses(surveyId:number): Response[] {
-  //   return this.responses.filter((r) => r.surveyId === surveyId);
-  // }
-  
-//   getQuestionsBySurvay(survayId: number): Question[] {
-//     var survay = this.surveys.find((s) => s._id === survayId);
-//     return survay.questions;
-//   }
-
-  // getResponses(surveyId:number): Response[] {
-  //   return this.responses.filter((r) => r.surveyId === surveyId);
-  // }
   getResponses(surveyId?: string): Response[] {
     if(surveyId) {
         return this.responses.filter((r) => r.surveyId === surveyId);
@@ -80,7 +54,5 @@ saveSurvey(survey: Survey): void {
   this.dataSource.updateSurvey(survey._id, survey).subscribe(response => {
   });
 }
-
-
 
 }

@@ -2,7 +2,6 @@
     <div class="jumbotron">
         <h1 class="display-4">{{surveyToTake.name }}</h1>
         <h5 class="display-10"><i>By: "{{surveyToTake.creator }}"</i></h5>
-    
 
          <br/> 
         <form #surveyForm="ngForm" (ngSubmit)= "submitSurvey(surveyForm.value)">
@@ -16,7 +15,6 @@
                             id="flexRadioDefault1{{i}}" value="{{surveyToTake.questions[i].OptionOne}}" >
                             <label class="form-check-label" for="flexRadioDefault1{{i}}"> 
                                 {{surveyToTake.questions[i].OptionOne}}
-                                <!-- IF WE CHANGE THE VALUES OF OptionOne TO SAY Option1, THEN WE COULD USE A SECOND INNER FOR LOOP TO LABEL AND CUT DOWN ON REDUNDANCY -->
                             </label>
                         </div>
                         <div class="form-check">
@@ -42,7 +40,6 @@
                         </div>
                     </div>
 
-                    <!-- <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"> -->
                     <input *ngIf="surveyToTake.surveyType === 'SA'" class="form-control" type="text" [(ngModel)]="selectedAnswers[i]"
                     name="answers[{{ i }}]" value="{{surveyToTake.questions[i].OptionFour}}">
                 

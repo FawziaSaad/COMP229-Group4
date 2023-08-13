@@ -34,18 +34,9 @@ export class AuthService
   {
     return this.datasource.logout();
   }
-
-  //===============================================================
-  //Dave's Jank ~ how do we get the current user to be accessible?
+  
   getCurrentUser(): User {
     console.log("In authService, this is user:" + this.user);
     return this.user;
   }
-  //===============================================================
-
-  // TODO: get the user so that we can use it throughout the site and post the
-  // info into the backend
-
-
-  // TODO: put the authguard to not allow non signed in users to take surveys
 }

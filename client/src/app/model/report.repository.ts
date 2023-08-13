@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user.model';
 import { Response } from './response.model';
-// import { StaticDataSource } from './static.datasource';
 import { RestDataSource } from './rest.datasource';
 
 @Injectable()
@@ -12,12 +11,6 @@ export class ReportRepository {
     this.dataSource.getResponseList().subscribe((data) => {
       this.responses = data['responses'];
     });
-    // dataSource.getQuestions().subscribe((data) => {
-    //   this.questions = data;
-    // });
-    // dataSource.getResponses().subscribe((data) => {
-    //   this.responses = data;
-    // });
   }
 
     getResponsesById(surveyId?: string): Response[] {

@@ -24,17 +24,10 @@ export class ReportComponent implements OnInit{
   }
 
   get survey(): Survey {
-
-    // const id: string = 	"64b04fdc4038f37b48c37ce7";
-
     return this.repository.getSurveyById(this.id);
   }
 
   get response(): Response[] {
-
-    // const id: string = 	"64b04fdc4038f37b48c37ce7";
-    // const id: string = 	"error";
-    
     return this.rpRepository.getResponsesById(this.id)
   }
 }

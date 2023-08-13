@@ -39,7 +39,6 @@ export class TakeSurveyComponent implements OnInit {
 
 
   get surveyToTake() {
-    // this.surveyToTake = this.surveyRepository.getSurveyById(this.id);
 
     this.currentSurvey = this.surveyRepository.getSurveyById(this.id);
     return this.currentSurvey;
@@ -47,7 +46,6 @@ export class TakeSurveyComponent implements OnInit {
 
   
   submitSurvey(data){    
-    // console.log(this.currentSurvey.questions)
     
         let questions = [];
         let responses = [this.selectedAnswers];
@@ -56,12 +54,6 @@ export class TakeSurveyComponent implements OnInit {
     for (let q of this.currentSurvey.questions) {
       questions.push(q.Question);
     }
-
-    // // Check the arrays
-    // console.log('//=============================================');
-    // console.log(questions);
-    // console.log(responses[0])
-    // console.log('//=============================================');
 
     // If there is no user logged in, during post, set the values to anonymous
     if (this.displayName === "" || this.userid === ""){
@@ -72,10 +64,8 @@ export class TakeSurveyComponent implements OnInit {
     let responseToSend = {
 
       surveyId: this.id,
-      respondentId: this.userid, // the req.user.id -> current user will go here
-      takenBy: this.displayName, //req.user.displayName -> Same for this one
-      // respondentId: this.user._id, //  -> current user will go here
-      // takenBy: this.user.displayName, // -> Same for this one
+      respondentId: this.userid, 
+      takenBy: this.displayName, 
       questions: questions,
       responses: responses[0]
     };

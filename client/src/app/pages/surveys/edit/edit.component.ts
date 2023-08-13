@@ -24,17 +24,8 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {}
-  //   this.route.paramMap.subscribe(params => {
-  //     const id = params.get('id');
-  //     this.surveyRepo.getEditableSurvey(id).subscribe(data => {
-  //       this.survey = data;
-  //       console.log(this.survey);
 
-  //     });
-  //   });
-  // }
   get surveyToEdit() {
-    // this.surveyToTake = this.surveyRepository.getSurveyById(this.id);
 
     this.currentSurvey = this.surveyRepository.getSurveyById(this.id);
     return this.currentSurvey;
@@ -42,7 +33,6 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit1(data): void {
-    // console.log(JSON.stringify(data) + this.surveyType.nativeElement.value);
     // POST METHOD GO HERE TO CREATE SURVEY IN SERVER
     let surveyToEdit = {
       surveyName: data.surveyName,
@@ -73,7 +63,6 @@ export class EditComponent implements OnInit {
     this.router.navigate(['/survey/mysurveys']);
   }
   onSubmit2(data): void {
-    // console.log(JSON.stringify(data) + this.surveyType.nativeElement.value);
     // POST METHOD GO HERE TO CREATE SURVEY IN SERVER
 
     let surveyToSend = {
