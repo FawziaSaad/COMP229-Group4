@@ -10,12 +10,14 @@ import { TakeSurveyComponent } from './pages/survey/survey.component';
 import { EditComponent } from './pages/surveys/edit/edit.component';
 import { ReportComponent } from './pages/surveys/report/report.component';
 import { AuthGuard } from './admin/auth/auth.guard';
+import { RegisterComponent } from './pages/auth/register/register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: {title: 'Recent Surveys'}},
   { path: '', component: HomeComponent, data: {title: 'Recent Surveys'}},
   // { path: 'login', data: {title: 'Login'}, redirectTo: 'survey/mysurveys', pathMatch: 'full'}, 
   { path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
+  { path: 'register', data: {title: 'Register'}, component: RegisterComponent},
   { path: 'error', component: ErrorComponent, data: {title: 'Error'}},
   { path: 'survey-site', component: SurveySiteComponent, data: {title: 'Survey Site'}},
   { path: 'create-survey', component: CreateComponent, data: {title: 'Create Survey'}, canActivate: [AuthGuard]},

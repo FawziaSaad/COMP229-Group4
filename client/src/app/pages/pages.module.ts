@@ -10,6 +10,7 @@ import { CreateComponent } from './surveys/create/create.component';
 import { ReportComponent } from './surveys/report/report.component';
 import { RouterModule } from '@angular/router';
 import { TakeSurveyComponent } from './survey/survey.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 
@@ -22,7 +23,8 @@ import { TakeSurveyComponent } from './survey/survey.component';
     EditComponent,
     CreateComponent,
     ReportComponent,
-    TakeSurveyComponent
+    TakeSurveyComponent,
+    RegisterComponent
 
   ],
   exports: [
@@ -33,7 +35,8 @@ import { TakeSurveyComponent } from './survey/survey.component';
     EditComponent,
     CreateComponent,
     ReportComponent,
-    TakeSurveyComponent
+    TakeSurveyComponent,
+    RegisterComponent
     ]
 })
 export class PagesModule {}
